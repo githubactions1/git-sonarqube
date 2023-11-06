@@ -1,0 +1,28 @@
+        {
+        "url_servicenow":{
+            "processNotification":{
+                "urlApi":"https://sify.service-now.com/api/x_sitl_telco_sify/sifylocationguruintegration/processNotification",
+                "headerDtls": {
+                    "Authorization": "Bearer  dATTLABnErmV-YcjTLpMuut5crO1mefkQE69NisavefvsJl7ZU51hwkkSgXpQ7nYGAoZopDPGYF2VXHIisnalA"
+                }
+            },
+            "smsManagement":{
+                "urlApi":"https://sify.service-now.com/api/x_sitl_telco_sify/sifylocationguruintegration/smsManagement",
+                "headerDtls": {
+                    "Authorization": "Bearer  dATTLABnErmV-YcjTLpMuut5crO1mefkQE69NisavefvsJl7ZU51hwkkSgXpQ7nYGAoZopDPGYF2VXHIisnalA"
+                }
+            },
+            "getLinkStatusbyCase":{
+                "urlApi":"https://sify.service-now.com/api/x_sitl_telco_sify/sifylocationguruintegration/getLinkStatusbyCase",
+                "headerDtls": {
+                    "Authorization": "Bearer  dATTLABnErmV-YcjTLpMuut5crO1mefkQE69NisavefvsJl7ZU51hwkkSgXpQ7nYGAoZopDPGYF2VXHIisnalA"
+                }
+            },
+            "servicenowNotesApi":{
+                "urlApi":"https://sify.service-now.com/api/x_sitl_telco_sify/sifylocationguruintegration/updateNotesAPI",
+                "headerDtls": {
+                    "Authorization": "Bearer  dATTLABnErmV-YcjTLpMuut5crO1mefkQE69NisavefvsJl7ZU51hwkkSgXpQ7nYGAoZopDPGYF2VXHIisnalA"
+                }
+            }
+        }
+    }

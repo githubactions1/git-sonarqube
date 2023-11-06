@@ -1,0 +1,24 @@
+{
+  "name": "nms_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "NMSnode.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-mysql-session": "^3.0.0",
+    "express-session": "^1.17.3",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "moment": "^2.29.4",
+    "mysql": "^2.18.1",
+    "nconf": "^0.12.1",
+    "node": "^21.1.0",
+    "path": "^0.12.7"
+  }
+}
