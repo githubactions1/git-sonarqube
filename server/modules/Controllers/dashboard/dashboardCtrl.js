@@ -12,7 +12,8 @@ var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
  *******************************************************************************************************/
  exports.devicesCntrl=(req,res)=>{
 	 dashboardMdl.devicesMdl(req.body,req.user).then(function(results){
-		 df.formatSuccessRes(req,res,results,cntxtDtls,'',{});
+		 console.log()
+		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
 	 }).catch(function(error){
 		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
 	 });
