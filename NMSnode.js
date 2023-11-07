@@ -6,12 +6,14 @@ var MySQLStore = require('express-mysql-session')(expressSession);
 let http = require('http');
 var fs = require('fs');
 var path = require('path');
+var cors = require('cors')
 var util = require('util');
 var appRoot = __dirname;
 var df = require(appRoot + '/utils/dflower.utils');
 
 app.use(express.urlencoded({extended: false}))
 app.use(express.json());
+app.use(cors());
 
 
 
