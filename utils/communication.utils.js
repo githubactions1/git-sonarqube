@@ -1,4 +1,4 @@
-var appRoot ='/home/centos/glits/code/nodejs/SIFY_server'
+var appRoot ='/var/www/html/glits/code/nodejs/NMS_server';
 var log = require(appRoot + '/utils/logmessages');
 var df = require(appRoot + '/utils/dflower.utils');
 var cntxtDtls = df.getModuleMetaData(__dirname, __filename);

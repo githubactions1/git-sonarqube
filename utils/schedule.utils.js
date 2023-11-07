@@ -1,7 +1,7 @@
 var schedule = require("node-schedule");
-var appRoot = '/home/centos/glits/code/nodejs/SIFY_server'
+var appRoot ='/var/www/html/glits/code/nodejs/NMS_server';
 var log = require(appRoot + '/utils/logmessages');
-var taskCtrl = require(appRoot + '/server/modules/task/controllers/taskCtrl');
+//var taskCtrl = require(appRoot + '/server/modules/task/controllers/taskCtrl');
 
 var moduoleNm = "UTIL-SCHEDULER";
 
@@ -27,6 +27,6 @@ exports.scheduleScripts = function (callback) {
 		console.log("___________________________-----------------------------_______________________________________")
 		console.log("___________________________-----------------------------_______________________________________")
 		console.log("___________________________-----------------------------_______________________________________")
-		taskCtrl.calculateMissreturndistanceCtrl();
+		//taskCtrl.calculateMissreturndistanceCtrl();
 	});
 };
