@@ -17,7 +17,6 @@ app.use(cors());
 
 
 
-
 // app.use(express.static(path.join(__dirname, '/algtHst')));
 var sqldb = require(appRoot + '/config/db.config');
 
