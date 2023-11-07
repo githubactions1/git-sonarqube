@@ -25,5 +25,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm i 
-    - run: pm2 reload /home/NMS/actions-runner-backend/_work/nms_node/nms_node/NMSnode.js  --update-env
+    - run: pm2 reload ecosystem.config.js
    
