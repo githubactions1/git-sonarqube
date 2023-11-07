@@ -1,4 +1,4 @@
-var appRoot ='/home/glits/code/nodejs/NMS_server';
+var appRoot ='/home/NMS/actions-runner-backend/_work/nms_node/nms_node';
 var dashboardMdl = require('../modules/models/dashboard/dashboardMdl');
 var df = require( '../../../../../utils/dflower.utils');
 var cntxtDtls = df.getModuleMetaData(__dirname, __filename);

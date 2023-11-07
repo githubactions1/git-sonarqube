@@ -1,5 +1,5 @@
 var schedule = require("node-schedule");
-var appRoot ='/var/www/html/glits/code/nodejs/NMS_server';
+var appRoot ='/home/NMS/actions-runner-backend/_work/nms_node/nms_node';
 var log = require(appRoot + '/utils/logmessages');
 //var taskCtrl = require(appRoot + '/server/modules/task/controllers/taskCtrl');
 
