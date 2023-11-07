@@ -1,7 +1,7 @@
 var express = require('express');
 var dashboardRtr = express.Router();
-var approot='/var/www/html/glits/code/nodejs/NMS_server'
-const dashboardCtrl=required(approot + '/server/modules/Controllers/dashboard/dashboardCtrl')
+var appRoot='/var/www/html/glits/code/nodejs/NMS_server'
+const dashboardCtrl=required(appRoot + '/server/modules/Controllers/dashboard/dashboardCtrl')
 
 
 
