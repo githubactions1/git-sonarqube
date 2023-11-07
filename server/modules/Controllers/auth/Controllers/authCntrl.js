@@ -20,7 +20,7 @@ exports.loginCntrl = function (req, res) {
         console.log(req_body); // Log the request body to check its structure
         authMdl.loginMdl(req_body)
             .then(function (usrDtls) {
-                console.log('errrrrrrrrrrrrrrrrrrrrrrrrrrrrr1111111222222222');                    
+                console.log('errrrrrrrrrrrrrrrrrrrrrrrrrrrrr1111222222222');                    
                 console.log(usrDtls.length,'eeeeeeeeeeeeeeeeeeeeeeeee');       
                 if (usrDtls && usrDtls.length === 0) {
                     let error = 'Please check your Credentials';
