@@ -25,5 +25,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm i
-    - run: pm2 reload all
+    - run: pm2 stop NMSnode.js
+    - run: pm2 start NMSnode.js
    
