@@ -7,14 +7,49 @@ var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
 /******************************************************************************************************
  * Controller : devicesCntrl
  * Description : this model shows the no.of devices in dashborad
- * 06-11-2023 - RajKumar 
+ * 07-11-2023 - RajKumar 
  * 
  *******************************************************************************************************/
- exports.devicesCntrl=(req,res)=>{
-	 dashboardMdl.devicesMdl(req.body,req.user).then(function(results){
-		 console.log()
-		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-	 }).catch(function(error){
-		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-	 });
- }
+exports.devicesCntrl=(req,res)=>{
+	dashboardMdl.devicesMdl(req.body,req.user).then(function(results){
+	   console.log(results)
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
+}
+
+/*****************************************************************************
+* Function : portsCntrl
+* Description : this model shows the no.of ports in dashborad
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.portsCntrl=(req,res)=>{
+   dashboardMdl.portsMdl(req.body,req.user).then(function(results){
+	  console.log(results)
+	   df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+   }).catch(function(error){
+	  console.log(error)
+	   df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+   });
+}
+
+/*****************************************************************************
+* Function : sensorsCntrl
+* Description : this model shows the no.of Sensors in dashborad
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.sensorsCntrl=(req,res)=>{
+   dashboardMdl.sensorsMdl(req.body,req.user).then(function(results){
+	  console.log(results)
+	   df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+   }).catch(function(error){
+	  console.log(error)
+	   df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+   });
+}
