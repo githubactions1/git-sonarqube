@@ -63,3 +63,25 @@ exports.sensorsMdl = function (data) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+
+/*****************************************************************************
+* Function : statusesMdl
+* Description : this model shows the statuses on devices in dashborad
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.statusesMdl = function (data) {
+    var fnm = "statusesMdl"
+    var QRY_TO_EXEC = `SELECT  
+     SUM(CASE WHEN d.status = 0 THEN 1 ELSE 0 END) AS Down_Count,
+        SUM(CASE WHEN d.status = 1 THEN 1 ELSE 0 END) AS Up_Count,
+        SUM(CASE WHEN s.status_ignore = 1 THEN 1 ELSE 0 END) AS ignore_count,
+        SUM(CASE WHEN s.status_disable = 1 THEN 1 ELSE 0 END) AS disabled_count
+        FROM status as s
+        join devices as d on d.device_id=s.device_id
+    join ports as p on p.device_id=s.device_id
+    join sensors as ss on ss.device_id=s.device_id `;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};

@@ -10,6 +10,7 @@ const dashboardCtrl=require(appRoot + '/server/modules/Controllers/dashboard/das
 dashboardRtr.get("/devices", dashboardCtrl.devicesCntrl);
 dashboardRtr.get("/ports", dashboardCtrl.portsCntrl);
 dashboardRtr.get("/sensors", dashboardCtrl.sensorsCntrl);
+dashboardRtr.get("/statuses", dashboardCtrl.statusesCntrl);
 
 
 

@@ -17,7 +17,7 @@ exports.devicesCntrl=(req,res)=>{
 	}).catch(function(error){
 	   console.log(error)
 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-	});
+	} );
 }
 
 /*****************************************************************************
@@ -52,4 +52,20 @@ exports.sensorsCntrl=(req,res)=>{
 	  console.log(error)
 	   df.formatErrorRes(req,res,error,cntxtDtls,'',{});
    });
+}
+ /*****************************************************************************
+* Function : statusesCntrl
+* Description : this model shows the statuses on devices in dashborad
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.statusesCntrl=(req,res)=>{
+	dashboardMdl.statusesMdl(req.body,req.user).then(function(results){
+	   console.log(results)
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
 }
