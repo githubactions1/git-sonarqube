@@ -1,6 +1,6 @@
 module.exports = {
   apps : [{
     name   : "nms-node",
-    script : "pm2 reload NMSnode.js"
+    script : "npm start NMSnode.js"
   }]
 }
