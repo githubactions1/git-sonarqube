@@ -17,3 +17,16 @@ exports.dropdownlistMdl = function (data) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+/*****************************************************************************
+* Function : deviceslistMdl
+* Description : this will shoows the devices list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.deviceslistMdl = function (data) {
+    var fnm = "dropdownlistMdl"
+    var QRY_TO_EXEC = `select hostname,hardware,os,uptime from devices`;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
