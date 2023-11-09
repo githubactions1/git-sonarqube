@@ -85,3 +85,29 @@ exports.statusesMdl = function (data) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+/*****************************************************************************
+* Function : rolesaddMdl
+* Description : this model insert the roles in db
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.rolesaddMdl = function (data) {
+    var fnm = "rolesaddMdl"
+    var QRY_TO_EXEC = `insert into roles (role_name,role_descr,i_ts) values('${data.role_name}','${data.role_descr}',curdate()); `;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+/*****************************************************************************
+* Function : roleslstMdl
+* Description : this model gives the list of a roles 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.roleslstMdl = function (data) {
+    var fnm = "roleslstMdl"
+    var QRY_TO_EXEC = `Select * from roles `;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};

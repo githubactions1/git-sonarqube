@@ -11,6 +11,8 @@ dashboardRtr.get("/devices", dashboardCtrl.devicesCntrl);
 dashboardRtr.get("/ports", dashboardCtrl.portsCntrl);
 dashboardRtr.get("/sensors", dashboardCtrl.sensorsCntrl);
 dashboardRtr.get("/statuses", dashboardCtrl.statusesCntrl);
+dashboardRtr.post("/rolesadd", dashboardCtrl.rolesaddCtrl);
+dashboardRtr.get("/roleslst", dashboardCtrl.roleslstCtrl);
 
 
 

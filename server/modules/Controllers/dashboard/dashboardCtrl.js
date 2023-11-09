@@ -69,3 +69,35 @@ exports.statusesCntrl=(req,res)=>{
 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
 	});
 }
+ /*****************************************************************************
+* Function : rolesaddCtrl
+* Description : this model insert the roles in db
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.rolesaddCtrl=(req,res)=>{
+	dashboardMdl.rolesaddMdl(req.body,req.user).then(function(results){
+	   console.log(results)
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
+}
+ /*****************************************************************************
+* Function : roleslstCtrl
+* Description : this model gives the list of a roles 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.roleslstCtrl=(req,res)=>{
+	dashboardMdl.roleslstMdl(req.body,req.user).then(function(results){
+	   console.log(results)
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
+}
