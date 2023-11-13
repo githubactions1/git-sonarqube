@@ -13,7 +13,7 @@ var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
 ******************************************************************************/
 exports.dropdownlistMdl = function (data) {
     var fnm = "dropdownlistMdl"
-    var QRY_TO_EXEC = `SELECT vendor,hardware,version,os,location,type as 'device_type' FROM devices;`;
+    var QRY_TO_EXEC = `SELECT vendor,hardware,version,os,location,type as 'device_type' FROM device_info;`;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
@@ -26,7 +26,7 @@ exports.dropdownlistMdl = function (data) {
 ******************************************************************************/
 exports.deviceslistMdl = function (data) {
     var fnm = "dropdownlistMdl"
-    var QRY_TO_EXEC = `select hostname,hardware,os,uptime,device_id from devices`;
+    var QRY_TO_EXEC = `select hostname,hardware,os,uptime,device_id from device_info`;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
