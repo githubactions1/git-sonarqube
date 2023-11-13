@@ -25,5 +25,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm i 
+    - run: npm run test
     - run: ~/.nvm/versions/node/v16.20.2/bin/pm2 reload NMSnode.js
    
