@@ -33,12 +33,14 @@ exports.portsMdl = function (data) {
     var fnm = "portsMdl"
     var QRY_TO_EXEC = `SELECT 
     count(*) AS count,
-    SUM(CASE WHEN d.status = 0 THEN 1 ELSE 0 END) AS Down_Count,
-    SUM(CASE WHEN d.status = 1 THEN 1 ELSE 0 END) AS Up_Count,
-    SUM(CASE WHEN p.ignores = 1 THEN 1 ELSE 0 END) AS ignore_count,
-    SUM(CASE WHEN p.disabled = 1 THEN 1 ELSE 0 END) AS disabled_count
-    FROM ports as p
-    join devices as d on d.device_id=p.device_id;`;
+    SUM(CASE WHEN if_oper_status = 2 THEN 1 ELSE 0 END) AS Down_Count,
+    SUM(CASE WHEN if_oper_status = 1 THEN 1 ELSE 0 END) AS Up_Count,
+    SUM(CASE WHEN if_oper_status = 3 THEN 1 ELSE 0 END) AS Testing,
+    SUM(CASE WHEN if_oper_status = 4 THEN 1 ELSE 0 END) AS operation_Unknown,
+    SUM(CASE WHEN if_oper_status = 5 THEN 1 ELSE 0 END) AS Dormant,
+    SUM(CASE WHEN if_oper_status = 6 THEN 1 ELSE 0 END) AS Not_Present
+    FROM ports 
+    `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
