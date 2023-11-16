@@ -55,13 +55,12 @@ exports.portsMdl = function (data) {
 exports.sensorsMdl = function (data) {
     var fnm = "sensorsMdl"
     var QRY_TO_EXEC = `SELECT 
-    SUM(CASE WHEN d.status = 0 THEN 1 ELSE 0 END) AS Down_Count,
-       SUM(CASE WHEN d.status = 1 THEN 1 ELSE 0 END) AS Up_Count,
-       SUM(CASE WHEN s.sensor_ignore = 1 THEN 1 ELSE 0 END) AS ignore_count,
-       SUM(CASE WHEN s.sensor_disable = 1 THEN 1 ELSE 0 END) AS disabled_count
-       FROM sensors as s
-   join devices as d on d.device_id=s.device_id
-   join ports as p on p.device_id=s.device_id;`;
+    count(*) AS count,
+    SUM(CASE WHEN sensor_status = 0 THEN 1 ELSE 0 END) AS Down_Count,
+       SUM(CASE WHEN sensor_status = 1 THEN 1 ELSE 0 END) AS Up_Count,
+       SUM(CASE WHEN sensor_disable = 1 THEN 1 ELSE 0 END) AS ignore_count,
+       SUM(CASE WHEN sensor_ignore = 1 THEN 1 ELSE 0 END) AS disabled_count
+       FROM sensors `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
