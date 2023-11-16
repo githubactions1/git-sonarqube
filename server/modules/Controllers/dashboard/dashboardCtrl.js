@@ -101,3 +101,19 @@ exports.roleslstCtrl=(req,res)=>{
 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
 	});
 }
+ /*****************************************************************************
+* Function : sensorslstMdl
+* Description : this model gives the list of a sensorslst 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.sensorslstCtrl=(req,res)=>{
+	dashboardMdl.sensorslstMdl(req.body,req.user).then(function(results){
+	   console.log(results)
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
+}

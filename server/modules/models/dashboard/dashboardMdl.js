@@ -112,3 +112,17 @@ exports.roleslstMdl = function (data) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+/*****************************************************************************
+* Function : sensorslstMdl
+* Description : this model gives the list of a Sensors 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.sensorslstMdl = function (data) {
+    var fnm = "sensorslstMdl"
+    var QRY_TO_EXEC = `select s.sensor_class as class,d.hostname as 'device',s.sensor_descr as decription ,s.sensor_event as 'events',s.sensor_value as 'value' from sensors as s
+    left join devices as d on d.device_id=s.device_id `;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
