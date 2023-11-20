@@ -17,20 +17,20 @@ exports.dropdownlistMdl = function (data) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
-/*****************************************************************************
-* Function : deviceslistMdl
-* Description : this will shoows the devices list
-* Arguments : callback function
-* 04-11-2023 - RajKumar
-*
-******************************************************************************/
-exports.deviceslistMdl = function (data) {
-    var fnm = "deviceslistMdl"
-    var QRY_TO_EXEC = `select d.hostname,di.sys_desc,di.uptime,d.device_id from devices as d 
-    join device_info as di on di.device_id=d.device_id group by d.device_id;`;
-    console.log(QRY_TO_EXEC);
-    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
-};
+// /*****************************************************************************
+// * Function : deviceslistMdl
+// * Description : this will shoows the devices list
+// * Arguments : callback function
+// * 04-11-2023 - RajKumar
+// *
+// ******************************************************************************/
+// exports.deviceslistMdl = function (data) {
+//     var fnm = "deviceslistMdl"
+//     var QRY_TO_EXEC = `select d.hostname,di.sys_desc,di.uptime,d.device_id from devices as d 
+//     join device_info as di on di.device_id=d.device_id group by d.device_id;`;
+//     console.log(QRY_TO_EXEC);
+//     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+// };
 /*****************************************************************************
 * Function : devicesindetailedMdl
 * Description : this will shoows the devices list
@@ -64,4 +64,19 @@ exports.devicessensorslstMdl = function (data) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+/*****************************************************************************
+* Function : devicebasiclstMdl
+* Description : this will shoows the devices list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.devicebasiclstMdl = function (data) {
+    var fnm = "devicebasiclstMdl"
+    var QRY_TO_EXEC = `select d.hostname,di.sys_desc,di.uptime,d.device_id from devices as d 
+    join device_info as di on di.device_id=d.device_id group by d.device_id;`;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+
 

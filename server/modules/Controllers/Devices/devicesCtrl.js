@@ -25,15 +25,15 @@ var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
  * 06-11-2023 - RajKumar 
  * 
  *******************************************************************************************************/
- exports.deviceslistCtrl=(req,res)=>{
-	dashboardMdl.deviceslistMdl(req.body,req.user).then(function(results){
-	   console.log(results)
-		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-	}).catch(function(error){
-	   console.log(error)
-		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-	});
-}
+//  exports.deviceslistCtrl=(req,res)=>{
+// 	dashboardMdl.deviceslistMdl(req.body,req.user).then(function(results){
+// 	   console.log(results)
+// 		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+// 	}).catch(function(error){
+// 	   console.log(error)
+// 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+// 	});
+// }
  /******************************************************************************************************
   * Controller : devicesindetailedCtrl
  * Description : this will shoows the complete details of that device
@@ -63,4 +63,19 @@ exports.devicessensorslstCtrl=(req,res)=>{
        console.log(error)
         df.formatErrorRes(req,res,error,cntxtDtls,'',{});
     });
+}
+/******************************************************************************************************
+  * Controller : devicebasiclstCtrl
+ * Description : this will shoows the complete details of that device
+ * 06-11-2023 - RajKumar 
+ * 
+ *******************************************************************************************************/
+exports.devicebasiclstCtrl=(req,res)=>{
+   dashboardMdl.devicebasiclstMdl(req.body,req.user).then(function(results){
+      console.log(results)
+       df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+   }).catch(function(error){
+      console.log(error)
+       df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+   });
 }
