@@ -6,6 +6,7 @@ const deviceCtrl=require('../../../server/modules/Controllers/Devices/devicesCtr
 devicesRtr.get("/dropdownlist", deviceCtrl.dropdownlistCtrl);
 devicesRtr.get("/devicesbasiclist", deviceCtrl.deviceslistCtrl);
 devicesRtr.post("/devicesindetailed", deviceCtrl.devicesindetailedCtrl);
+devicesRtr.post("/devicessensorslst", deviceCtrl.devicessensorslstCtrl);
 
 
 module.exports=devicesRtr;

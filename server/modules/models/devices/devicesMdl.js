@@ -28,7 +28,7 @@ exports.deviceslistMdl = function (data) {
     var fnm = "dropdownlistMdl"
     var QRY_TO_EXEC = `select hostname,sys_desc,uptime,device_id from device_info`;
     console.log(QRY_TO_EXEC);
-    
+
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
 /*****************************************************************************
@@ -48,3 +48,20 @@ exports.devicesindetailedMdl = function (data) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+
+/*****************************************************************************
+* Function : devicessensorslstMdl
+* Description : this will shoows the devices list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.devicessensorslstMdl = function (data) {
+    var fnm = "devicessensorslstMdl"
+    var QRY_TO_EXEC = `select s.sys_voltage ,d.hostname as 'device',s.sys_activefan ,s.sys_temperature ,s.sys_fanspeed ,s.sys_processor_temp,s.sys_processor_temp,
+    s.sys_power,s.sys_current,s.sys_processor_frequency,s.sys_primary_powersupplyrate,s.sys_backup_powersupplyrate from sensors as s
+         join devices as d on d.device_id=s.device_id where d.device_id='${data.device_id}`;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+

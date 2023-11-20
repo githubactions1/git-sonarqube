@@ -49,3 +49,18 @@ var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
         df.formatErrorRes(req,res,error,cntxtDtls,'',{});
     });
 }
+/******************************************************************************************************
+  * Controller : devicessensorslstCtrl
+ * Description : this will shoows the complete details of that device
+ * 06-11-2023 - RajKumar 
+ * 
+ *******************************************************************************************************/
+exports.devicessensorslstCtrl=(req,res)=>{
+    dashboardMdl.devicessensorslstMdl(req.body,req.user).then(function(results){
+       console.log(results)
+        df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+    }).catch(function(error){
+       console.log(error)
+        df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+    });
+}
