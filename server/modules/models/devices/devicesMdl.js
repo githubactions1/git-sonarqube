@@ -28,6 +28,7 @@ exports.deviceslistMdl = function (data) {
     var fnm = "dropdownlistMdl"
     var QRY_TO_EXEC = `select hostname,sys_desc,uptime,device_id from device_info`;
     console.log(QRY_TO_EXEC);
+    
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
 /*****************************************************************************
