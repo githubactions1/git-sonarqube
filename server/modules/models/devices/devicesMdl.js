@@ -13,7 +13,7 @@ var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
 ******************************************************************************/
 exports.dropdownlistMdl = function (data) {
     var fnm = "dropdownlistMdl"
-    var QRY_TO_EXEC = `SELECT vendor,hardware,version,os,location,type as 'device_type' FROM device_info;`;
+    var QRY_TO_EXEC = `SELECT hardware,version,os,location,type as 'device_type' FROM device_info;`;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
@@ -26,7 +26,8 @@ exports.dropdownlistMdl = function (data) {
 ******************************************************************************/
 exports.deviceslistMdl = function (data) {
     var fnm = "dropdownlistMdl"
-    var QRY_TO_EXEC = `select hostname,sys_desc,uptime,device_id from device_info`;
+    var QRY_TO_EXEC = `select d.hostname,di.sys_desc,di.uptime,d.device_id from devices as d 
+    join device_info as di on di.device_id=d.device_id group by d.device_id`;
     console.log(QRY_TO_EXEC);
 
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
@@ -60,7 +61,7 @@ exports.devicessensorslstMdl = function (data) {
     var fnm = "devicessensorslstMdl"
     var QRY_TO_EXEC = `select s.sys_voltage ,d.hostname as 'device',s.sys_activefan ,s.sys_temperature ,s.sys_fanspeed ,s.sys_processor_temp,s.sys_processor_temp,
     s.sys_power,s.sys_current,s.sys_processor_frequency,s.sys_primary_powersupplyrate,s.sys_backup_powersupplyrate from sensors as s
-         join devices as d on d.device_id=s.device_id where d.device_id='${data.device_id}`;
+         join devices as d on d.device_id=s.device_id where d.device_id='${data.device_id}';`;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
