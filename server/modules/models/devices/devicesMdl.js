@@ -88,7 +88,7 @@ exports.processorindetailMdl = function (data) {
     var fnm = "processorindetailMdl"
     var QRY_TO_EXEC = `select (s.sys_processor_frequency DIV 100) as processor,d.sys_total_memory ,d.sys_used_memory,d.sys_mem_type from sensors as s
     join device_info as d on d.device_id=s.device_id
-    where where d.device_id='${data.device_id}';`;
+     where d.device_id='${data.device_id}';`;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
