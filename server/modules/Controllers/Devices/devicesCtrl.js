@@ -79,3 +79,18 @@ exports.devicebasiclstCtrl=(req,res)=>{
        df.formatErrorRes(req,res,error,cntxtDtls,'',{});
    });
 }
+/******************************************************************************************************
+  * Controller : processorindetailCtrl
+ * Description : this will shoows the complete details of that device
+ * 06-11-2023 - RajKumar 
+ * 
+ *******************************************************************************************************/
+exports.processorindetailCtrl=(req,res)=>{
+    dashboardMdl.processorindetailMdl(req.body,req.user).then(function(results){
+       console.log(results)
+        df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+    }).catch(function(error){
+       console.log(error)
+        df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+    });
+ }

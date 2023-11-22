@@ -43,7 +43,7 @@ exports.devicesindetailedMdl = function (data) {
     var QRY_TO_EXEC = `SELECT d.device_id,d.hostname as 'catched_ip',di.sys_name as 'system_name',di.sys_desc as 'operating_system',di.uptime,di.sys_serialnumber
     ,di.sys_version as 'version'
          FROM devices as d
-       join device_info as di on di.device_id=d.device_id where d.device_id=${data.device_id};`;
+       join device_info as di on di.device_id=d.device_id where d.device_id=${data.device_id};  `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
@@ -74,6 +74,21 @@ exports.devicebasiclstMdl = function (data) {
     var fnm = "devicebasiclstMdl"
     var QRY_TO_EXEC = `select d.hostname,di.sys_desc,di.uptime,d.device_id from devices as d 
     join device_info as di on di.device_id=d.device_id group by d.device_id;`;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+/*****************************************************************************
+* Function : processorindetailMdl
+* Description : this will shoows the devices list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.processorindetailMdl = function (data) {
+    var fnm = "processorindetailMdl"
+    var QRY_TO_EXEC = `select (s.sys_processor_frequency DIV 100) as processor,d.sys_total_memory ,d.sys_used_memory,d.sys_mem_type from sensors as s
+    join device_info as d on d.device_id=s.device_id
+    where where d.device_id='${data.device_id}';`;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
