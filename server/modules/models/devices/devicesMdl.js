@@ -110,4 +110,40 @@ exports.devicebasiclstcountMdl = function (data) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+/*****************************************************************************
+* Function : sensorslistMdl
+* Description : this will shoows the devices list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.sensorslistMdl = function (data) {
+    var fnm = "sensorslistMdl"
+    var QRY_TO_EXEC = ` select  device_id, sys_voltage, sys_voltage value, 'voltage' descrip
+    from sensors
+    union all
+    select  device_id, sys_activefan, sys_activefan value, 'activefan' descrip
+    from sensors
+    union all
+    select  device_id, sys_temperature, sys_temperature value, 'sys_temperature' descrip
+    from sensors
+    union all
+    select  device_id, sys_fanspeed, sys_fanspeed value, 'sys_fanspeed' descrip
+    from sensors
+    union all
+    select  device_id, sys_processor_temp, sys_processor_temp value, 'sys_processor_temp' descrip
+    from sensors
+    union all
+    select  device_id, sys_power, sys_power value, 'sys_power' descrip
+    from sensors
+    union all
+    select  device_id, sys_current, sys_power value, 'sys_current' descrip
+    from sensors
+    union all
+    select  device_id, sys_processor_frequency, sys_processor_frequency value, 'sys_processor_frequency' descrip
+    from sensors
+    `;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
 
