@@ -119,29 +119,37 @@ exports.devicebasiclstcountMdl = function (data) {
 ******************************************************************************/
 exports.sensorslistMdl = function (data) {
     var fnm = "sensorslistMdl"
-    var QRY_TO_EXEC = ` select  device_id, sys_voltage, sys_voltage value, 'voltage' descrip
-    from sensors
+    var QRY_TO_EXEC = ` select  s.device_id, di.hostname,s.sys_voltage value, 'voltage' descrip
+    from sensors as s
+    join device_info as di on s.device_id=di.device_id
     union all
-    select  device_id, sys_activefan, sys_activefan value, 'activefan' descrip
-    from sensors
+    select  s.device_id, di.hostname,s.sys_activefan value, 'activefan' descrip
+    from sensors as s
+    join device_info as di on s.device_id=di.device_id
     union all
-    select  device_id, sys_temperature, sys_temperature value, 'sys_temperature' descrip
-    from sensors
+    select  s.device_id, di.hostname,s.sys_temperature value, 'Temperature' descrip
+    from sensors as s
+    join device_info as di on s.device_id=di.device_id
     union all
-    select  device_id, sys_fanspeed, sys_fanspeed value, 'sys_fanspeed' descrip
-    from sensors
+    select  s.device_id, di.hostname,s.sys_fanspeed value, 'Fanspeed' descrip
+    from sensors as s
+    join device_info as di on s.device_id=di.device_id
     union all
-    select  device_id, sys_processor_temp, sys_processor_temp value, 'sys_processor_temp' descrip
-    from sensors
+    select  s.device_id, di.hostname,s.sys_processor_temp value, 'Processor_temp' descrip
+    from sensors as s
+    join device_info as di on s.device_id=di.device_id
     union all
-    select  device_id, sys_power, sys_power value, 'sys_power' descrip
-    from sensors
+    select  s.device_id, di.hostname,s.sys_power value, 'Power' descrip
+    from sensors as s
+    join device_info as di on s.device_id=di.device_id
     union all
-    select  device_id, sys_current, sys_power value, 'sys_current' descrip
-    from sensors
+    select  s.device_id, di.hostname,s.sys_current value, 'Current' descrip
+    from sensors as s
+    join device_info as di on s.device_id=di.device_id
     union all
-    select  device_id, sys_processor_frequency, sys_processor_frequency value, 'sys_processor_frequency' descrip
-    from sensors
+    select  s.device_id, di.hostname,s.sys_processor_frequency value, 'Processor_Frequency' descrip
+    from sensors as s
+    join device_info as di on s.device_id=di.device_id
     `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
