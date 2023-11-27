@@ -18,3 +18,17 @@ exports.memorylistMdl = function (data) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+/*****************************************************************************
+* Function : fanspeedlistMdl
+* Description : this model shows dropdown of a search filter
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.fanspeedlistMdl = function (data) {
+    var fnm = "fanspeedlistMdl"
+    var QRY_TO_EXEC = `select d.hostname,(d.sys_total_memory) ,(d.sys_used_memory ),d.sys_mem_type from sensors as s
+    join device_info as d on d.device_id=s.device_id `;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
