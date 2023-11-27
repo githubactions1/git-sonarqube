@@ -6,7 +6,7 @@ var authCtrl = require('../modules/Controllers/auth/Controllers/authCntrl');
 
 router.use('/dashboard', require(appRoot + '/server/routes/dashboard/dashboardRtr'));
 router.use('/devices', require('../../server/routes/devices/devicesRtr'));
-router.use('/health', require(appRoot + '/server/routes/health/healthRtr'));
+router.use('/health', require('../../server/routes/Health/healthRtr'));
 router.post("/login", authCtrl.loginCntrl);
 // router.post("/register", authCtrl.registerCntrl);
 router.post("/register", authCtrl.registerCntrl);
