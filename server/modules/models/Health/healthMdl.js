@@ -46,7 +46,23 @@ exports.currentlistMdl = function (data) {
     var QRY_TO_EXEC = `select   s.device_id, di.hostname,s.sys_current value, 'Current' descrip
     from sensors as s 
     join device_info as di on s.device_id=di.device_id
-    where s.sys_fanspeed not in (0,'N/A') `;
+    where s.sys_current not in (0,'N/A') `;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+/*****************************************************************************
+* Function : voltagelistMdl
+* Description : this model shows dropdown of a search filter
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.voltagelistMdl = function (data) {
+    var fnm = "voltagelistMdl"
+    var QRY_TO_EXEC = `select   s.device_id, di.hostname,s.sys_voltage value, 'voltage' descrip
+    from sensors as s 
+    join device_info as di on s.device_id=di.device_id
+    where s.sys_voltage not in (0,'N/A')`;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
