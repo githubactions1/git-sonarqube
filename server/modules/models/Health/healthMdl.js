@@ -27,8 +27,10 @@ exports.memorylistMdl = function (data) {
 ******************************************************************************/
 exports.fanspeedlistMdl = function (data) {
     var fnm = "fanspeedlistMdl"
-    var QRY_TO_EXEC = `select d.hostname,(d.sys_total_memory) ,(d.sys_used_memory ),d.sys_mem_type from sensors as s
-    join device_info as d on d.device_id=s.device_id `;
+    var QRY_TO_EXEC = `select   s.device_id, di.hostname,s.sys_fanspeed value, 'Fanspeed' descrip
+    from sensors as s 
+    join device_info as di on s.device_id=di.device_id
+    where s.sys_fanspeed not in (0,'N/A') `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
