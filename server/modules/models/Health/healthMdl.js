@@ -66,3 +66,19 @@ exports.voltagelistMdl = function (data) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+/*****************************************************************************
+* Function : powerlistMdl
+* Description : this model shows dropdown of a search filter
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.powerlistMdl = function (data) {
+    var fnm = "powerlistMdl"
+    var QRY_TO_EXEC = `select   s.device_id, di.hostname,s.sys_voltage value, 'voltage' descrip
+    from sensors as s 
+    join device_info as di on s.device_id=di.device_id
+    where s.sys_voltage not in (0,'N/A')`;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};

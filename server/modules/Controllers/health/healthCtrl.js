@@ -65,3 +65,19 @@ var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
           df.formatErrorRes(req,res,error,cntxtDtls,'',{});
       });
   }
+
+    /******************************************************************************************************
+   * Controller : powerlistCtrl
+  * Description : this model shows dropdown of a search filter
+  * 06-11-2023 - RajKumar 
+  * 
+  *******************************************************************************************************/
+    exports.powerlistCtrl=(req,res)=>{
+        healthMdl.powerlistMdl(req.body,req.user).then(function(results){
+            console.log(results)
+             df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+         }).catch(function(error){
+            console.log(error)
+             df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+         });
+     }
