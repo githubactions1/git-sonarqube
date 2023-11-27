@@ -75,10 +75,26 @@ exports.voltagelistMdl = function (data) {
 ******************************************************************************/
 exports.powerlistMdl = function (data) {
     var fnm = "powerlistMdl"
-    var QRY_TO_EXEC = `select   s.device_id, di.hostname,s.sys_voltage value, 'voltage' descrip
+    var QRY_TO_EXEC = `select   s.device_id, di.hostname,s.sys_power value, 'Power' descrip
     from sensors as s 
     join device_info as di on s.device_id=di.device_id
-    where s.sys_voltage not in (0,'N/A')`;
+    where s.sys_power not in (0,'N/A')`;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+/*****************************************************************************
+* Function : frequencylistMdl
+* Description : this model shows dropdown of a search filter
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.frequencylistMdl = function (data) {
+    var fnm = "frequencylistMdl"
+    var QRY_TO_EXEC = `select   s.device_id, di.hostname,s.sys_processor_frequency value, 'Frequency' descrip
+    from sensors as s 
+    join device_info as di on s.device_id=di.device_id
+    where s.sys_processor_frequency not in (0,'N/A')`;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
