@@ -11,7 +11,7 @@ var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
  * 
  *******************************************************************************************************/
  exports.memorylistCtrl=(req,res)=>{
-	 dashboardMdl.memorylistMdl(req.body,req.user).then(function(results){
+    healthMdl.memorylistMdl(req.body,req.user).then(function(results){
 		console.log(results)
 		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
 	 }).catch(function(error){
