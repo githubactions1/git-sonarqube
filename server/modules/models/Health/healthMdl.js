@@ -98,3 +98,27 @@ exports.frequencylistMdl = function (data) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+/*****************************************************************************
+* Function : statuslistMdl
+* Description : this model shows dropdown of a search filter
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.statuslistMdl = function (data) {
+    var fnm = "statuslistMdl"
+    var QRY_TO_EXEC = ` SELECT 
+    d.hostname,
+    CASE 
+      WHEN s.sys_primary_powersupplyrate = 1  THEN 'true'
+      ELSE 'false'
+    END AS 'Primary_powersupplyrate',
+     CASE 
+      WHEN s.sys_backup_powersupplyrate = 1 THEN 'true'
+      ELSE 'false'
+    END AS 'Backup_powersupplyrate'
+  FROM sensors as s
+  JOIN devices as d ON d.device_id = s.device_id;`;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};

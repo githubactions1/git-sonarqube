@@ -97,3 +97,33 @@ var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
              df.formatErrorRes(req,res,error,cntxtDtls,'',{});
          });
      }
+       /******************************************************************************************************
+   * Controller : frequencylistCtrl
+  * Description : this model shows dropdown of a search filter
+  * 06-11-2023 - RajKumar 
+  * 
+  *******************************************************************************************************/
+    exports.frequencylistCtrl=(req,res)=>{
+      healthMdl.frequencylistMdl(req.body,req.user).then(function(results){
+          console.log(results)
+           df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+       }).catch(function(error){
+          console.log(error)
+           df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+       });
+   }
+     /******************************************************************************************************
+   * Controller : frequencylistCtrl
+  * Description : this model shows dropdown of a search filter
+  * 06-11-2023 - RajKumar 
+  * 
+  *******************************************************************************************************/
+    exports.statuslistCtrl=(req,res)=>{
+        healthMdl.statuslistMdl(req.body,req.user).then(function(results){
+            console.log(results)
+             df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+         }).catch(function(error){
+            console.log(error)
+             df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+         });
+     }

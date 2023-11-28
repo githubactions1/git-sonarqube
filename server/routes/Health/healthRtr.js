@@ -9,4 +9,5 @@ healthRtr.get("/currentlist", healthCtrl.currentlistCtrl);
 healthRtr.get("/voltagelist", healthCtrl.voltagelistCtrl);
 healthRtr.get("/powerlist", healthCtrl.powerlistCtrl);
 healthRtr.get("/frequencylist", healthCtrl.frequencylistCtrl);
+healthRtr.get("/statuslist", healthCtrl.statuslistCtrl);
 module.exports=healthRtr;
