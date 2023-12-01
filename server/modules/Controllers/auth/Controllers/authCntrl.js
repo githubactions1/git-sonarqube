@@ -1,4 +1,4 @@
-var appRoot ='/home/NMS/actions-runner-backend/_work/nms_node/nms_node';
+var appRoot ='/home/nms-backend/actions-runner-backend/_work/nms_node/nms_node';
 var authMdl = require('../Models/authMdl');
 var df = require( '../../../../../utils/dflower.utils');
 var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
