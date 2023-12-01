@@ -1,5 +1,5 @@
 var schedule = require("node-schedule");
-var appRoot ='/home/nms-backend/actions-runner-backend/_work/nms_node/nms_node';
+var appRoot ='/home/nms-backend/actions-runner/_work/nms_node/nms_node';
 var log = require(appRoot + '/utils/logmessages');
 //var taskCtrl = require(appRoot + '/server/modules/task/controllers/taskCtrl');
 
