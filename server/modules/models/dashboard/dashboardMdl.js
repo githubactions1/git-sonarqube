@@ -54,13 +54,29 @@ exports.portsMdl = function (data) {
 ******************************************************************************/
 exports.sensorsMdl = function (data) {
     var fnm = "sensorsMdl"
-    var QRY_TO_EXEC = `SELECT 
-    count(*) AS count,
-    SUM(CASE WHEN sensor_status = 0 THEN 1 ELSE 0 END) AS Down_Count,
-       SUM(CASE WHEN sensor_status = 1 THEN 1 ELSE 0 END) AS Up_Count,
-       SUM(CASE WHEN sensor_disable = 1 THEN 1 ELSE 0 END) AS ignore_count,
-       SUM(CASE WHEN sensor_ignore = 1 THEN 1 ELSE 0 END) AS disabled_count
-       FROM sensors `;
+    var QRY_TO_EXEC = `
+    SELECT
+    COUNT(CASE WHEN sys_voltage != 'N/a' THEN sys_voltage END) AS sys_voltage_count,COUNT(CASE WHEN sys_activefan != 'N/a' THEN sys_activefan END) AS activefan,
+    COUNT(CASE WHEN sys_temperature != 'N/a' THEN sys_activefan END) AS temperature,COUNT(CASE WHEN sys_fanspeed != 'N/a' THEN sys_activefan END) AS fanspeed,
+    COUNT(CASE WHEN sys_processor_temp != 'N/a' THEN sys_activefan END) AS processor_temp,COUNT(CASE WHEN sys_power != 'N/a' THEN sys_activefan END) AS power,
+    COUNT(CASE WHEN sys_current != 'N/a' THEN sys_activefan END) AS current,COUNT(CASE WHEN sys_processor_frequency != 'N/a' THEN sys_activefan END) AS processor_frequency,
+    COUNT(CASE WHEN sys_voltage != 'N/a' THEN sys_voltage END) +COUNT(CASE WHEN sys_activefan != 'N/a' THEN sys_activefan END) +COUNT(CASE WHEN sys_temperature != 'N/a' THEN sys_temperature END) +
+    COUNT(CASE WHEN sys_fanspeed != 'N/a' THEN sys_fanspeed END) +COUNT(CASE WHEN sys_processor_temp != 'N/a' THEN sys_processor_temp END) +COUNT(CASE WHEN sys_power != 'N/a' THEN sys_power END) +
+    COUNT(CASE WHEN sys_current != 'N/a' THEN sys_current END) +
+    COUNT(CASE WHEN sys_processor_frequency != 'N/a' THEN sys_processor_frequency END) AS up,COUNT(CASE WHEN sys_voltage = 'N/a'THEN sys_voltage END) AS sys_voltage_count,
+    COUNT(CASE WHEN sys_activefan = 'N/a' THEN sys_activefan END) AS activefan,COUNT(CASE WHEN sys_temperature = 'N/a' THEN sys_activefan END) AS temperature,
+    COUNT(CASE WHEN sys_fanspeed = 'N/a' THEN sys_activefan END) AS fanspeed,COUNT(CASE WHEN sys_processor_temp = 'N/a' THEN sys_activefan END) AS processor_temp,
+    COUNT(CASE WHEN sys_power = 'N/a' THEN sys_activefan END) AS power,COUNT(CASE WHEN sys_current = 'N/a' THEN sys_activefan END) AS current,
+    COUNT(CASE WHEN sys_processor_frequency = 'N/a' THEN sys_activefan END) AS processor_frequency,COUNT(CASE WHEN sys_voltage = 'N/a' THEN sys_voltage END) +
+    COUNT(CASE WHEN sys_activefan = 'N/a' THEN sys_activefan END) +COUNT(CASE WHEN sys_temperature = 'N/a' THEN sys_temperature END) +
+    COUNT(CASE WHEN sys_fanspeed = 'N/a' THEN sys_fanspeed END) +COUNT(CASE WHEN sys_processor_temp = 'N/a' THEN sys_processor_temp END) +
+    COUNT(CASE WHEN sys_power = 'N/a' THEN sys_power END) +COUNT(CASE WHEN sys_current = 'N/a' THEN sys_current END) +COUNT(CASE WHEN sys_processor_frequency = 'N/a' THEN sys_processor_frequency END) AS down,
+    COUNT(CASE WHEN sys_voltage != 'N/a' THEN 1 END) + COUNT(CASE WHEN sys_activefan != 'N/a' THEN 1 END) + COUNT(CASE WHEN sys_temperature != 'N/a' THEN 1 END) +
+    COUNT(CASE WHEN sys_fanspeed != 'N/a' THEN 1 END) + COUNT(CASE WHEN sys_processor_temp != 'N/a' THEN 1 END) + COUNT(CASE WHEN sys_power != 'N/a' THEN 1 END) +
+    COUNT(CASE WHEN sys_current != 'N/a' THEN 1 END) + COUNT(CASE WHEN sys_processor_frequency != 'N/a' THEN 1 END) +COUNT(CASE WHEN sys_voltage = 'N/a' THEN 1 END) +
+    COUNT(CASE WHEN sys_activefan = 'N/a' THEN 1 END) + COUNT(CASE WHEN sys_temperature = 'N/a' THEN 1 END) + COUNT(CASE WHEN sys_fanspeed = 'N/a' THEN 1 END) +
+    COUNT(CASE WHEN sys_processor_temp = 'N/a' THEN 1 END) + COUNT(CASE WHEN sys_power = 'N/a' THEN 1 END) + COUNT(CASE WHEN sys_current = 'N/a' THEN 1 END) + COUNT(CASE WHEN sys_processor_frequency = 'N/a' THEN 1 END) AS total_count
+    FROM sensors; `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
