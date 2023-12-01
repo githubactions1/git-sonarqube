@@ -1,4 +1,4 @@
-var appRoot ='/home/nms-backend/actions-runner-backend/_work/nms_node/nms_node';
+var appRoot ='/home/nms-backend/actions-runner/_work/nms_node/nms_node';
 var healthMdl = require('../../models/Health/healthMdl');
 var df = require( '../../../../utils/dflower.utils');
 var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
