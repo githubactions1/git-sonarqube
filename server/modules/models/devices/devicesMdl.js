@@ -154,4 +154,17 @@ exports.sensorslistMdl = function (data) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
-
+/*****************************************************************************
+* Function : detailedportslistMdl
+* Description : this will shoows the devices list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.detailedportslistMdl = function (data) {
+    var fnm = "detailedportslistMdl"
+    var QRY_TO_EXEC = `select p.if_name,p.device_id,p.if_host_address from devices as d
+    join ports as p on p.device_id= d.device_id where d.device_id=${data.device_id} ;`;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
