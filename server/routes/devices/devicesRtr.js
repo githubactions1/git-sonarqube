@@ -12,4 +12,5 @@ devicesRtr.post("/processorindetail", deviceCtrl.processorindetailCtrl);
 devicesRtr.get("/devicebasiclistcount", deviceCtrl.devicebasiclstcountCtrl);
 devicesRtr.get("/sensorslist", deviceCtrl.sensorslistCtrl);
 devicesRtr.post("/detailedportslist", deviceCtrl.detailedportslistCtrl);
+devicesRtr.get("/allportslist", deviceCtrl.allportslistCtrl);
 module.exports=devicesRtr;

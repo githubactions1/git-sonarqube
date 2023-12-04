@@ -127,3 +127,19 @@ exports.detailedportslistCtrl=(req,res)=>{
     });
  }
 
+ /******************************************************************************************************
+  * Controller : allportslistCtrl
+ * Description : this will shoows the complete details of that device
+ * 06-11-2023 - RajKumar 
+ * 
+ *******************************************************************************************************/
+exports.allportslistCtrl=(req,res)=>{
+    dashboardMdl.allportslistMdl(req.body,req.user).then(function(results){
+       console.log(results)
+        df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+    }).catch(function(error){
+       console.log(error)
+        df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+    });
+ }
+

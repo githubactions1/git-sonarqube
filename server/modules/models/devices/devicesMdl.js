@@ -168,3 +168,18 @@ exports.detailedportslistMdl = function (data) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+
+/*****************************************************************************
+* Function : allportslistMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.allportslistMdl = function (data) {
+    var fnm = "allportslistMdl"
+    var QRY_TO_EXEC = `SELECT p.device_id,p.if_host_address,p.if_name,p.if_mac_address,ti.IfInOctets=-1 as Bits,ti.IfOutOctets=-1 as '%',ti.IfHcInOctets=-1 as pkts,ti.IfHcOutBroadCastPkts=-1 as speed from ports as p
+    join traffic_info as ti on p.device_id=ti.device_id `;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
