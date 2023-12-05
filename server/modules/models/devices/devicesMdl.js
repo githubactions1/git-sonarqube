@@ -238,3 +238,58 @@ join devices as d on d.device_id=p.device_id where p.device_id=${data.device_id}
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
 
+/*****************************************************************************
+* Function : idwiseportslistMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.idwiseportslistMdl = function (data) {
+    var fnm = "idwiseportslistMdl"
+    var QRY_TO_EXEC = ` SELECT
+    p.device_id,
+    p.if_name,
+    p.if_host_address,
+    p.if_mac_address,
+    ti.i_ts,
+    ti.If_InOctets,
+    ti.If_OutOctets,
+    round(If_InOctets / 1000*100, 0) as inpercentage,
+    round(If_OutOctets / 1000*100, 0) as outpercentage,
+    Received_Hc_UniCast_Pkts,
+    Received_UniCast_Pkts,
+    Transmitted_Hc_UniCast_Pkts=-1 as speed
+  FROM
+    ports AS p
+  JOIN (
+    SELECT
+      device_id,
+      port_name,
+      MAX(i_ts) AS max_i_ts
+    FROM
+      traffic_info
+    WHERE
+      device_id = ${data.device_id}
+    GROUP BY
+      device_id, port_name
+  ) AS max_ts
+  ON
+    p.device_id = max_ts.device_id
+    AND p.if_name = max_ts.port_name
+  JOIN
+    traffic_info AS ti
+  ON
+    max_ts.device_id = ti.device_id
+    AND max_ts.port_name = ti.port_name
+    AND max_ts.max_i_ts = ti.i_ts
+  WHERE
+    p.device_id = ${data.device_id}
+  ORDER BY
+    p.port_id ASC; `;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+
+
+

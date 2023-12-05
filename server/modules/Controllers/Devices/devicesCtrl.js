@@ -157,4 +157,19 @@ exports.devicesportscountCtrl=(req,res)=>{
         df.formatErrorRes(req,res,error,cntxtDtls,'',{});
     });
  } 
+   /******************************************************************************************************
+  * Controller : idwiseportslistCtrl
+ * Description : this will shoows the complete details of that device
+ * 06-11-2023 - RajKumar 
+ * 
+ *******************************************************************************************************/
+exports.idwiseportslistCtrl=(req,res)=>{
+    dashboardMdl.idwiseportslistMdl(req.body,req.user).then(function(results){
+       console.log(results)
+        df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+    }).catch(function(error){
+       console.log(error)
+        df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+    });
+ } 
 
