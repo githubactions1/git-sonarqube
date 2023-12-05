@@ -183,3 +183,21 @@ exports.allportslistMdl = function (data) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+
+/*****************************************************************************
+* Function : devicesportscountMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.devicesportscountMdl = function (data) {
+    var fnm = "devicesportscountMdl"
+    var QRY_TO_EXEC = ` select COUNT(IF(if_oper_status IN (1, 2), 1, NULL)) AS Total_Ports,
+    format(COUNT(CASE WHEN if_oper_status = 1 THEN 1 ELSE NULL END), 'NO') AS 'UP',
+    format(COUNT(CASE WHEN if_oper_status =2 THEN 1 ELSE NULL END), 'NO') AS 'Down'
+from ports as p
+join devices as d on d.device_id=p.device_id where p.device_id=${data.device_id} `;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};

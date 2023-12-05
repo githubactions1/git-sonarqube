@@ -13,4 +13,5 @@ devicesRtr.get("/devicebasiclistcount", deviceCtrl.devicebasiclstcountCtrl);
 devicesRtr.get("/sensorslist", deviceCtrl.sensorslistCtrl);
 devicesRtr.post("/detailedportslist", deviceCtrl.detailedportslistCtrl);
 devicesRtr.get("/allportslist", deviceCtrl.allportslistCtrl);
+devicesRtr.get("/devicesportscount", deviceCtrl.devicesportscountCtrl);
 module.exports=devicesRtr;
