@@ -178,8 +178,44 @@ exports.detailedportslistMdl = function (data) {
 ******************************************************************************/
 exports.allportslistMdl = function (data) {
     var fnm = "allportslistMdl"
-    var QRY_TO_EXEC = `SELECT p.device_id,p.if_host_address,p.if_name,p.if_mac_address,ti.IfInOctets=-1 as Bits,ti.IfOutOctets=-1 as '%',ti.IfHcInOctets=-1 as pkts,ti.IfHcOutBroadCastPkts=-1 as speed from ports as p
-    join traffic_info as ti on p.device_id=ti.device_id `;
+    var QRY_TO_EXEC = ` SELECT
+    p.device_id,
+    p.if_name,
+    p.if_host_address,
+    p.if_mac_address,
+    ti.i_ts,
+    ti.If_InOctets,
+    ti.If_OutOctets,
+    round(If_InOctets / 1000*100, 0) as inpercentage,
+    round(If_OutOctets / 1000*100, 0) as outpercentage,
+    Received_Hc_UniCast_Pkts,
+    Received_UniCast_Pkts,
+    Transmitted_Hc_UniCast_Pkts=-1 as speed
+  FROM
+    ports AS p
+  JOIN (
+    SELECT
+      device_id,
+      port_name,
+      MAX(i_ts) AS max_i_ts
+    FROM
+      traffic_info
+   
+    GROUP BY
+      device_id, port_name
+  ) AS max_ts
+  ON
+    p.device_id = max_ts.device_id
+    AND p.if_name = max_ts.port_name
+  JOIN
+    traffic_info AS ti
+  ON
+    max_ts.device_id = ti.device_id
+    AND max_ts.port_name = ti.port_name
+    AND max_ts.max_i_ts = ti.i_ts
+ 
+  ORDER BY
+    p.port_id ASC;  `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
@@ -201,3 +237,4 @@ join devices as d on d.device_id=p.device_id where p.device_id=${data.device_id}
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+
