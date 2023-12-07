@@ -178,10 +178,10 @@ exports.detailedportslistMdl = function (data) {
 ******************************************************************************/
 exports.allportslistMdl = function (data) {
     var fnm = "allportslistMdl"
-    var QRY_TO_EXEC = ` SELECT
+    var QRY_TO_EXEC = `  SELECT
     p.device_id,
     p.if_name,
-    p.if_host_address,
+    d.hostname,
     p.if_mac_address,
     ti.i_ts,
     ti.If_InOctets,
@@ -211,6 +211,12 @@ exports.allportslistMdl = function (data) {
     traffic_info AS ti
   ON
     max_ts.device_id = ti.device_id
+    AND max_ts.port_name = ti.port_name
+    AND max_ts.max_i_ts = ti.i_ts
+JOIN
+    devices  AS d
+  ON
+   d.device_id = ti.device_id
     AND max_ts.port_name = ti.port_name
     AND max_ts.max_i_ts = ti.i_ts
  
@@ -250,7 +256,7 @@ exports.idwiseportslistMdl = function (data) {
     var QRY_TO_EXEC = ` SELECT
     p.device_id,
     p.if_name,
-    p.if_host_address,
+    d.hostname,
     p.if_mac_address,
     ti.i_ts,
     ti.If_InOctets,
@@ -281,6 +287,12 @@ exports.idwiseportslistMdl = function (data) {
     traffic_info AS ti
   ON
     max_ts.device_id = ti.device_id
+    AND max_ts.port_name = ti.port_name
+    AND max_ts.max_i_ts = ti.i_ts
+JOIN
+    devices  AS d
+  ON
+   d.device_id = ti.device_id
     AND max_ts.port_name = ti.port_name
     AND max_ts.max_i_ts = ti.i_ts
   WHERE
