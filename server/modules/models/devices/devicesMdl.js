@@ -187,6 +187,12 @@ exports.allportslistMdl = function (data) {
     var QRY_TO_EXEC = `  SELECT
     p.device_id,
     p.if_name,
+    p.if_oper_status,
+	CASE 
+    WHEN p.if_oper_status = 1  THEN 'up'
+    WHEN p.if_oper_status = 2  THEN 'down'
+	WHEN p.if_oper_status = 6  THEN 'Not Present'
+  END AS 'status',
     d.hostname,
     p.if_mac_address,
     ti.i_ts,
@@ -227,7 +233,7 @@ JOIN
     AND max_ts.max_i_ts = ti.i_ts
  
   ORDER BY
-    p.port_id ASC;  `;
+    p.port_id ASC; `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
