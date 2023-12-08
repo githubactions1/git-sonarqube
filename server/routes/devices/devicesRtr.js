@@ -17,4 +17,5 @@ devicesRtr.post("/devicesportscount", deviceCtrl.devicesportscountCtrl);
 devicesRtr.post("/idwiseportslist", deviceCtrl.idwiseportslistCtrl);
 devicesRtr.get("/downportlist", deviceCtrl.downportslistCtrl);
 devicesRtr.get("/upportlist", deviceCtrl.upportslistCtrl);
+devicesRtr.get("/notpresentlink", deviceCtrl.notpresentlistCtrl);
 module.exports=devicesRtr;
