@@ -164,8 +164,8 @@ exports.sensorslistMdl = function (data) {
 exports.detailedportslistMdl = function (data) {
     var fnm = "detailedportslistMdl"
     var QRY_TO_EXEC = ` SELECT
-    CASE WHEN p.if_oper_status = 1 THEN p.if_name ELSE 0 END AS up,
-     CASE WHEN p.if_oper_status = 2 THEN p.if_name ELSE 0 END AS down
+    CASE WHEN p.if_oper_status = 1 THEN p.if_name  END AS up,
+     CASE WHEN p.if_oper_status = 2 THEN p.if_name END AS down
  FROM
      devices AS d
      JOIN ports AS p ON p.device_id = d.device_id
