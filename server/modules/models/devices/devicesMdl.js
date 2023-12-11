@@ -95,9 +95,25 @@ exports.devicebasiclstMdl = function (data) {
 ******************************************************************************/
 exports.processorindetailMdl = function (data) {
     var fnm = "processorindetailMdl"
-    var QRY_TO_EXEC = `select (s.sys_processor_frequency DIV 100) as processor,d.sys_total_memory ,d.sys_used_memory,d.sys_mem_type from sensors as s
-    join device_info as d on d.device_id=s.device_id
-     where d.device_id='${data.device_id}';`;
+    var QRY_TO_EXEC = `SELECT 
+    (s.sys_processor_frequency DIV 100) AS processor,
+    ROUND(d.sys_used_memory * 1024, 3) AS used_Memory,
+    (d.sys_total_memory * 1024) AS total_memory_multiplied,
+    ROUND(((d.sys_used_memory*1024) / (d.sys_total_memory * 1024) * 100),0) AS percentage,
+    ROUND(ABS(d.sys_used_memory / d.sys_total_memory * 100 - 100), 0) AS remaining_percentage,
+    d.sys_mem_type,
+    ROUND(d.sys_used_disk  * 1024) AS used_disk,
+    ROUND(d.sys_total_disk  * 1024) AS total_disk,
+    round((d.sys_used_disk  * 1024) / (d.sys_total_disk  * 1024) *100,0) as storage_percentage,
+    round(sys_total_disk*1024 - sys_used_disk*1024) as 'Remaining_storage',
+    round(d.sys_total_memory * 1024 - d.sys_used_memory * 1024) as 'Remaining_memory',
+    d.sys_disk_type,
+    d.sys_disk_size,
+    d.sys_total_disk,
+    d.sys_used_disk
+  FROM sensors AS s
+  JOIN device_info AS d ON d.device_id = s.device_id
+  WHERE d.device_id =${data.device_id};`;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
