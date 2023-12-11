@@ -18,4 +18,5 @@ devicesRtr.post("/idwiseportslist", deviceCtrl.idwiseportslistCtrl);
 devicesRtr.get("/downportlist", deviceCtrl.downportslistCtrl);
 devicesRtr.get("/upportlist", deviceCtrl.upportslistCtrl);
 devicesRtr.get("/notpresentlink", deviceCtrl.notpresentlistCtrl);
+devicesRtr.get("/Allstoragelist", deviceCtrl.AllstoragelistCtrl);
 module.exports=devicesRtr;

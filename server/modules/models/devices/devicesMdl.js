@@ -514,3 +514,30 @@ ORDER BY
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+
+/*****************************************************************************
+* Function : AllstoragelistMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.AllstoragelistMdl = function (data) {
+  var fnm = "AllstoragelistMdl"
+  var QRY_TO_EXEC = `  SELECT 
+  (s.sys_processor_frequency DIV 100) AS processor,
+  ROUND(d.sys_used_memory * 1024,0) AS used_Memory,
+d.sys_total_memory  AS total_memory,
+  ROUND(((d.sys_used_memory*1024) / (d.sys_total_memory * 1024) * 100),0) AS percentage,
+  ROUND(ABS(d.sys_used_memory / d.sys_total_memory * 100 - 100), 0) AS remaining_percentage,
+  d.sys_mem_type,
+  ROUND(d.sys_used_disk  * 1024) AS used_disk,
+  ROUND(d.sys_total_disk  * 1024) AS total_disk,
+  round((d.sys_used_disk  * 1024) / (d.sys_total_disk  * 1024) *100,0) as storage_percentage,
+  round(sys_total_disk*1024 - sys_used_disk*1024) as 'Remaining_storage',
+  round(d.sys_total_memory * 1024 - d.sys_used_memory * 1024) as 'Remaining_memory'
+FROM sensors AS s
+JOIN device_info AS d ON d.device_id = s.device_id `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
