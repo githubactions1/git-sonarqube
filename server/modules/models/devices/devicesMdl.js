@@ -57,9 +57,18 @@ exports.devicesindetailedMdl = function (data) {
 ******************************************************************************/
 exports.devicessensorslstMdl = function (data) {
     var fnm = "devicessensorslstMdl"
-    var QRY_TO_EXEC = `select s.sys_voltage ,d.hostname as 'device',s.sys_activefan ,s.sys_temperature ,s.sys_fanspeed ,s.sys_processor_temp,s.sys_processor_temp,
-    s.sys_power,s.sys_current,s.sys_processor_frequency,s.sys_primary_powersupplyrate,s.sys_backup_powersupplyrate from sensors as s
-         join devices as d on d.device_id=s.device_id where d.device_id='${data.device_id}';`;
+    var QRY_TO_EXEC = ` select round(s.sys_voltage/10,3)as voltage ,
+    d.hostname as 'device',
+    s.sys_activefan ,
+    round(s.sys_temperature/10 ) as system_tempereature,
+    s.sys_fanspeed ,
+    round(s.sys_processor_temp/10) as Processor_temperature,
+    round(s.sys_power/10,3)as power,
+    round(s.sys_current/1000,2) as Current,
+    round(s.sys_processor_frequency/1000,2) as frequency,
+    s.sys_primary_powersupplyrate,
+        s.sys_backup_powersupplyrate from sensors as s
+             join devices as d on d.device_id=s.device_id where d.device_id=${data.device_id}; `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
