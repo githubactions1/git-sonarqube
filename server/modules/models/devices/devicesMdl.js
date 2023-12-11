@@ -107,6 +107,7 @@ exports.processorindetailMdl = function (data) {
     round((d.sys_used_disk  * 1024) / (d.sys_total_disk  * 1024) *100,0) as storage_percentage,
     round(sys_total_disk*1024 - sys_used_disk*1024) as 'Remaining_storage',
     round(d.sys_total_memory * 1024 - d.sys_used_memory * 1024) as 'Remaining_memory'
+    round( ABS((d.sys_used_disk  * 1024 )/ (d.sys_total_disk  * 1024) *100-100 )) as remaining_storage_percentage
   FROM sensors AS s
   JOIN device_info AS d ON d.device_id = s.device_id
   WHERE d.device_id =${data.device_id};`;
