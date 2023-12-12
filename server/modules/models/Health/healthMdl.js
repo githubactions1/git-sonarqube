@@ -91,9 +91,9 @@ exports.powerlistMdl = function (data) {
 ******************************************************************************/
 exports.frequencylistMdl = function (data) {
     var fnm = "frequencylistMdl"
-    var QRY_TO_EXEC = `select   s.device_id, di.hostname,s.sys_processor_frequency value, 'Frequency' descrip
+    var QRY_TO_EXEC = `  select   s.device_id, di.hostname,s.sys_processor_frequency value, 'Frequency' descrip
     from sensors as s 
-    join device_info as di on s.device_id=di.device_id
+    left join device_info as di on s.device_id=di.device_id
     where s.sys_processor_frequency not in (0,'N/A')`;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
