@@ -13,7 +13,7 @@ var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
 ******************************************************************************/
 exports.memorylistMdl = function (data) {
     var fnm = "memorylistMdl"
-    var QRY_TO_EXEC = `select d.hostname,(d.sys_total_memory) ,(d.sys_used_memory ),d.sys_mem_type from sensors as s
+    var QRY_TO_EXEC = `select d.hostname,d.device_id,(d.sys_total_memory) ,(d.sys_used_memory ),d.sys_mem_type from sensors as s
     join device_info as d on d.device_id=s.device_id `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
