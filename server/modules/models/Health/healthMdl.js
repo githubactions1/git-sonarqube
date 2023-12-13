@@ -132,12 +132,12 @@ exports.statuslistMdl = function (data) {
 ******************************************************************************/
 exports.TemperaturelistMdl = function (data) {
     var fnm = "TemperaturelistMdl"
-    var QRY_TO_EXEC = ` SELECT s.device_id,sys_temperature AS temperature,'System' AS type,hostname
+    var QRY_TO_EXEC = `  SELECT s.device_id,sys_temperature/10 AS temperature,'System' AS type,hostname
     FROM sensors AS s
     JOIN device_info AS d ON d.device_id = s.device_id
     WHERE sys_temperature > 0
     UNION ALL
-    SELECT s.device_id,sys_processor_temp AS temperature,'Processor' AS type,hostname
+    SELECT s.device_id,sys_processor_temp/10 AS temperature,'Processor' AS type,hostname
     FROM sensors AS s
     JOIN device_info AS d ON d.device_id = s.device_id
     WHERE sys_processor_temp > 0; `;
