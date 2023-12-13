@@ -122,3 +122,25 @@ exports.statuslistMdl = function (data) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+
+/*****************************************************************************
+* Function : TemperaturelistMdl
+* Description : this model shows dropdown of a search filter
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.TemperaturelistMdl = function (data) {
+    var fnm = "TemperaturelistMdl"
+    var QRY_TO_EXEC = ` SELECT s.device_id,sys_temperature AS temperature,'System' AS type,hostname
+    FROM sensors AS s
+    JOIN device_info AS d ON d.device_id = s.device_id
+    WHERE sys_temperature > 0
+    UNION ALL
+    SELECT s.device_id,sys_processor_temp AS temperature,'Processor' AS type,hostname
+    FROM sensors AS s
+    JOIN device_info AS d ON d.device_id = s.device_id
+    WHERE sys_processor_temp > 0; `;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};

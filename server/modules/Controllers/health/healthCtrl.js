@@ -112,7 +112,7 @@ var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
            df.formatErrorRes(req,res,error,cntxtDtls,'',{});
        });
    }
-     /******************************************************************************************************
+/******************************************************************************************************
    * Controller : frequencylistCtrl
   * Description : this model shows dropdown of a search filter
   * 06-11-2023 - RajKumar 
@@ -127,3 +127,18 @@ var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
              df.formatErrorRes(req,res,error,cntxtDtls,'',{});
          });
      }
+/******************************************************************************************************
+   * Controller : TemperaturelistCtrl
+  * Description : this model shows dropdown of a search filter
+  * 06-11-2023 - RajKumar 
+  * 
+  *******************************************************************************************************/
+    exports.TemperaturelistCtrl=(req,res)=>{
+      healthMdl.TemperaturelistMdl(req.body,req.user).then(function(results){
+          console.log(results)
+           df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+       }).catch(function(error){
+          console.log(error)
+           df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+       });
+   }
