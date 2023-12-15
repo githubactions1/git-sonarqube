@@ -498,7 +498,7 @@ left JOIN (
 
   GROUP BY
     device_id, port_name
-) AS max_ts
+) AS max_ts   
 ON
   p.device_id = max_ts.device_id
   AND p.if_name = max_ts.port_name
@@ -517,7 +517,7 @@ ON
 WHERE
   p.if_oper_status=6
 ORDER BY
-  p.port_id ASC;   `;
+  p.port_id ASC; `;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
