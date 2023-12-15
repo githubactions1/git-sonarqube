@@ -350,7 +350,7 @@ ORDER BY
 ******************************************************************************/
 exports.idwiseportslistMdl = function (data) {
     var fnm = "idwiseportslistMdl"
-    var QRY_TO_EXEC = `  SELECT
+    var QRY_TO_EXEC = `   SELECT
     p.device_id,
     p.if_name,
     d.hostname,
@@ -363,7 +363,8 @@ exports.idwiseportslistMdl = function (data) {
     round(If_OutOctets / 1000*100, 0) as outpercentage,
     Received_Hc_UniCast_Pkts,
     Received_UniCast_Pkts,
-    Transmitted_Hc_UniCast_Pkts=-1 as speed
+    Transmitted_Hc_UniCast_Pkts=-1 as speed, d.com_str,
+    d.udp_port
   FROM
     ports AS p
   JOIN (
@@ -374,7 +375,7 @@ exports.idwiseportslistMdl = function (data) {
     FROM
       traffic_info
     WHERE
-      device_id = ${data.device_id}
+      device_id =${data.device_id}
     GROUP BY
       device_id, port_name
   ) AS max_ts
@@ -394,7 +395,7 @@ JOIN
     AND max_ts.port_name = ti.port_name
     AND max_ts.max_i_ts = ti.i_ts
   WHERE
-    p.device_id = ${data.device_id}
+    p.device_id =${data.device_id}
   ORDER BY
     p.port_id ASC; `;
     console.log(QRY_TO_EXEC);
