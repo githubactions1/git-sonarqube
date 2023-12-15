@@ -531,7 +531,7 @@ ORDER BY
 ******************************************************************************/
 exports.AllstoragelistMdl = function (data) {
   var fnm = "AllstoragelistMdl"
-  var QRY_TO_EXEC = `  SELECT d.hostname,d.device_id,d.sys_disk_type,
+  var QRY_TO_EXEC = `SELECT d.hostname,d.device_id,d.sys_disk_type,
   (s.sys_processor_frequency DIV 100) AS processor,
   ROUND(d.sys_used_memory * 1024,0) AS used_Memory,
 d.sys_total_memory  AS total_memory,
