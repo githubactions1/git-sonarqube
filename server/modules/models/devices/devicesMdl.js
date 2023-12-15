@@ -206,10 +206,11 @@ exports.detailedportslistMdl = function (data) {
 ******************************************************************************/
 exports.allportslistMdl = function (data) {
     var fnm = "allportslistMdl"
-    var QRY_TO_EXEC = `  SELECT
+    var QRY_TO_EXEC = `   SELECT
     p.device_id,
     p.if_name,
     p.if_oper_status,
+    p.if_index,
 	CASE 
     WHEN p.if_oper_status = 1  THEN 'up'
     WHEN p.if_oper_status = 2  THEN 'down'
@@ -287,12 +288,13 @@ join devices as d on d.device_id=p.device_id where p.device_id=${data.device_id}
 ******************************************************************************/
 exports.downportslistMdl = function (data) {
   var fnm = "downportslistMdl"
-  var QRY_TO_EXEC = ` SELECT
+  var QRY_TO_EXEC = `  SELECT
   p.device_id,
   p.if_name,
   d.hostname,
   p.if_mac_address,
-  ti.i_ts,
+  p.if_index,
+   ti.i_ts, 
   ti.If_InOctets,
   ti.If_OutOctets,
   round(If_InOctets / 1000*100, 0) as inpercentage,
@@ -348,11 +350,12 @@ ORDER BY
 ******************************************************************************/
 exports.idwiseportslistMdl = function (data) {
     var fnm = "idwiseportslistMdl"
-    var QRY_TO_EXEC = ` SELECT
+    var QRY_TO_EXEC = `  SELECT
     p.device_id,
     p.if_name,
     d.hostname,
     p.if_mac_address,
+    p.if_index, 
     ti.i_ts,
     ti.If_InOctets,
     ti.If_OutOctets,
@@ -407,11 +410,12 @@ JOIN
 ******************************************************************************/
 exports.upportslistMdl = function (data) {
   var fnm = "upportslistMdl"
-  var QRY_TO_EXEC = ` SELECT
+  var QRY_TO_EXEC = `  SELECT
   p.device_id,
   p.if_name,
   d.hostname,
   p.if_mac_address,
+  p.if_index,
   ti.i_ts,
   ti.If_InOctets,
   ti.If_OutOctets,
@@ -466,11 +470,12 @@ ORDER BY
 ******************************************************************************/
 exports.notpresentlistMdl = function (data) {
   var fnm = "notpresentlistMdl"
-  var QRY_TO_EXEC = ` SELECT
+  var QRY_TO_EXEC = `  SELECT
   p.device_id,
   p.if_name,
   d.hostname,
   p.if_mac_address,
+  p.if_index, 
   ti.i_ts,
   ti.If_InOctets,
   ti.If_OutOctets,
@@ -511,7 +516,7 @@ ON
 WHERE
   p.if_oper_status=6
 ORDER BY
-  p.port_id ASC;  `;
+  p.port_id ASC;   `;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
