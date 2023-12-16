@@ -110,7 +110,7 @@ exports.processorindetailMdl = function (data) {
     round( ABS((d.sys_used_disk  * 1024 )/ (d.sys_total_disk  * 1024) *100-100 )) as remaining_storage_percentage
   FROM sensors AS s
   JOIN device_info AS d ON d.device_id = s.device_id
-  WHERE d.device_id =10024 `;
+  WHERE d.device_id =${data.device_id} `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
