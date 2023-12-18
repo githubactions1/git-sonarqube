@@ -19,4 +19,6 @@ devicesRtr.get("/downportlist", deviceCtrl.downportslistCtrl);
 devicesRtr.get("/upportlist", deviceCtrl.upportslistCtrl);
 devicesRtr.get("/notpresentlink", deviceCtrl.notpresentlistCtrl);
 devicesRtr.get("/Allstoragelist", deviceCtrl.AllstoragelistCtrl);
+devicesRtr.get("/deletedevicedropdownlist", deviceCtrl.deletedevicedropdownlistCtrl);
+devicesRtr.post("/deletedevice", deviceCtrl.deletedeviceCtrl);
 module.exports=devicesRtr;

@@ -490,3 +490,32 @@ JOIN device_info AS d ON d.device_id = s.device_id
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+
+
+/*****************************************************************************
+* Function : deletedeviceMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.deletedeviceMdl = function (data) {
+  var fnm = "deletedeviceMdl"
+  var QRY_TO_EXEC = ` update devices set status = 0 where device_id=${data.device_id}  `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+
+/*****************************************************************************
+* Function : deletedevicedropdownlistMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.deletedevicedropdownlistMdl = function (data) {
+  var fnm = "deletedevicedropdownlistMdl"
+  var QRY_TO_EXEC = ` select hostname,device_id from devices   `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
