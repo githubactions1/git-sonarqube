@@ -519,3 +519,18 @@ exports.deletedevicedropdownlistMdl = function (data) {
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+
+/*****************************************************************************
+ * Function : notificationMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.notificationMdl = function (data) {
+  var fnm = "notificationMdl"
+  var QRY_TO_EXEC = ` select device_id,hostname VALUE , 'Device Down' descrip,datediff(current_timestamp(),u_ts) as days from devices where status =0;   `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+
