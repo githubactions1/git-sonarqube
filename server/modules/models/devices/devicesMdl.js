@@ -57,18 +57,26 @@ exports.devicesindetailedMdl = function (data) {
 ******************************************************************************/
 exports.devicessensorslstMdl = function (data) {
     var fnm = "devicessensorslstMdl"
-    var QRY_TO_EXEC = ` select round(s.sys_voltage/10,3)as voltage ,
-    d.hostname as 'device',
-    s.sys_activefan ,
-    round(s.sys_temperature/10 ) as system_tempereature,
-    s.sys_fanspeed ,
-    round(s.sys_processor_temp/10) as Processor_temperature,
-    round(s.sys_power/10,3)as power,
-    round(s.sys_current/1000,2) as Current,
-    round(s.sys_processor_frequency/1000,2) as frequency,
-    s.sys_primary_powersupplyrate,
-        s.sys_backup_powersupplyrate from sensors as s
-             join devices as d on d.device_id=s.device_id where d.device_id=${data.device_id}; `;
+    var QRY_TO_EXEC = ` 
+
+    SELECT 
+        ROUND(s.sys_voltage / 10, 3) AS voltage,
+        d.hostname AS 'device',
+        s.sys_activefan,
+        ROUND(s.sys_temperature / 10) AS system_tempereature,
+        s.sys_fanspeed,
+        ROUND(s.sys_processor_temp / 10) AS Processor_temperature,
+        ROUND(s.sys_power / 10, 3) AS power,
+        ROUND(s.sys_current / 1000, 2) AS Current,
+        ROUND(s.sys_processor_frequency / 1000, 2) AS frequency,
+        case when s.sys_primary_powersupplyrate= 1 then 'true' else 'false' end  as sys_primary_powersupplyrate,
+        case when s.sys_backup_powersupplyrate = 1 then 'true' else 'false' end as sys_backup_powersupplyrate
+    FROM
+        sensors AS s
+    JOIN
+        devices AS d ON d.device_id = s.device_id
+    WHERE
+        d.device_id = 10047; `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
