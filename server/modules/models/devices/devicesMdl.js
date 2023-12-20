@@ -76,7 +76,7 @@ exports.devicessensorslstMdl = function (data) {
     JOIN
         devices AS d ON d.device_id = s.device_id
     WHERE
-        d.device_id = 10047; `;
+        d.device_id =${data.device_id}  `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
