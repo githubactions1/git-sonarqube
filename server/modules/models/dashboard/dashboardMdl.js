@@ -13,12 +13,13 @@ var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
 ******************************************************************************/
 exports.devicesMdl = function (data) {
     var fnm = "devicesMdl"
-    var QRY_TO_EXEC = `SELECT 
+    var QRY_TO_EXEC = ` SELECT 
     count(*) AS count,
-    SUM(CASE WHEN status = 0 THEN 1 ELSE 0 END) AS Down_Count,
-    SUM(CASE WHEN status = 1 THEN 1 ELSE 0 END) AS Up_Count,
-    SUM(CASE WHEN ignores = 1 THEN 1 ELSE 0 END) AS ignore_count,
-    SUM(CASE WHEN disabled = 1 THEN 1 ELSE 0 END) AS disabled_count FROM devices;`;
+    SUM(CASE WHEN di.ip_status = 0 THEN 1 ELSE 0 END) AS Down_Count,
+    SUM(CASE WHEN di.ip_status = 1 THEN 1 ELSE 0 END) AS Up_Count,
+    SUM(CASE WHEN d.ignores = 1 THEN 1 ELSE 0 END) AS ignore_count,
+    SUM(CASE WHEN d.disabled = 1 THEN 1 ELSE 0 END) AS disabled_count FROM devices as d
+    join device_info as di on d.device_id=di.device_id `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
