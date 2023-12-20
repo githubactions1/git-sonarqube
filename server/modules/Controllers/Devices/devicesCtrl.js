@@ -308,3 +308,51 @@ exports.detaildeviceuplistCtrl=(req,res)=>{
 	});
 }
 
+/***************************************************************************
+* Function : basicdeviceuplistCtrl
+* Description : this model gives the list of a sensorslst 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.basicdeviceuplistCtrl=(req,res)=>{
+	dashboardMdl.basicdeviceuplistMdl(req.body,req.user).then(function(results){
+	   console.log(results)
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
+}
+/***************************************************************************
+* Function : detaildevicedownlistCtrl
+* Description : this model gives the list of a sensorslst 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.detaildevicedownlistCtrl=(req,res)=>{
+	dashboardMdl.detaildevicedownlistMdl(req.body,req.user).then(function(results){
+	   console.log(results)
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
+}
+/***************************************************************************
+* Function : basicdevicedownlistCtrl
+* Description : this model gives the list of a sensorslst 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.basicdevicedownlistCtrl=(req,res)=>{
+	dashboardMdl.basicdevicedownlistMdl(req.body,req.user).then(function(results){
+	   console.log(results)
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
+}

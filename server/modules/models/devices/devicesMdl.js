@@ -561,3 +561,56 @@ exports.detaildeviceuplistMdl = function (data) {
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
 
+/*****************************************************************************
+ * Function : basicdeviceuplistMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.basicdeviceuplistMdl = function (data) {
+  var fnm = "basicdeviceuplistMdl"
+  var QRY_TO_EXEC = `select d.hostname,di.sys_desc,di.uptime,d.device_id from devices as d 
+  join device_info as di on di.device_id=d.device_id 
+  where di.ip_status=1 group by d.device_id  `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+
+/*****************************************************************************
+ * Function : detaildevicedownlistMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.detaildevicedownlistMdl = function (data) {
+  var fnm = "detaildevicedownlistMdl"
+  var QRY_TO_EXEC = ` select d.hostname, di.uptime, di.sys_desc, d.device_id, di.sys_name, COUNT(p.device_id) AS port_count
+  FROM devices AS d
+  left join  device_info as di on di.device_id = d.device_id
+  left join ports AS p on p.device_id = d.device_id
+  where di.ip_status=0
+  group by d.hostname, di.uptime, di.sys_desc, d.device_id, di.sys_name;  `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+
+/*****************************************************************************
+ * Function : basicdevicedownlistMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.basicdevicedownlistMdl = function (data) {
+  var fnm = "basicdevicedownlistMdl"
+  var QRY_TO_EXEC = `select d.hostname,di.sys_desc,di.uptime,d.device_id from devices as d 
+  join device_info as di on di.device_id=d.device_id 
+  where di.ip_status=0 group by d.device_id  `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+
+
+
