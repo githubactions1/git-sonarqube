@@ -40,10 +40,10 @@ exports.dropdownlistMdl = function (data) {
 ******************************************************************************/
 exports.devicesindetailedMdl = function (data) {
     var fnm = "devicesindetailedMdl"
-    var QRY_TO_EXEC = `SELECT d.device_id,d.hostname as 'catched_ip',di.sys_name as 'system_name',di.sys_desc as 'operating_system',di.uptime,di.sys_serialnumber
+    var QRY_TO_EXEC = ` SELECT d.device_id,d.com_str,d.udp_port,d.hostname as 'catched_ip',di.sys_name as 'system_name',di.sys_desc as 'operating_system',di.uptime,di.sys_serialnumber
     ,di.sys_version as 'version'
          FROM devices as d
-       join device_info as di on di.device_id=d.device_id where d.device_id=${data.device_id};  `;
+       join device_info as di on di.device_id=d.device_id where d.device_id=10047;  `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
