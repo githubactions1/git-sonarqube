@@ -22,4 +22,5 @@ devicesRtr.get("/Allstoragelist", deviceCtrl.AllstoragelistCtrl);
 devicesRtr.get("/deletedevicedropdownlist", deviceCtrl.deletedevicedropdownlistCtrl);
 devicesRtr.post("/deletedevice", deviceCtrl.deletedeviceCtrl);
 devicesRtr.get("/notification", deviceCtrl.notificationCtrl);
+devicesRtr.get("/detaildeviceuplist", deviceCtrl.detaildeviceuplistCtrl);
 module.exports=devicesRtr;
