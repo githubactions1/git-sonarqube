@@ -614,5 +614,18 @@ exports.basicdevicedownlistMdl = function (data) {
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
 
+/*****************************************************************************
+ * Function : eventlogsMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.eventlogsMdl = function (data) {
+  var fnm = "eventlogsMdl"
+  var QRY_TO_EXEC = ` SELECT * FROM eventlog `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
 
 
