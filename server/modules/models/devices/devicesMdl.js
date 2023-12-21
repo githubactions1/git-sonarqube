@@ -60,6 +60,8 @@ exports.devicessensorslstMdl = function (data) {
     var QRY_TO_EXEC = ` 
 
     SELECT 
+        d.com_str,
+        d.udp_port,
         ROUND(s.sys_voltage / 10, 3) AS voltage,
         d.hostname AS 'device',
         s.sys_activefan,
