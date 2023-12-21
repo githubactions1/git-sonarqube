@@ -29,4 +29,5 @@ devicesRtr.get("/basicdevicedownlist", deviceCtrl.basicdevicedownlistCtrl);
 devicesRtr.get("/eventlogs", deviceCtrl.eventlogsCtrl);
 devicesRtr.get("/ignoredetails", deviceCtrl.ignoredetailsCtrl);
 devicesRtr.get("/disablelist", deviceCtrl.disablelistCtrl);
+devicesRtr.post("/detailsstatuspage", deviceCtrl.detailsstatuspageCtrl);
 module.exports=devicesRtr;
