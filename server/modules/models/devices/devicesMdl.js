@@ -511,7 +511,7 @@ JOIN device_info AS d ON d.device_id = s.device_id
 ******************************************************************************/
 exports.deletedeviceMdl = function (data) {
   var fnm = "deletedeviceMdl"
-  var QRY_TO_EXEC = ` update devices set status = 0 where device_id=${data.device_id}  `;
+  var QRY_TO_EXEC = `delete from devices where device_id=${data.device_id}  `;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
