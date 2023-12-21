@@ -628,4 +628,58 @@ exports.eventlogsMdl = function (data) {
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
 
+/*****************************************************************************
+ * Function : basicdevicedownlistMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.basicdevicedownlistMdl = function (data) {
+  var fnm = "basicdevicedownlistMdl"
+  var QRY_TO_EXEC = `  select d.hostname, di.uptime, di.sys_desc, d.device_id, di.sys_name, COUNT(p.device_id) AS port_count
+  FROM devices AS d
+  left join  device_info as di on di.device_id = d.device_id
+  left join ports AS p on p.device_id = d.device_id
+  where d.ignores=1
+  group by d.hostname, di.uptime, di.sys_desc, d.device_id, di.sys_name;   `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
 
+/*****************************************************************************
+ * Function : ignoredetailsMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.ignoredetailsMdl = function (data) {
+  var fnm = "ignoredetailsMdl"
+  var QRY_TO_EXEC = `  select d.hostname, di.uptime, di.sys_desc, d.device_id, di.sys_name, COUNT(p.device_id) AS port_count
+  FROM devices AS d
+  left join  device_info as di on di.device_id = d.device_id
+  left join ports AS p on p.device_id = d.device_id
+  where d.ignores=1
+  group by d.hostname, di.uptime, di.sys_desc, d.device_id, di.sys_name;   `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+/*****************************************************************************
+ * Function : disablelistMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.disablelistMdl = function (data) {
+  var fnm = "disablelistMdl"
+  var QRY_TO_EXEC = ` select d.hostname, di.uptime, di.sys_desc, d.device_id, di.sys_name, COUNT(p.device_id) AS port_count
+  FROM devices AS d
+  left join  device_info as di on di.device_id = d.device_id
+  left join ports AS p on p.device_id = d.device_id
+  where d.disabled=1
+  group by d.hostname, di.uptime, di.sys_desc, d.device_id, di.sys_name;   `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
