@@ -34,7 +34,14 @@ var jsonwebtoken=require('jsonwebtoken')
 //                  else {
     
 //                     return df.formatSucessRes(req, res, usrDtls, cntxtDtls, fnm, {});
-//                 }              
+//                 }
+//                     data.user = payload;
+//                     var accessToken = jwt.sign(payload, { expiresIn: '3h' , algorithm: 'HS256'} ); //{ algorithm: 'HS256'});
+//                     req.user = payload;
+//                     data.token = accessToken;
+//                     res.setHeader('x-access-token', accessToken);
+//                     //operations.record('lgn_ct');
+//                     df.formatSucessRes(req, res, data, cntxtDtls, fnm, {});              
                             
 //             });
 //     } else {
@@ -46,7 +53,7 @@ var jsonwebtoken=require('jsonwebtoken')
 // }
 exports.loginCntrl = function(req, res){
     fnm = "loginCntrl"
-    var privateKey = 'GVMCwaterDev101222';
+    // var privateKey = 'Networkmanagement';
     req_body = req.body ? req.body : req.body.data;
     authMdl.loginMdl(req_body).then(function (usrDtls) {
         if (usrDtls && usrDtls.length < 0) {
@@ -69,7 +76,7 @@ exports.loginCntrl = function(req, res){
                 //user_id: usrDtls.login_details.mrcht_usr_id,
             });
             data.user = payload;
-            var accessToken = jwt.sign(payload, privateKey, { expiresIn: '3h' , algorithm: 'HS256'} ); //{ algorithm: 'HS256'});
+            var accessToken = jwt.sign(payload, { expiresIn: '3h' , algorithm: 'HS256'} ); //{ algorithm: 'HS256'});
             req.user = payload;
 			data.token = accessToken;
             res.setHeader('x-access-token', accessToken);
