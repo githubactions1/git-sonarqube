@@ -77,6 +77,7 @@ exports.loginCntrl = function(req, res){
             });
             data.user = payload;
             var accessToken = jwt.sign(payload,privateKey, { expiresIn: '3h' , algorithm: 'HS256'} ); //{ algorithm: 'HS256'});
+            console.log(accessToken,'tokeennnnnnnn')
             req.user = payload;
 			data.token = accessToken;
             res.setHeader('x-access-token', accessToken);
