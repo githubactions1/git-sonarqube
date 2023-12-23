@@ -30,4 +30,5 @@ devicesRtr.get("/eventlogs", deviceCtrl.eventlogsCtrl);
 devicesRtr.get("/ignoredetails", deviceCtrl.ignoredetailsCtrl);
 devicesRtr.get("/disablelist", deviceCtrl.disablelistCtrl);
 devicesRtr.post("/detailsstatuspage", deviceCtrl.detailsstatuspageCtrl);
+devicesRtr.post("/geolocation", deviceCtrl.geolocationCtrl);
 module.exports=devicesRtr; 

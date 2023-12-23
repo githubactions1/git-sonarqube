@@ -68,15 +68,15 @@ exports.loginCntrl = function(req, res){
             //console.log(usrDtls)
             let payload;
 			//var accessToken = jwt.sign(payload, privateKey, { expiresIn: '3h' , algorithm: 'HS256'} ); //{ algorithm: 'HS256'});
-            // payload = Object.assign({}, usrDtls[0], {
-            //     app: req_body.app,
-            //     cmpnt_id: req_body.cmpnt_id,
-            //     //prt_in: usrDtls.login_details.prt_in,
-            //     //caf_in: usrDtls.login_details.caf_in,
-            //     //user_id: usrDtls.login_details.mrcht_usr_id,
-            // });
+            payload = Object.assign({}, usrDtls[0], {
+                app: req_body.app,
+                cmpnt_id: req_body.cmpnt_id,
+                //prt_in: usrDtls.login_details.prt_in,
+                //caf_in: usrDtls.login_details.caf_in,
+                //user_id: usrDtls.login_details.mrcht_usr_id,
+            });
             data.user = payload;
-            var accessToken = jwt.sign(privateKey, { expiresIn: '3h' , algorithm: 'HS256'} ); //{ algorithm: 'HS256'});
+            var accessToken = jwt.sign(payload,privateKey, { expiresIn: '3h' , algorithm: 'HS256'} ); //{ algorithm: 'HS256'});
             console.log(accessToken,'tokeennnnnnnn')
             req.user = payload;
 			data.token = accessToken;
