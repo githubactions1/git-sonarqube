@@ -728,3 +728,107 @@ exports.geolocationMdl = function (data) {
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+
+/*****************************************************************************
+ * Function : sensorpresentlistMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.sensorpresentlistMdl = function (data) {
+  var fnm = "sensorpresentlistMdl"
+  var QRY_TO_EXEC = ` select  s.device_id, di.hostname,s.sys_voltage value, 'voltage' descrip
+  from sensors as s
+  join device_info as di on s.device_id=di.device_id
+where s.sys_voltage not in ('No Such Object currently exists at this OID')
+  union all
+  select  s.device_id, di.hostname,s.sys_activefan value, 'activefan' descrip
+  from sensors as s
+  join device_info as di on s.device_id=di.device_id
+  where s.sys_activefan not in ('No Such Object currently exists at this OID')
+  union all
+  select  s.device_id, di.hostname,s.sys_temperature value, 'Temperature' descrip
+  from sensors as s
+  join device_info as di on s.device_id=di.device_id
+  where s.sys_temperature not in ('No Such Object currently exists at this OID')
+  union all
+  select  s.device_id, di.hostname,s.sys_fanspeed value, 'Fanspeed' descrip
+  from sensors as s
+  join device_info as di on s.device_id=di.device_id
+  where s.sys_fanspeed not in ('No Such Object currently exists at this OID') 
+  union all
+  select  s.device_id, di.hostname,s.sys_processor_temp value, 'Processor_temp' descrip
+  from sensors as s
+  join device_info as di on s.device_id=di.device_id
+  where s.sys_processor_temp not in ('No Such Object currently exists at this OID')
+  union all
+  select  s.device_id, di.hostname,s.sys_power value, 'Power' descrip
+  from sensors as s
+  join device_info as di on s.device_id=di.device_id
+  where s.sys_power not in ('No Such Object currently exists at this OID')
+  union all
+  select  s.device_id, di.hostname,s.sys_current value, 'Current' descrip
+  from sensors as s
+  join device_info as di on s.device_id=di.device_id
+  where s.sys_current not in ('No Such Object currently exists at this OID')
+  union all
+  select  s.device_id, di.hostname,s.sys_processor_frequency value, 'Processor_Frequency' descrip
+  from sensors as s
+  join device_info as di on s.device_id=di.device_id
+where s.sys_processor_frequency not in ('No Such Object currently exists at this OID')  `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+
+/*****************************************************************************
+ * Function : sensordownlistMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.sensordownlistMdl = function (data) {
+  var fnm = "sensordownlistMdl"
+  var QRY_TO_EXEC = `   select  s.device_id, di.hostname,s.sys_voltage value, 'voltage' descrip
+  from sensors as s
+  join device_info as di on s.device_id=di.device_id
+where s.sys_voltage  in ('No Such Object currently exists at this OID')
+  union all
+  select  s.device_id, di.hostname,s.sys_activefan value, 'activefan' descrip
+  from sensors as s
+  join device_info as di on s.device_id=di.device_id
+  where s.sys_activefan  in ('No Such Object currently exists at this OID')
+  union all
+  select  s.device_id, di.hostname,s.sys_temperature value, 'Temperature' descrip
+  from sensors as s
+  join device_info as di on s.device_id=di.device_id
+  where s.sys_temperature  in ('No Such Object currently exists at this OID')
+  union all
+  select  s.device_id, di.hostname,s.sys_fanspeed value, 'Fanspeed' descrip
+  from sensors as s
+  join device_info as di on s.device_id=di.device_id
+  where s.sys_fanspeed  in ('No Such Object currently exists at this OID') 
+  union all
+  select  s.device_id, di.hostname,s.sys_processor_temp value, 'Processor_temp' descrip
+  from sensors as s
+  join device_info as di on s.device_id=di.device_id
+  where s.sys_processor_temp  in ('No Such Object currently exists at this OID')
+  union all
+  select  s.device_id, di.hostname,s.sys_power value, 'Power' descrip
+  from sensors as s
+  join device_info as di on s.device_id=di.device_id
+  where s.sys_power  in ('No Such Object currently exists at this OID')
+  union all
+  select  s.device_id, di.hostname,s.sys_current value, 'Current' descrip
+  from sensors as s
+  join device_info as di on s.device_id=di.device_id
+  where s.sys_current  in ('No Such Object currently exists at this OID')
+  union all
+  select  s.device_id, di.hostname,s.sys_processor_frequency value, 'Processor_Frequency' descrip
+  from sensors as s
+  join device_info as di on s.device_id=di.device_id
+where s.sys_processor_frequency  in ('No Such Object currently exists at this OID')  `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
