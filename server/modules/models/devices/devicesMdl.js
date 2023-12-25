@@ -693,7 +693,9 @@ exports.disablelistMdl = function (data) {
 ******************************************************************************/
 exports.detailsstatuspageMdl = function (data) {
   var fnm = "detailsstatuspageMdl"
-  var QRY_TO_EXEC = `    SELECT 
+  var QRY_TO_EXEC = ` SELECT 
+  d.device_id,
+  d.hostname,
   (s.sys_processor_frequency DIV 100) AS processor,
   d.uptime,
   ROUND(d.sys_used_memory * 1024,0) AS used_Memory,
