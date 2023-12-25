@@ -832,3 +832,17 @@ where s.sys_processor_frequency  in ('No Such Object currently exists at this OI
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+
+/*****************************************************************************
+ * Function : ignoredeviceMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.ignoredeviceMdl = function (data) {
+  var fnm = "ignoredeviceMdl"
+  var QRY_TO_EXEC = `update devices set ignores = 1 where device_id=${data.device_id}  `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};

@@ -33,4 +33,5 @@ devicesRtr.post("/detailsstatuspage", deviceCtrl.detailsstatuspageCtrl);
 devicesRtr.post("/geolocation", deviceCtrl.geolocationCtrl);
 devicesRtr.get("/sensorpresentlist", deviceCtrl.sensorpresentlistCtrl);
 devicesRtr.get("/sensordownlist", deviceCtrl.sensordownlistCtrl);
+devicesRtr.post("/ignoredevice", deviceCtrl.ignoredeviceCtrl);
 module.exports=devicesRtr; 

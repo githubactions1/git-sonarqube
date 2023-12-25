@@ -80,7 +80,7 @@ exports.loginCntrl = function(req, res){
             console.log(accessToken,'tokeennnnnnnn')
             req.user = payload;
 			data.token = accessToken;
-            res.headers('x-access-token', accessToken);
+            res.setHeader('x-access-token', accessToken);
             //operations.record('lgn_ct');
             df.formatSucessRes(req, res, data, cntxtDtls, fnm, {});
         } else {
