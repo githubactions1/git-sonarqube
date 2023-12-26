@@ -725,7 +725,7 @@ WHERE d.device_id =${data.device_id} `;
 ******************************************************************************/
 exports.geolocationMdl = function (data) {
   var fnm = "geolocationMdl"
-  var QRY_TO_EXEC = ` insert into locations set name ='${data.name}'  `;
+  var QRY_TO_EXEC = `INSERT INTO locations (name) values ('${data.name}') `;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
