@@ -92,7 +92,8 @@ exports.devicessensorslstMdl = function (data) {
 exports.devicebasiclstMdl = function (data) {
     var fnm = "devicebasiclstMdl"
     var QRY_TO_EXEC = `select d.hostname,di.sys_desc,di.uptime,d.device_id from devices as d 
-    join device_info as di on di.device_id=d.device_id group by d.device_id;`;
+    join device_info as di on di.device_id=d.device_id 
+    where d.ignores=0  group by d.device_id;`;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
@@ -843,6 +844,47 @@ where s.sys_processor_frequency  in ('No Such Object currently exists at this OI
 exports.ignoredeviceMdl = function (data) {
   var fnm = "ignoredeviceMdl"
   var QRY_TO_EXEC = `update devices set ignores = 1 where device_id=${data.device_id}  `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+/*****************************************************************************
+ * Function : unignoredeviceMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.unignoredeviceMdl = function (data) {
+  var fnm = "unignoredeviceMdl"
+  var QRY_TO_EXEC = `update devices set ignores = 0 where device_id=${data.device_id}  `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+
+/*****************************************************************************
+ * Function : ignorelistMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.ignorelistMdl = function (data) {
+  var fnm = "ignorelistMdl"
+  var QRY_TO_EXEC = ` select * from devices where ignores=1  `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+
+/*****************************************************************************
+ * Function : notignorelistMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.notignorelistMdl = function (data) {
+  var fnm = "notignorelistMdl"
+  var QRY_TO_EXEC = ` select * from devices where ignores=0  `;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };

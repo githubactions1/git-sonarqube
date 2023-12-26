@@ -488,3 +488,52 @@ exports.ignoredeviceCtrl=(req,res)=>{
 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
 	});
 }
+/***************************************************************************
+* Function : unignoredeviceCtrl
+* Description : this model gives the list of a sensorslst 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.unignoredeviceCtrl=(req,res)=>{
+	dashboardMdl.unignoredeviceMdl(req.body,req.user).then(function(results){
+	   console.log(results)
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
+}
+/***************************************************************************
+* Function : ignorelistCtrl
+* Description : this model gives the list of a sensorslst 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.ignorelistCtrl=(req,res)=>{
+	dashboardMdl.ignorelistMdl(req.body,req.user).then(function(results){
+	   console.log(results)
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
+}
+
+/***************************************************************************
+* Function : notignorelistCtrl
+* Description : this model gives the list of a sensorslst 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.notignorelistCtrl=(req,res)=>{
+	dashboardMdl.notignorelistMdl(req.body,req.user).then(function(results){
+	   console.log(results)
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
+}
