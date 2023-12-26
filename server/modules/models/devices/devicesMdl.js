@@ -694,7 +694,7 @@ exports.disablelistMdl = function (data) {
 ******************************************************************************/
 exports.detailsstatuspageMdl = function (data) {
   var fnm = "detailsstatuspageMdl"
-  var QRY_TO_EXEC = ` SELECT 
+  var QRY_TO_EXEC = `SELECT 
   d.device_id,
   d.hostname,
   (s.sys_processor_frequency DIV 100) AS processor,
@@ -711,8 +711,7 @@ d.sys_total_memory  AS total_memory,
   round(d.sys_total_memory * 1024 - d.sys_used_memory * 1024) as 'Remaining_memory',
   round( ABS((d.sys_used_disk  * 1024 )/ (d.sys_total_disk  * 1024) *100-100 )) as remaining_storage_percentage
 FROM sensors AS s
-JOIN device_info AS d ON d.device_id = s.device_id
-WHERE d.device_id =${data.device_id} `;
+JOIN device_info AS d ON d.device_id = s.device_id `;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
