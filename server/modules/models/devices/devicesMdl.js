@@ -870,7 +870,7 @@ exports.unignoredeviceMdl = function (data) {
 ******************************************************************************/
 exports.ignorelistMdl = function (data) {
   var fnm = "ignorelistMdl"
-  var QRY_TO_EXEC = ` select * from devices where ignores=1  `;
+  var QRY_TO_EXEC = ` select device_id,hostname from devices where ignores=1  `;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
@@ -884,7 +884,7 @@ exports.ignorelistMdl = function (data) {
 ******************************************************************************/
 exports.notignorelistMdl = function (data) {
   var fnm = "notignorelistMdl"
-  var QRY_TO_EXEC = ` select * from devices where ignores=0  `;
+  var QRY_TO_EXEC = ` select device_id,hostname from devices where ignores=0  `;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
