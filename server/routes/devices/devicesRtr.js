@@ -35,7 +35,7 @@ devicesRtr.get("/sensorpresentlist", deviceCtrl.sensorpresentlistCtrl);
 devicesRtr.get("/sensordownlist", deviceCtrl.sensordownlistCtrl);
 devicesRtr.post("/ignoredevice", deviceCtrl.ignoredeviceCtrl);
 devicesRtr.post("/unignoredevice", deviceCtrl.unignoredeviceCtrl);
-devicesRtr.post("/ignorelist", deviceCtrl.ignorelistCtrl);
+devicesRtr.get("/ignorelist", deviceCtrl.ignorelistCtrl);
 devicesRtr.get("/notignorelist", deviceCtrl.notignorelistCtrl);
 
 module.exports=devicesRtr; 
