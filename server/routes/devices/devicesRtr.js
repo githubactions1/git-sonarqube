@@ -37,5 +37,6 @@ devicesRtr.post("/ignoredevice", deviceCtrl.ignoredeviceCtrl);
 devicesRtr.post("/unignoredevice", deviceCtrl.unignoredeviceCtrl);
 devicesRtr.get("/ignorelist", deviceCtrl.ignorelistCtrl);
 devicesRtr.get("/notignorelist", deviceCtrl.notignorelistCtrl);
+devicesRtr.get("/location", deviceCtrl.locationsCtrl);
 
 module.exports=devicesRtr; 
