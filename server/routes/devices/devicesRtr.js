@@ -1,6 +1,6 @@
 var express = require('express');
 var devicesRtr = express.Router();
-
+var checkuser=require('../../modules/Controllers/auth/Controllers/accessCtrl')
 const deviceCtrl=require('../../../server/modules/Controllers/Devices/devicesCtrl')
 
 devicesRtr.get("/dropdownlist", deviceCtrl.dropdownlistCtrl);
@@ -23,7 +23,7 @@ devicesRtr.get("/deletedevicedropdownlist", deviceCtrl.deletedevicedropdownlistC
 devicesRtr.post("/deletedevice", deviceCtrl.deletedeviceCtrl);
 devicesRtr.get("/notification", deviceCtrl.notificationCtrl);
 devicesRtr.get("/detaildeviceuplist", deviceCtrl.detaildeviceuplistCtrl);
-devicesRtr.get("/basicdeviceuplist", deviceCtrl.basicdeviceuplistCtrl);
+devicesRtr.get("/basicdeviceuplist",checkuser.hasToken, deviceCtrl.basicdeviceuplistCtrl);
 devicesRtr.get("/detaildevicedownlist", deviceCtrl.detaildevicedownlistCtrl);
 devicesRtr.get("/basicdevicedownlist", deviceCtrl.basicdevicedownlistCtrl);
 devicesRtr.get("/eventlogs", deviceCtrl.eventlogsCtrl);
