@@ -76,7 +76,7 @@ exports.loginCntrl = function(req, res){
                 //user_id: usrDtls.login_details.mrcht_usr_id,
             });
             data.user = payload;
-            var accessToken = jwt.sign(payload,privateKey, { expiresIn: '3h' , algorithm: 'HS256'} ); //{ algorithm: 'HS256'});
+            var accessToken = jwt.sign(payload,privateKey, { expiresIn: '2h' , algorithm: 'HS256'} ); //{ algorithm: 'HS256'});
             console.log(accessToken,'tokeennnnnnnn')
             req.user = payload;
 			data.token = accessToken;
@@ -87,7 +87,7 @@ exports.loginCntrl = function(req, res){
             df.formatErrorRes(req, res, false, cntxtDtls, fnm, {});
         }
     })
-}
+      }
 
 /******************************************************************************************************
  * Controller : register
