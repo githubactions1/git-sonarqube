@@ -23,7 +23,7 @@ devicesRtr.get("/deletedevicedropdownlist", deviceCtrl.deletedevicedropdownlistC
 devicesRtr.post("/deletedevice", deviceCtrl.deletedeviceCtrl);
 devicesRtr.get("/notification", deviceCtrl.notificationCtrl);
 devicesRtr.get("/detaildeviceuplist", deviceCtrl.detaildeviceuplistCtrl);
-devicesRtr.get("/basicdeviceuplist",checkuser.hasToken, deviceCtrl.basicdeviceuplistCtrl);
+devicesRtr.get("/basicdeviceuplist", deviceCtrl.basicdeviceuplistCtrl);
 devicesRtr.get("/detaildevicedownlist", deviceCtrl.detaildevicedownlistCtrl);
 devicesRtr.get("/basicdevicedownlist", deviceCtrl.basicdevicedownlistCtrl);
 devicesRtr.get("/eventlogs", deviceCtrl.eventlogsCtrl);
