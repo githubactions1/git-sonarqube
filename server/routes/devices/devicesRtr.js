@@ -38,5 +38,6 @@ devicesRtr.post("/unignoredevice", deviceCtrl.unignoredeviceCtrl);
 devicesRtr.get("/ignorelist", deviceCtrl.ignorelistCtrl);
 devicesRtr.get("/notignorelist", deviceCtrl.notignorelistCtrl);
 devicesRtr.get("/location", deviceCtrl.locationsCtrl);
+devicesRtr.post("/idwiseeventlogs", deviceCtrl.idwiseeventlogsCtrl);
 
 module.exports=devicesRtr; 

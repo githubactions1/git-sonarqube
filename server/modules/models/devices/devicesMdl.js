@@ -901,3 +901,17 @@ exports.locationslistMdl = function (data) {
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+
+/*****************************************************************************
+ * Function : idwiseeventlogsMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.idwiseeventlogsMdl = function (data) {
+  var fnm = "idwiseeventlogsMdl"
+  var QRY_TO_EXEC = ` select * from eventlog where hostname='${data.hostname} ' `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
