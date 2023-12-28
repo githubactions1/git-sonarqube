@@ -199,12 +199,14 @@ exports.detailedportslistMdl = function (data) {
     var fnm = "detailedportslistMdl"
     var QRY_TO_EXEC = ` SELECT
     CASE WHEN p.if_oper_status = 1 THEN p.if_name  END AS up,
-     CASE WHEN p.if_oper_status = 2 THEN p.if_name END AS down
- FROM
-     devices AS d
-     JOIN ports AS p ON p.device_id = d.device_id
- WHERE
-     d.device_id  =${data.device_id} ;`;
+    CASE WHEN p.if_oper_status = 2 THEN p.if_name END AS down,
+    p.if_index
+    
+FROM
+    devices AS d
+    JOIN ports AS p ON p.device_id = d.device_id
+WHERE
+    d.device_id  =${data.device_id} ;`;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
