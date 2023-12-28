@@ -135,11 +135,12 @@ exports.processorindetailMdl = function (data) {
 ******************************************************************************/
 exports.devicebasiclstcountMdl = function (data) {
     var fnm = "devicebasiclstcountMdl"
-    var QRY_TO_EXEC = `select d.hostname, di.uptime, di.sys_desc, d.device_id, di.sys_name, COUNT(p.device_id) AS port_count
+    var QRY_TO_EXEC = ` select d.hostname, di.uptime, di.sys_desc, d.device_id, di.sys_name, COUNT(p.device_id) AS port_count
     FROM devices AS d
     left join  device_info as di on di.device_id = d.device_id
     left join ports AS p on p.device_id = d.device_id
-    group by d.hostname, di.uptime, di.sys_desc, d.device_id, di.sys_name;`;
+    where d.ignores=0
+    group by d.hostname, di.uptime, di.sys_desc, d.device_id, di.sys_name; `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
@@ -911,7 +912,7 @@ exports.locationslistMdl = function (data) {
 ******************************************************************************/
 exports.idwiseeventlogsMdl = function (data) {
   var fnm = "idwiseeventlogsMdl"
-  var QRY_TO_EXEC = ` select * from eventlog where hostname='${data.hostname} ' `;
+  var QRY_TO_EXEC = ` select * from eventlog where hostname='${data.hostname}' `;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
