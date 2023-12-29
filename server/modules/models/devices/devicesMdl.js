@@ -995,3 +995,28 @@ exports.locationaddMdl = function (data) {
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+
+
+/*****************************************************************************
+ * Function : propertiesports
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.propertiesports = function (data) {
+  var fnm = "propertiesports"
+  var QRY_TO_EXEC = `   SELECT
+  p.device_id,
+  p.if_name,
+  d.hostname,
+  p.if_mac_address,
+  p.if_index, 
+case when p.if_oper_status=1 then 'UP' else 'dowm' end as status ,
+round( p.if_speed/1000/1000/1000,1) as speed
+  from ports as p
+  join devices as d on d.device_id=p.device_id
+  where p.device_id=${data.device_id}`;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
