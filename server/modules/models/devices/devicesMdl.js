@@ -609,7 +609,33 @@ exports.traffic_infodeleteMdl = function (data) {
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+/*****************************************************************************
+ * Function : sensorsdeleteMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.sensorsdeleteMdl = function (data) {
+  var fnm = "sensorsdeleteMdl"
+  var QRY_TO_EXEC = `delete from sensors where device_id=${data.device_id}  `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
 
+/*****************************************************************************
+ * Function : locationsMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.locationsMdl = function (data) {
+  var fnm = "locationsMdl"
+  var QRY_TO_EXEC = `delete from locations where device_id=${data.device_id}  `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
 /*****************************************************************************
  * Function : device_infoMdl
 * Description : this will shoows the ports list
