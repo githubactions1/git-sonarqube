@@ -255,6 +255,27 @@ exports.deletedeviceCtrl=(req,res)=>{
 	   console.log(error)
 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
 	});
+	dashboardMdl.device_infoMdl(req.body,req.user).then(function(results){
+		console.log(results)
+		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	 }).catch(function(error){
+		console.log(error)
+		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	 });
+	 dashboardMdl.portsdeleteMdl(req.body,req.user).then(function(results){
+		console.log(results)
+		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	 }).catch(function(error){
+		console.log(error)
+		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	 });
+	 dashboardMdl.traffic_infodeleteMdl(req.body,req.user).then(function(results){
+		console.log(results)
+		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	 }).catch(function(error){
+		console.log(error)
+		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	 });
 }
 
 /***************************************************************************
