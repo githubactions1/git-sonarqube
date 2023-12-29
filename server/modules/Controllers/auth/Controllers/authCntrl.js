@@ -1,6 +1,7 @@
 var appRoot ='/home/nms-backend/actions-runner/_work/nms_node/nms_node';
 var authMdl = require('../Models/authMdl');
 var df = require( '../../../../../utils/dflower.utils');
+var dashboardMdl = require('../../../models/dashboard/dashboardMdl');
 var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
 var jwt=require('jsonwebtoken')
 
@@ -83,6 +84,13 @@ exports.loginCntrl = function(req, res){
             res.setHeader('x-access-token', accessToken);
             //operations.record('lgn_ct');
             df.formatSucessRes(req, res, data, cntxtDtls, fnm, {});
+            dashboardMdl.logindetailsMdl(req.body,req.user).then(function(results){
+                console.log(results)
+                 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+             }).catch(function(error){
+                console.log(error)
+                 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+             });
         } else {
             df.formatErrorRes(req, res, false, cntxtDtls, fnm, {});
         }
