@@ -14,6 +14,9 @@ dashboardRtr.get("/statuses", dashboardCtrl.statusesCntrl);
 dashboardRtr.post("/rolesadd", dashboardCtrl.rolesaddCtrl);
 dashboardRtr.get("/roleslst", dashboardCtrl.roleslstCtrl);
 dashboardRtr.get("/sensorslist", dashboardCtrl.sensorslstCtrl);
+dashboardRtr.post("/rolesadd", dashboardCtrl.rolesaddCtrl);
+dashboardRtr.post("/userdetails", dashboardCtrl.userdetailsCtrl);
+
 
 
 

@@ -168,3 +168,17 @@ exports.sensorslstMdl = function (data) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+/*****************************************************************************
+* Function : userdetailsMdl
+* Description : this model gives the list of a roles 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.userdetailsMdl = function (data) {
+    var fnm = "userdetailsMdl"
+    var QRY_TO_EXEC = `  select first_name ,last_name,user_email from users_dtl_t
+    where user_id=${data.user_id} `;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
