@@ -84,13 +84,6 @@ exports.loginCntrl = function(req, res){
             res.setHeader('x-access-token', accessToken);
             //operations.record('lgn_ct');
             df.formatSucessRes(req, res, data, cntxtDtls, fnm, {});
-            dashboardMdl.logindetailsMdl(req.body,req.user).then(function(results){
-                console.log(results)
-                 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-             }).catch(function(error){
-                console.log(error)
-                 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-             });
         } else {
             df.formatErrorRes(req, res, false, cntxtDtls, fnm, {});
         }
