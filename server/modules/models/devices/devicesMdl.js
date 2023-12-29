@@ -998,14 +998,14 @@ exports.locationaddMdl = function (data) {
 
 
 /*****************************************************************************
- * Function : propertiesports
+ * Function : propertiesportsMdl
 * Description : this will shoows the ports list
 * Arguments : callback function
 * 04-11-2023 - RajKumar
 *
 ******************************************************************************/
-exports.propertiesports = function (data) {
-  var fnm = "propertiesports"
+exports.propertiesportsMdl = function (data) {
+  var fnm = "propertiesportsMdl"
   var QRY_TO_EXEC = `   SELECT
   p.device_id,
   p.if_name,
