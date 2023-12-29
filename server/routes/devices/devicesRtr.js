@@ -41,6 +41,6 @@ devicesRtr.get("/location", deviceCtrl.locationsCtrl);
 devicesRtr.post("/idwiseeventlogs", deviceCtrl.idwiseeventlogsCtrl);
 devicesRtr.post("/locationadd", deviceCtrl.locationaddCtrl);
 devicesRtr.post("/propertiesports", deviceCtrl.propertiesportsCtrl);
-devicesRtr.post("/devicesettingCtrl", deviceCtrl.devicesettingCtrl);
+devicesRtr.post("/devicesetting", deviceCtrl.devicesettingCtrl);
 
 module.exports=devicesRtr; 
