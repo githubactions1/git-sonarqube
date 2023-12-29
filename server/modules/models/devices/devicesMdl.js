@@ -981,3 +981,17 @@ exports.idwiseeventlogsMdl = function (data) {
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+
+/*****************************************************************************
+ * Function : locationaddMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.locationaddMdl = function (data) {
+  var fnm = "locationaddMdl"
+  var QRY_TO_EXEC = ` INSERT INTO locations(device_id,name) VALUES (${data.device_id},'${data.name}') `;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
