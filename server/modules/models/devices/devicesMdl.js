@@ -757,7 +757,7 @@ exports.basicdevicedownlistMdl = function (data) {
 ******************************************************************************/
 exports.eventlogsMdl = function (data) {
   var fnm = "eventlogsMdl"
-  var QRY_TO_EXEC = `select hostname,date_format(event_time,'%Y-%m-%d')as event_time,event_message from eventlog; `;
+  var QRY_TO_EXEC = ` select hostname,date_format(event_time,'%Y-%m-%d %H:%i:%s')as event_time,event_message from eventlog order by event_time desc limit 100; `;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
@@ -1044,7 +1044,7 @@ exports.locationslistMdl = function (data) {
 ******************************************************************************/
 exports.idwiseeventlogsMdl = function (data) {
   var fnm = "idwiseeventlogsMdl"
-  var QRY_TO_EXEC = ` select hostname,date_format(event_time,'%Y-%m-%d')as event_time,event_message from eventlog where hostname='${data.hostname}' order by event_id desc `;
+  var QRY_TO_EXEC = `  select hostname,date_format(event_time,'%Y-%m-%d %H:%i:%s')as event_time,event_message from eventlog where hostname='${data.hostname}' order by event_time  desc limit 100;`;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
