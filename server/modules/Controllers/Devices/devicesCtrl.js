@@ -223,30 +223,30 @@ exports.notpresentlistCtrl=(req,res)=>{
 	});
 }
 
-// /***************************************************************************
-// * Function : AllstoragelistCtrl
-// * Description : this model gives the list of a sensorslst 
-// * Arguments : callback function
-// * 04-11-2023 - RajKumar
-// *
-// ******************************************************************************/
-// exports.AllstoragelistCtrl=(req,res)=>{
-// 	dashboardMdl.AllstoragelistMdl(req.body,req.user).then(function(results){
-// 	   console.log(results)
-// 		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-// 	}).catch(function(error){
-// 	   console.log(error)
-// 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-// 	});
-// }
+/***************************************************************************
+* Function : AllstoragelistCtrl
+* Description : this model gives the list of a sensorslst 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.AllstoragelistCtrl=(req,res)=>{
+	dashboardMdl.AllstoragelistMdl(req.body,req.user).then(function(results){
+	   console.log(results)
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
+}
 
-// /***************************************************************************
-// * Function : deletedeviceCtrl
-// * Description : this model gives the list of a sensorslst 
-// * Arguments : callback function
-// * 04-11-2023 - RajKumar
-// *
-// ******************************************************************************/
+/***************************************************************************
+* Function : deletedeviceCtrl
+* Description : this model gives the list of a sensorslst 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
 exports.deletedeviceCtrl=(req,res)=>{
 	dashboardMdl.deletedeviceMdl(req.body,req.user).then(function(results){
 	   console.log(results)
@@ -291,38 +291,6 @@ exports.deletedeviceCtrl=(req,res)=>{
 		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
 	 });
 }
-/***************************************************************************
-* Function : deletedevicedropdownlistCtrl
-* Description : this model gives the list of a sensorslst 
-* Arguments : callback function
-* 04-11-2023 - RajKumar
-*
-******************************************************************************/
-// exports.deletedeviceCtrl = (req, res) => {
-//     dashboardMdl.deletedeviceMdl(req.body, req.user)
-//         .then(results => {
-//             return dashboardMdl.device_infoMdl(req.body, req.user);
-//         })
-//         .then(results1 => {
-//             return dashboardMdl.portsdeleteMdl(req.body, req.user);
-//         })
-//         .then(results2 => {
-//             return dashboardMdl.traffic_infodeleteMdl(req.body, req.user);
-//         })
-//         .then(results3 => {
-//             return dashboardMdl.sensorsdeleteMdl(req.body, req.user);
-//         })
-//         .then(results4 => {
-//             return dashboardMdl.locationsMdl(req.body, req.user);
-//         })
-//         .then(results5 => {
-//             df.formatSucessRes(req, res, results5, cntxtDtls, '', {});
-//         })
-//         .catch(error => {
-//             console.log(error);
-//             df.formatErrorRes(req, res, error, cntxtDtls, '', {});
-//         });
-// };
 
 /***************************************************************************
 * Function : deletedevicedropdownlistCtrl
@@ -724,7 +692,7 @@ exports.updatepasswordCtrl=(req,res)=>{
 	   console.log(old_password,'old_password')
 	   const  new_password=req.body.password
 	   console.log(new_password,'new_password')
-	   console.log(result.length,'lengthhhhhhhhhhhhhh')
+	   console.log(result.length,'')
 	   if(result.length==1){
 			if(old_password==new_password){
 			const messag='Old Password And New Password Must Be Different '
