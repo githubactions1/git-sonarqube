@@ -298,42 +298,31 @@ exports.notpresentlistCtrl=(req,res)=>{
 * 04-11-2023 - RajKumar
 *
 ******************************************************************************/
-exports.deletedeviceCtrl=(req,res)=>{
-	dashboardMdl.deletedeviceMdl(req.body,req.user).then(function(results){
-		dashboardMdl.device_infoMdl(req.body,req.user).then(function(results1){
-			dashboardMdl.portsdeleteMdl(req.body,req.user).then(function(results2){
-				dashboardMdl.traffic_infodeleteMdl(req.body,req.user).then(function(results3){
-					dashboardMdl.sensorsdeleteMdl(req.body,req.user).then(function(results4){
-						dashboardMdl.locationsMdl(req.body,req.user).then(function(results5){
-							
-							 df.formatSucessRes(req,res,results5,cntxtDtls,'',{});
-						 }).catch(function(error){
-							console.log(error)
-							 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-						 });
-					 }).catch(function(error){
-						console.log(error)
-						 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-					 });
-				 }).catch(function(error){
-					console.log(error)
-					 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-				 });
-
-			 }).catch(function(error){
-				console.log(error)
-				 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-			 });
-
-		 }).catch(function(error){
-			console.log(error)
-			 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-		 });
-	}).catch(function(error){
-	   console.log(error)
-		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-	});
-}
+exports.deletedeviceCtrl = (req, res) => {
+    dashboardMdl.deletedeviceMdl(req.body, req.user)
+        .then(results => {
+            return dashboardMdl.device_infoMdl(req.body, req.user);
+        })
+        .then(results1 => {
+            return dashboardMdl.portsdeleteMdl(req.body, req.user);
+        })
+        .then(results2 => {
+            return dashboardMdl.traffic_infodeleteMdl(req.body, req.user);
+        })
+        .then(results3 => {
+            return dashboardMdl.sensorsdeleteMdl(req.body, req.user);
+        })
+        .then(results4 => {
+            return dashboardMdl.locationsMdl(req.body, req.user);
+        })
+        .then(results5 => {
+            df.formatSucessRes(req, res, results5, cntxtDtls, '', {});
+        })
+        .catch(error => {
+            console.log(error);
+            df.formatErrorRes(req, res, error, cntxtDtls, '', {});
+        });
+};
 
 /***************************************************************************
 * Function : deletedevicedropdownlistCtrl
