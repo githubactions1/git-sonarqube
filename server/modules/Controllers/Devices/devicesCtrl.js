@@ -300,13 +300,13 @@ exports.notpresentlistCtrl=(req,res)=>{
 ******************************************************************************/
 exports.deletedeviceCtrl=(req,res)=>{
 	dashboardMdl.deletedeviceMdl(req.body,req.user).then(function(results){
-		dashboardMdl.device_infoMdl(req.body,req.user).then(function(results){
-			dashboardMdl.portsdeleteMdl(req.body,req.user).then(function(results){
-				dashboardMdl.traffic_infodeleteMdl(req.body,req.user).then(function(results){
-					dashboardMdl.sensorsdeleteMdl(req.body,req.user).then(function(results){
-						dashboardMdl.locationsMdl(req.body,req.user).then(function(results){
+		dashboardMdl.device_infoMdl(req.body,req.user).then(function(results1){
+			dashboardMdl.portsdeleteMdl(req.body,req.user).then(function(results2){
+				dashboardMdl.traffic_infodeleteMdl(req.body,req.user).then(function(results3){
+					dashboardMdl.sensorsdeleteMdl(req.body,req.user).then(function(results4){
+						dashboardMdl.locationsMdl(req.body,req.user).then(function(results5){
 							
-							 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+							 df.formatSucessRes(req,res,results5,cntxtDtls,'',{});
 						 }).catch(function(error){
 							console.log(error)
 							 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
