@@ -688,9 +688,11 @@ exports.arplistCtrl=(req,res)=>{
 exports.updatepasswordCtrl=(req,res)=>{
 	dashboardMdl.checkpasswordMdl(req.body,req.user).then(function(result){
 	   console.log(result) 
-	   const old_password=results.user_password
+	   const old_password=result.user_password
+	   console.log(old_password,'old_password')
 	   const  new_password=req.body.password
-	   if(results.length==1){
+	   console.log(new_password,'new_password')
+	   if(result.length==1){
 			if(old_password==new_password){
 			const messag='Old Password And New Password Must Be Different '
 				df.formatErrorRes(req,res,messag,cntxtDtls,'',{});
