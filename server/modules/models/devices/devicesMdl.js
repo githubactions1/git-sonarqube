@@ -1097,8 +1097,8 @@ round( p.if_speed/1000/1000/1000,1) as speed
 ******************************************************************************/
 exports.devicesettingMdl = function (data) {
   var fnm = "devicesettingMdl"
-  var QRY_TO_EXEC = `  update devices set version =${data.version},transport=${data.transport},udp_port=${data.udp_port},
-  timeout=${data.timeout},retries=${data.retries},com_str=${data.com_str} where device_id=${data.device_id}; `;
+  var QRY_TO_EXEC = `  update devices set version ='${data.version}',transport='${data.transport}',udp_port=${data.udp_port},
+  timeout=${data.timeout},retries=${data.retries},com_str='${data.com_str}' where device_id=${data.device_id}; `;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
