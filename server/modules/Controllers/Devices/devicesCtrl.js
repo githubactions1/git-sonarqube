@@ -687,7 +687,7 @@ exports.arplistCtrl=(req,res)=>{
 ******************************************************************************/
 exports.updatepasswordCtrl=(req,res)=>{
 	dashboardMdl.checkpasswordMdl(req.body,req.user).then(function(result){
-	   console.log(results) 
+	   console.log(result) 
 	   const old_password=results.user_password
 	   const  new_password=req.body.password
 	   if(results.length==1){
