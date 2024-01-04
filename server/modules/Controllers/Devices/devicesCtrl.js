@@ -676,3 +676,39 @@ exports.arplistCtrl=(req,res)=>{
 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
 	});
 }
+
+
+/***************************************************************************
+* Function : updatepasswordCtrl
+* Description : this model gives the list of a sensorslst 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.updatepasswordCtrl=(req,res)=>{
+	dashboardMdl.checkpasswordMdl(req.body,req.user).then(function(result){
+	   console.log(results) 
+	   const old_password=results.user_password
+	   const  new_password=req.body.password
+	   if(results.length==1){
+			if(old_password==new_password){
+			const messag='Old Password And New Password Must Be Different '
+				df.formatErrorRes(req,res,messag,cntxtDtls,'',{});
+			}
+			else{
+				dashboardMdl.updatepasswordMdl(req.body,req.user).then(function(results){
+					const mess='Password Updated Successfully'
+					df.formatSucessRes(req,res,results,cntxtDtls,'',{message:mess});
+				})
+			}
+	   }
+	   else{
+		const message='Old Password Is Wrong'
+		df.formatErrorRes(req,res,message,cntxtDtls,'',{});
+		}
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
+}
