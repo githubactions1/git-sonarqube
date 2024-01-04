@@ -223,25 +223,76 @@ exports.notpresentlistCtrl=(req,res)=>{
 	});
 }
 
-/***************************************************************************
-* Function : AllstoragelistCtrl
-* Description : this model gives the list of a sensorslst 
-* Arguments : callback function
-* 04-11-2023 - RajKumar
-*
-******************************************************************************/
-exports.AllstoragelistCtrl=(req,res)=>{
-	dashboardMdl.AllstoragelistMdl(req.body,req.user).then(function(results){
-	   console.log(results)
-		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-	}).catch(function(error){
-	   console.log(error)
-		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-	});
-}
+// /***************************************************************************
+// * Function : AllstoragelistCtrl
+// * Description : this model gives the list of a sensorslst 
+// * Arguments : callback function
+// * 04-11-2023 - RajKumar
+// *
+// ******************************************************************************/
+// exports.AllstoragelistCtrl=(req,res)=>{
+// 	dashboardMdl.AllstoragelistMdl(req.body,req.user).then(function(results){
+// 	   console.log(results)
+// 		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+// 	}).catch(function(error){
+// 	   console.log(error)
+// 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+// 	});
+// }
 
+// /***************************************************************************
+// * Function : deletedeviceCtrl
+// * Description : this model gives the list of a sensorslst 
+// * Arguments : callback function
+// * 04-11-2023 - RajKumar
+// *
+// ******************************************************************************/
+// exports.deletedeviceCtrl=(req,res)=>{
+// 	dashboardMdl.deletedeviceMdl(req.body,req.user).then(function(results){
+// 	   console.log(results)
+// 		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+// 	}).catch(function(error){
+// 	   console.log(error)
+// 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+// 	});
+// 	dashboardMdl.device_infoMdl(req.body,req.user).then(function(results){
+// 		console.log(results)
+// 		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+// 	 }).catch(function(error){
+// 		console.log(error)
+// 		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+// 	 });
+// 	 dashboardMdl.portsdeleteMdl(req.body,req.user).then(function(results){
+// 		console.log(results)
+// 		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+// 	 }).catch(function(error){
+// 		console.log(error)
+// 		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+// 	 });
+// 	 dashboardMdl.traffic_infodeleteMdl(req.body,req.user).then(function(results){
+// 		console.log(results)
+// 		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+// 	 }).catch(function(error){
+// 		console.log(error)
+// 		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+// 	 });
+// 	 dashboardMdl.sensorsdeleteMdl(req.body,req.user).then(function(results){
+// 		console.log(results)
+// 		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+// 	 }).catch(function(error){
+// 		console.log(error)
+// 		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+// 	 });
+// 	 dashboardMdl.locationsMdl(req.body,req.user).then(function(results){
+// 		console.log(results)
+// 		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+// 	 }).catch(function(error){
+// 		console.log(error)
+// 		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+// 	 });
+// }
 /***************************************************************************
-* Function : deletedeviceCtrl
+* Function : deletedevicedropdownlistCtrl
 * Description : this model gives the list of a sensorslst 
 * Arguments : callback function
 * 04-11-2023 - RajKumar
@@ -249,47 +300,39 @@ exports.AllstoragelistCtrl=(req,res)=>{
 ******************************************************************************/
 exports.deletedeviceCtrl=(req,res)=>{
 	dashboardMdl.deletedeviceMdl(req.body,req.user).then(function(results){
-	   console.log(results)
-		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+		dashboardMdl.device_infoMdl(req.body,req.user).then(function(results){
+			dashboardMdl.portsdeleteMdl(req.body,req.user).then(function(results){
+				dashboardMdl.traffic_infodeleteMdl(req.body,req.user).then(function(results){
+					dashboardMdl.sensorsdeleteMdl(req.body,req.user).then(function(results){
+						dashboardMdl.locationsMdl(req.body,req.user).then(function(results){
+							
+							 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+						 }).catch(function(error){
+							console.log(error)
+							 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+						 });
+					 }).catch(function(error){
+						console.log(error)
+						 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+					 });
+				 }).catch(function(error){
+					console.log(error)
+					 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+				 });
+
+			 }).catch(function(error){
+				console.log(error)
+				 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+			 });
+
+		 }).catch(function(error){
+			console.log(error)
+			 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+		 });
 	}).catch(function(error){
 	   console.log(error)
 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
 	});
-	dashboardMdl.device_infoMdl(req.body,req.user).then(function(results){
-		console.log(results)
-		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-	 }).catch(function(error){
-		console.log(error)
-		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-	 });
-	 dashboardMdl.portsdeleteMdl(req.body,req.user).then(function(results){
-		console.log(results)
-		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-	 }).catch(function(error){
-		console.log(error)
-		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-	 });
-	 dashboardMdl.traffic_infodeleteMdl(req.body,req.user).then(function(results){
-		console.log(results)
-		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-	 }).catch(function(error){
-		console.log(error)
-		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-	 });
-	 dashboardMdl.sensorsdeleteMdl(req.body,req.user).then(function(results){
-		console.log(results)
-		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-	 }).catch(function(error){
-		console.log(error)
-		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-	 });
-	 dashboardMdl.locationsMdl(req.body,req.user).then(function(results){
-		console.log(results)
-		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-	 }).catch(function(error){
-		console.log(error)
-		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-	 });
 }
 
 /***************************************************************************
