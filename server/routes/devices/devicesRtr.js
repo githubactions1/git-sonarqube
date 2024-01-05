@@ -44,4 +44,5 @@ devicesRtr.post("/propertiesports", deviceCtrl.propertiesportsCtrl);
 devicesRtr.post("/devicesetting", deviceCtrl.devicesettingCtrl);
 devicesRtr.post("/arplist", deviceCtrl.arplistCtrl);
 devicesRtr.post("/updatepassword", deviceCtrl.updatepasswordCtrl);
+devicesRtr.post("/roleadd", deviceCtrl.roleaddCtrl);
 module.exports=devicesRtr; 

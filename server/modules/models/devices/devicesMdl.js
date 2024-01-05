@@ -1144,3 +1144,17 @@ exports.updatepasswordMdl = function (data,decrypt) {
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 }
+
+/*****************************************************************************
+ * Function : roleaddMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.roleaddMdl = function (data,decrypt) {
+  var fnm = "roleaddMdl"
+  var QRY_TO_EXEC = `  insert into user_roles (role_name,role_description,add_device_perm,delet_device_perm,discovery_perm,propertirs_perm,snmp_perm,user_create_perm,roles_creations_perm,status_propertie_perm,ports_properties) values ('${name}','${description}',${adddevice},${deletedevice},${discovery},${properties},${snmp},${usercreate},${rolecreate},${status},${ports})  ` ;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+}
