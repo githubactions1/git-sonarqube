@@ -138,7 +138,7 @@ exports.registerCntrl = function(req,res){
 // * 04-11-2023 - RajKumar
 // ******************************************************************************/
 exports.userroleslistCtrl=(req,res)=>{
-	dashboardMdl.userroleslistMdl(req.body,req.user).then(function(results){
+	authMdl.userroleslistMdl(req.body,req.user).then(function(results){
 	   console.log(results)
 		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
 	}).catch(function(error){
