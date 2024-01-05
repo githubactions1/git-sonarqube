@@ -1154,7 +1154,7 @@ exports.updatepasswordMdl = function (data,decrypt) {
 ******************************************************************************/
 exports.roleaddMdl = function (data,decrypt) {
   var fnm = "roleaddMdl"
-  var QRY_TO_EXEC = `  insert into user_roles (role_name,role_description,add_device_perm,delet_device_perm,discovery_perm,propertirs_perm,snmp_perm,user_create_perm,roles_creations_perm,status_propertie_perm,ports_properties) values ('${name}','${description}',${adddevice},${deletedevice},${discovery},${properties},${snmp},${usercreate},${rolecreate},${status},${ports})  ` ;
+  var QRY_TO_EXEC = `  insert into user_roles (role_name,role_description,add_device_perm,delet_device_perm,discovery_perm,propertirs_perm,snmp_perm,user_create_perm,roles_creations_perm,status_propertie_perm,ports_properties) values ('${data.role_name}','${data.role_description}',${data.add_device_perm},${data.deletedevice},${data.discovery_perm},${data.propertirs_perm},${data.snmp_perm},${data.user_create_perm},${data.roles_creations_perm},${data.status_propertie_perm},${data.ports_properties})  ` ;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 }
