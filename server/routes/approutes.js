@@ -10,7 +10,7 @@ router.use('/health', require('../../server/routes/Health/healthRtr'));
 router.post("/login",authCtrl.loginCntrl);
 // router.post("/register", authCtrl.registerCntrl);
 router.post("/register", authCtrl.registerCntrl);
-router.post("/userroleslist",authCtrl.userroleslistCtrl);
+router.get("/userroleslist",authCtrl.userroleslistCtrl);
 
 
 module.exports = router;
