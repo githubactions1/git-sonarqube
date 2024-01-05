@@ -705,8 +705,8 @@ exports.updatepasswordCtrl=(req,res)=>{
 					df.formatSucessRes(req,res,messag,cntxtDtls,'',{message:messag});
 				}
 				else{
-		   const decrypt=sha1(new_password)
-		   console.log(decrypt,'-----------------------')
+						const decrypt=sha1(new_password)
+						console.log(decrypt,'-----------------------')
 						dashboardMdl.updatepasswordMdl(req.body,req.user,decrypt).then(function(results){
 						const mess='Password Updated Successfully'
 						df.formatSucessRes(req,res,results,cntxtDtls,'',{message:mess});
