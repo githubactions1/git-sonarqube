@@ -248,50 +248,50 @@ exports.upportslistCtrl=(req,res)=>{
 // * 04-11-2023 - RajKumar
 // *
 // ******************************************************************************/
-// exports.deletedeviceCtrl=(req,res)=>{
-// 	dashboardMdl.deletedeviceMdl(req.body,req.user).then(function(results){
-// 	   console.log(results)
-// 		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-// 	}).catch(function(error){
-// 	   console.log(error)
-// 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-// 	});
-// 	dashboardMdl.device_infoMdl(req.body,req.user).then(function(results){
-// 		console.log(results)
-// 		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-// 	 }).catch(function(error){
-// 		console.log(error)
-// 		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-// 	 });
-// 	 dashboardMdl.portsdeleteMdl(req.body,req.user).then(function(results){
-// 		console.log(results)
-// 		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-// 	 }).catch(function(error){
-// 		console.log(error)
-// 		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-// 	 });
-// 	 dashboardMdl.traffic_infodeleteMdl(req.body,req.user).then(function(results){
-// 		console.log(results)
-// 		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-// 	 }).catch(function(error){
-// 		console.log(error)
-// 		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-// 	 });
-// 	 dashboardMdl.sensorsdeleteMdl(req.body,req.user).then(function(results){
-// 		console.log(results)
-// 		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-// 	 }).catch(function(error){
-// 		console.log(error)
-// 		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-// 	 });
-// 	 dashboardMdl.locationsMdl(req.body,req.user).then(function(results){
-// 		console.log(results)
-// 		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-// 	 }).catch(function(error){
-// 		console.log(error)
-// 		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-// 	 });
-// }
+exports.deletedeviceCtrl=(req,res)=>{
+	dashboardMdl.deletedeviceMdl(req.body,req.user).then(function(results){
+	   console.log(results)
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
+	dashboardMdl.device_infoMdl(req.body,req.user).then(function(results){
+		console.log(results)
+		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	 }).catch(function(error){
+		console.log(error)
+		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	 });
+	 dashboardMdl.portsdeleteMdl(req.body,req.user).then(function(results){
+		console.log(results)
+		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	 }).catch(function(error){
+		console.log(error)
+		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	 });
+	 dashboardMdl.traffic_infodeleteMdl(req.body,req.user).then(function(results){
+		console.log(results)
+		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	 }).catch(function(error){
+		console.log(error)
+		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	 });
+	 dashboardMdl.sensorsdeleteMdl(req.body,req.user).then(function(results){
+		console.log(results)
+		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	 }).catch(function(error){
+		console.log(error)
+		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	 });
+	 dashboardMdl.locationsMdl(req.body,req.user).then(function(results){
+		console.log(results)
+		 df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	 }).catch(function(error){
+		console.log(error)
+		 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	 });
+}
 
 /***************************************************************************
 * Function : deletedeviceCtrl
@@ -300,21 +300,21 @@ exports.upportslistCtrl=(req,res)=>{
 * 04-11-2023 - RajKumar
 *
 ******************************************************************************/
-exports.deletedeviceCtrl=(req,res)=>{
-	dashboardMdl.deletedeviceMdl(req.body,req.user).then(function(results){
-		dashboardMdl.device_infoMdl(req.body,req.user).then(function(results){
+// exports.deletedeviceCtrl=(req,res)=>{
+// 	dashboardMdl.deletedeviceMdl(req.body,req.user).then(function(results){
+// 		dashboardMdl.device_infoMdl(req.body,req.user).then(function(results){
 			
 
-		 }).catch(function(error){
-			console.log(error)
-			 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-		 });
+// 		 }).catch(function(error){
+// 			console.log(error)
+// 			 df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+// 		 });
 		
-	}).catch(function(error){
-	   console.log(error)
-		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-	});
-}
+// 	}).catch(function(error){
+// 	   console.log(error)
+// 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+// 	});
+// }
 
 /***************************************************************************
 * Function : deletedevicedropdownlistCtrl
