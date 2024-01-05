@@ -712,7 +712,6 @@ exports.updatepasswordCtrl=(req,res)=>{
 		const message='Old Password Is Wrong'
 		df.formatErrorRes(req,res,message,cntxtDtls,'',{});
 		}
-		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
 	}).catch(function(error){
 	   console.log(error)
 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
