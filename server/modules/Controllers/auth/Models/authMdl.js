@@ -23,7 +23,7 @@ var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
 exports.loginMdl = function (data) {
     var fnm = "loginMdl"
     var QRY_TO_EXEC = ` select *  from users_dtl_t as us 
-    join user_roles as ur on ur.role_id=us.role_id
+    join user_roles as ur on ur.user_role_id=us.user_role_id
     where user_email='${data.user_email}' and user_password=SHA1('${data.user_password}') and user_status=1  `
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls,'',fnm);
