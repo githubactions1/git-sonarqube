@@ -697,23 +697,27 @@ exports.updatepasswordCtrl=(req,res)=>{
 	   console.log(decrypt,'sah1111111111111')
 	   console.log(result.length,'')
 	   if(result.length==1){
+		console.log('inside looppppppp')
 			if(old_password==decrypt){
-			const messag='Old Password And New Password Must Be Different '
+				const messag='Old Password And New Password Must Be Different '
 				df.formatErrorRes(req,res,messag,cntxtDtls,'',{});
 			}
 			else{
-				dashboardMdl.updatepasswordMdl(req.body,req.user).then(function(results){
+					dashboardMdl.updatepasswordMdl(req.body,req.user).then(function(results){
 					const mess='Password Updated Successfully'
 					df.formatSucessRes(req,res,results,cntxtDtls,'',{message:mess});
-				})
+					}).catch(function(error){
+						console.log(error)
+						df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+				});
 			}
 	   }
 	   else{
-		const message='Old Password Is Wrong'
-		df.formatErrorRes(req,res,message,cntxtDtls,'',{});
+				const message='Old Password Is Wrong'
+				df.formatErrorRes(req,res,message,cntxtDtls,'',{});
 		}
 	}).catch(function(error){
-	   console.log(error)
-		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+			console.log(error)
+			df.formatErrorRes(req,res,error,cntxtDtls,'',{});
 	});
 }
