@@ -699,6 +699,7 @@ exports.updatepasswordCtrl=(req,res)=>{
 	   if(result.length==1){
 		console.log('inside looppppppp')
 			if(old_password==decrypt){
+				console.log('inside looooppppppp2')
 				const messag='Old Password And New Password Must Be Different '
 				df.formatErrorRes(req,res,messag,cntxtDtls,'',{message:messag});
 			}

@@ -1119,14 +1119,14 @@ exports.arplistMdl = function (data) {
 };
 
 /*****************************************************************************
- * Function : updatepasswordMdl
+ * Function : checkpasswordMdl
 * Description : this will shoows the ports list
 * Arguments : callback function
 * 04-11-2023 - RajKumar
 *
 ******************************************************************************/
 exports.checkpasswordMdl = function (data) {
-  var fnm = "updatepasswordMdl"
+  var fnm = "checkpasswordMdl"
   var QRY_TO_EXEC = ` select user_password  from users_dtl_t where  user_id=${data.user_id} and user_password=SHA1('${data.user_password}') and user_status=1` ;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
@@ -1140,7 +1140,7 @@ exports.checkpasswordMdl = function (data) {
 ******************************************************************************/
 exports.updatepasswordMdl = function (data) {
   var fnm = "updatepasswordMdl"
-  var QRY_TO_EXEC = ` select user_password  from users_dtl_t where  user_id=${data.user_id} and user_password=SHA1('${data.user_password}') and user_status=1` ;
+  var QRY_TO_EXEC = ` update users_dtl_t set user_password=SHA1('${data.user_password}') where user_id=${data.user_id}; ` ;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 }
