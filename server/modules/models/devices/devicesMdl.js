@@ -1140,7 +1140,7 @@ exports.checkpasswordMdl = function (data) {
 ******************************************************************************/
 exports.updatepasswordMdl = function (data,decrypt) {
   var fnm = "updatepasswordMdl"
-  var QRY_TO_EXEC = ` update users_dtl_t set user_password=SHA1('${decrypt}') where user_id=${data.user_id}; ` ;
+  var QRY_TO_EXEC = ` update users_dtl_t set user_password='${decrypt}' where user_id=${data.user_id}; ` ;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 }
