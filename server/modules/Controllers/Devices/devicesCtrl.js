@@ -692,7 +692,7 @@ exports.updatepasswordCtrl=(req,res)=>{
 	   const old_password=result[0].user_password
 	   console.log(old_password,'old_password')
 	   const  new_password=req.body.password
-	   const sha1=sha1String(new_password)
+	   const sha1=sha1(new_password)
 	   console.log(new_password,'new_password')
 	   console.log(sha1,'sah1111111111111')
 	   console.log(result.length,'')
