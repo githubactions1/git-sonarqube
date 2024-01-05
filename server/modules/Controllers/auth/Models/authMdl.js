@@ -40,7 +40,23 @@ exports.loginMdl = function (data) {
 
 exports.registerMdl = function (data) {
     var fnm = "registerMdl"
-    var QRY_TO_EXEC = `INSERT INTO users_dtl_t (first_name,last_name,user_email,user_password,user_status) values ('${data.first_name}','${data.last_name}','${data.user_email}',SHA1('${data.user_password}'),1)`
+    var QRY_TO_EXEC = ` INSERT INTO users_dtl_t (first_name,last_name,user_email,user_password,user_status,user_role_id) values ('${data.first_name}','${data.last_name}','${data.user_email}',SHA1('${data.user_password}'),1,${data.user_role_id})  `
     console.log(QRY_TO_EXEC)
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls,'',fnm);
 }
+
+/*****************************************************************************
+* Function : userroleslistMdl
+* Description : insert the login details into the login_history table
+* Arguments : callback function
+* 02-11-2023 - RajKumar
+*
+******************************************************************************/
+
+exports.userroleslistMdl = function (data) {
+    var fnm = "userroleslistMdl"
+    var QRY_TO_EXEC = ` select user_role_id,role_name from user_roles  `
+    console.log(QRY_TO_EXEC)
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls,'',fnm);
+}
+
