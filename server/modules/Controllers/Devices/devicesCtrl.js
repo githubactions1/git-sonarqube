@@ -2,6 +2,7 @@ var appRoot ='/home/nms-backend/actions-runner/_work/nms_node/nms_node';
 var dashboardMdl = require('../../models/devices/devicesMdl');
 var df = require( '../../../../utils/dflower.utils');
 var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
+const sha1 = require('sha1');
 
 
 /******************************************************************************************************
@@ -696,7 +697,7 @@ exports.updatepasswordCtrl=(req,res)=>{
 	   console.log(sha1,'sah1111111111111')
 	   console.log(result.length,'')
 	   if(result.length==1){
-			if(old_password==new_password){
+			if(old_password==sha1){
 			const messag='Old Password And New Password Must Be Different '
 				df.formatErrorRes(req,res,messag,cntxtDtls,'',{});
 			}
