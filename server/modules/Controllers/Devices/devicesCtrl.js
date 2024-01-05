@@ -214,15 +214,15 @@ exports.upportslistCtrl=(req,res)=>{
 * 04-11-2023 - RajKumar
 *
 ******************************************************************************/
-// exports.notpresentlistCtrl=(req,res)=>{
-// 	dashboardMdl.notpresentlistMdl(req.body,req.user).then(function(results){
-// 	   console.log(results)
-// 		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-// 	}).catch(function(error){
-// 	   console.log(error)
-// 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-// 	});
-// }
+exports.notpresentlistCtrl=(req,res)=>{
+	dashboardMdl.notpresentlistMdl(req.body,req.user).then(function(results){
+	   console.log(results)
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
+}
 
 // /***************************************************************************
 // * Function : AllstoragelistCtrl
@@ -231,15 +231,15 @@ exports.upportslistCtrl=(req,res)=>{
 // * 04-11-2023 - RajKumar
 // *
 // ******************************************************************************/
-// exports.AllstoragelistCtrl=(req,res)=>{
-// 	dashboardMdl.AllstoragelistMdl(req.body,req.user).then(function(results){
-// 	   console.log(results)
-// 		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
-// 	}).catch(function(error){
-// 	   console.log(error)
-// 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-// 	});
-// }
+exports.AllstoragelistCtrl=(req,res)=>{
+	dashboardMdl.AllstoragelistMdl(req.body,req.user).then(function(results){
+	   console.log(results)
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
+}
 
 // /***************************************************************************
 // * Function : deletedeviceCtrl
