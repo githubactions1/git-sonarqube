@@ -700,7 +700,7 @@ exports.updatepasswordCtrl=(req,res)=>{
 		console.log('inside looppppppp')
 			if(old_password==decrypt){
 				const messag='Old Password And New Password Must Be Different '
-				df.formatErrorRes(req,res,error,cntxtDtls,'',{message:messag});
+				df.formatErrorRes(req,res,messag,cntxtDtls,'',{message:messag});
 			}
 			else{
 					dashboardMdl.updatepasswordMdl(req.body,req.user).then(function(results){
@@ -714,7 +714,7 @@ exports.updatepasswordCtrl=(req,res)=>{
 	   }
 	   else{
 				const message='Old Password Is Wrong'
-				df.formatErrorRes(req,res,error,cntxtDtls,'',{message:message});
+				df.formatErrorRes(req,res,message,cntxtDtls,'',{message:message});
 		}
 	}).catch(function(error){
 			console.log(error)
