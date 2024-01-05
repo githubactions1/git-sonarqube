@@ -686,45 +686,87 @@ exports.arplistCtrl=(req,res)=>{
 * 04-11-2023 - RajKumar
 *
 ******************************************************************************/
-exports.updatepasswordCtrl=(req,res)=>{
-	dashboardMdl.checkpasswordMdl(req.body,req.user).then(function(result){
-		console.log(result.length,'')
-		if(result.length==1){
-			console.log(result) 
-			const old_password=result[0].user_password
-			console.log(old_password,'old_password')
-			const  new_password=req.body.password
-			const decrypt=sha1(new_password)
-			console.log(new_password,'new_password')
-			console.log(decrypt,'sah1111111111111')
+// exports.updatepasswordCtrl=(req,res)=>{
+// 	dashboardMdl.checkpasswordMdl(req.body,req.user).then(function(result){
+// 		console.log(result.length,'')
+// 		if(result.length==1){
+// 			console.log(result) 
+// 			const old_password=result[0].user_password
+// 			console.log(old_password,'old_password')
+// 			const  new_password=req.body.password
+// 			const decrypt=sha1(new_password)
+// 			console.log(new_password,'new_password')
+// 			console.log(decrypt,'sah1111111111111')
 			
-			console.log('inside looppppppp')
-				if(old_password==decrypt){
-					console.log('inside looooppppppp2')
-					const messag='Old Password And New Password Must Be Different '
-					df.formatSucessRes(req,res,messag,cntxtDtls,'',{message:messag});
-				}
-				else{
-						const decrypt=sha1(new_password)
-						console.log(decrypt,'-----------------------')
-						dashboardMdl.updatepasswordMdl(req.body,req.user,decrypt).then(function(results){
-						const mess='Password Updated Successfully'
-						df.formatSucessRes(req,res,results,cntxtDtls,'',{message:mess});
-						}).catch(function(error){
-							console.log(error)
-							df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-					});
-				}
-		   }
-		   else{
-			const message='Old Password Is Wrong'
-			df.formatSucessRes(req,res,message,cntxtDtls,'',{message:message});
-				}
-			}).catch(function(error){
-					console.log(error)
-					df.formatErrorRes(req,res,error,cntxtDtls,'',{});
-			});
+// 			console.log('inside looppppppp')
+// 				if(old_password==decrypt){
+// 					console.log('inside looooppppppp2')
+// 					const messag='Old Password And New Password Must Be Different '
+// 					df.formatSucessRes(req,res,messag,cntxtDtls,'',{message:messag});
+// 				}
+// 				else{
+// 						const decrypt=sha1(new_password)
+// 						console.log(decrypt,'-----------------------')
+// 						dashboardMdl.updatepasswordMdl(req.body,req.user,decrypt).then(function(results){
+// 						const mess='Password Updated Successfully'
+// 						df.formatSucessRes(req,res,results,cntxtDtls,'',{message:mess});
+// 						}).catch(function(error){
+// 							console.log(error)
+// 							df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+// 					});
+// 				}
+// 		   }
+// 		   else{
+// 			const message='Old Password Is Wrong'
+// 			df.formatSucessRes(req,res,message,cntxtDtls,'',{message:message});
+// 				}
+// 			}).catch(function(error){
+// 					console.log(error)
+// 					df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+// 			});
 	  
 	   
 	   
-}
+// }
+exports.updatepasswordCtrl = (req, res) => {
+	dashboardMdl.checkpasswordMdl(req.body, req.user).then(function (result) {
+	  console.log(result.length, '');
+  
+	  if (result.length === 1) {
+		console.log(result);
+		const old_password = result[0].user_password;
+		console.log(old_password, 'old_password');
+		const new_password = req.body.password;
+		const decrypt = sha1(new_password);
+		console.log(new_password, 'new_password');
+		console.log(decrypt, 'sha1');
+  
+		console.log('inside looppppppp');
+  
+		if (old_password === decrypt) {
+		  console.log('inside looooppppppp2');
+		  const messag = 'Old Password And New Password Must Be Different ';
+		  df.formatSucessRes(req, res, messag, cntxtDtls, '', { message: messag });
+		} else {
+		  // Remove the inner declaration of decrypt
+		  console.log(decrypt, '-----------------------');
+		  dashboardMdl.updatepasswordMdl(req.body, req.user, decrypt)
+			.then(function (results) {
+			  const mess = 'Password Updated Successfully';
+			  df.formatSucessRes(req, res, results, cntxtDtls, '', { message: mess });
+			})
+			.catch(function (error) {
+			  console.log(error);
+			  df.formatErrorRes(req, res, error, cntxtDtls, '', {});
+			});
+		}
+	  } else {
+		const message = 'Old Password Is Wrong';
+		df.formatSucessRes(req, res, message, cntxtDtls, '', { message: message });
+	  }
+	}).catch(function (error) {
+	  console.log(error);
+	  df.formatErrorRes(req, res, error, cntxtDtls, '', {});
+	});
+  };
+  
