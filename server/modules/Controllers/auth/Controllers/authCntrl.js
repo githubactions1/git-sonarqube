@@ -148,12 +148,12 @@ exports.userroleslistCtrl=(req,res)=>{
 }
 
 // /***************************************************************************
-// * Function : userroleslistCtrl
+// * Function : userdetailsCtrl
 // * Description : this model gives the list of a sensorslst 
 // * Arguments : callback function
 // * 04-11-2023 - RajKumar
 // ******************************************************************************/
-exports.userroleslistCtrl=(req,res)=>{
+exports.userdetailsCtrl=(req,res)=>{
 	authMdl.userdetailsMdl(req.body,req.user).then(function(results){
 	   console.log(results)
 		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
