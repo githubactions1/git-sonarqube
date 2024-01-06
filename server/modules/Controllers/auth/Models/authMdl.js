@@ -60,3 +60,18 @@ exports.userroleslistMdl = function (data) {
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls,'',fnm);
 }
 
+/*****************************************************************************
+* Function : userdetailsMdl
+* Description : insert the login details into the login_history table
+* Arguments : callback function
+* 02-11-2023 - RajKumar
+*
+******************************************************************************/
+
+exports.userdetailsMdl = function (data) {
+    var fnm = "userdetailsMdl"
+    var QRY_TO_EXEC = `  select user_id,first_name,last_name,user_email,ur.role_name from users_dtl_t as ud
+    join user_roles as ur on ur.user_role_id=ud.user_role_id where ud.user_id=${data.user_id};  `
+    console.log(QRY_TO_EXEC)
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls,'',fnm);
+}

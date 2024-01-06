@@ -11,6 +11,7 @@ router.post("/login",authCtrl.loginCntrl);
 // router.post("/register", authCtrl.registerCntrl);
 router.post("/register", authCtrl.registerCntrl);
 router.get("/userroleslist",authCtrl.userroleslistCtrl);
+router.post("/userdetails", authCtrl.userroleslistCtrl);
 
 
 module.exports = router;
