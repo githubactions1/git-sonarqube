@@ -307,7 +307,7 @@ exports.deletedeviceCtrl=(req,res)=>{
 				dashboardMdl.traffic_infodeleteMdl(req.body,req.user).then(function(results){
 					dashboardMdl.sensorsdeleteMdl(req.body,req.user).then(function(results){
 						dashboardMdl.locationsMdl(req.body,req.user).then(function(results){
-									
+							df.formatSucessRes(req,res,results,cntxtDtls,'',{});	
 							}).catch(function(error){
 							console.log(error)
 								df.formatErrorRes(req,res,error,cntxtDtls,'',{});
