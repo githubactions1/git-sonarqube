@@ -453,7 +453,7 @@ exports.idwiseportslistMdl = function (data) {
     FROM
       traffic_info
     WHERE
-      device_id =10144
+      device_id =${data.device_id}
     GROUP BY
       device_id, port_name
   ) AS max_ts
@@ -473,7 +473,7 @@ JOIN
     AND max_ts.port_name = ti.port_name
     AND max_ts.max_i_ts = ti.i_ts
   WHERE
-    p.device_id =10144
+    p.device_id =${data.device_id}
   ORDER BY
     p.port_id ASC;   `;
   console.log(QRY_TO_EXEC);
