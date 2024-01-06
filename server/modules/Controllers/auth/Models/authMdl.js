@@ -55,7 +55,7 @@ exports.registerMdl = function (data) {
 
 exports.userroleslistMdl = function (data) {
     var fnm = "userroleslistMdl"
-    var QRY_TO_EXEC = ` select user_role_id,role_name from user_roles  `
+    var QRY_TO_EXEC = ` select user_role_id,role_name,role_description from user_roles;  `
     console.log(QRY_TO_EXEC)
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls,'',fnm);
 }
