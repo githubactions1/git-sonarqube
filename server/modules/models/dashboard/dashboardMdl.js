@@ -206,7 +206,7 @@ exports.logindetailsMdl = function (data) {
 ******************************************************************************/
 exports.logindetailslistMdl = function (data) {
     var fnm = "logindetailslistMdl"
-    var QRY_TO_EXEC = ` select * from login_history where user_id=${data.user_id} `;
+    var QRY_TO_EXEC = ` select * from login_history where user_id=25 order by login_id desc limit 10 `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
