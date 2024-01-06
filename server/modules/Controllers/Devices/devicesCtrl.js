@@ -773,7 +773,7 @@ exports.updatepasswordCtrl = (req, res) => {
 		} else {
 		  // Remove the inner declaration of decrypt
 		  console.log(decrypt, '-----------------------');
-		  dashboardMdl.updatepasswordMdl(req.body, req.user,decrypt )
+		  dashboardMdl.updatepasswordMdl(req.body, decrypt, req.user, )
 			.then(function (results) {
 			  const mess = 'Password Updated Successfully';
 			  df.formatSucessRes(req, res, results, cntxtDtls, '', { message: mess });
