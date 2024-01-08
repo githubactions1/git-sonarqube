@@ -1158,3 +1158,6 @@ exports.roleaddMdl = function (data,decrypt) {
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 }
+
+
+
