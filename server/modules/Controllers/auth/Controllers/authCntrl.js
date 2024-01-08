@@ -118,9 +118,9 @@ exports.registerCntrl = function(req,res){
                 }
                 
                 if(usrDtls && usrDtls.length === 0){
-                    authMdl.registerMdl(req_body).then(function(usrDtls){
+                    authMdl.registerMdl(req_body).then(function (usrDtls){
                         df.formatSucessRes(req, res, usrDtls, cntxtDtls, fnm, {});
-                    })         
+                    })          
                 }
 
             })
