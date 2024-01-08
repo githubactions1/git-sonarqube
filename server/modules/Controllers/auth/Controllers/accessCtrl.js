@@ -9,6 +9,8 @@ var jwt=require('jsonwebtoken')
 exports.hasToken = (req, res, next) => {
     let token = req.headers['x-access-token'];
     console.log(token,'tokennnnnnnnnnnnnnnnnnnnnn');
+    console.log('tokennnnnnnnnnnnnnnnnnnnnn');
+
             if (!token) {
                 return res.status(258).send({ auth: false, message: 'No token provided.', data: [] });
             }
