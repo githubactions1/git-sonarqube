@@ -45,4 +45,5 @@ devicesRtr.post("/devicesetting", deviceCtrl.devicesettingCtrl);
 devicesRtr.post("/arplist", deviceCtrl.arplistCtrl);
 devicesRtr.post("/updatepassword", deviceCtrl.updatepasswordCtrl);
 devicesRtr.post("/roleadd", deviceCtrl.roleaddCtrl);
+devicesRtr.post("/portdisable", deviceCtrl.portdisableCtrl);
 module.exports=devicesRtr; 
