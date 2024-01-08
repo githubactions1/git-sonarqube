@@ -113,7 +113,8 @@ exports.registerCntrl = function(req,res){
                 console.log(usrDtls.length,'lengthhhh')
                 if (usrDtls && usrDtls.length === 1) {
                     let error = 'Your Email  is Already Existed';
-                  return df.formatloginErrorRes(req, res, error, cntxtDtls, fnm, {error_status: 400,err_message : "Your Email is Already Existed"});
+                    df.formatSucessRes(req, res, error, cntxtDtls, fnm, {});
+                //   return df.formatloginErrorRes(req, res, error, cntxtDtls, fnm, {error_status: 400,err_message : "Your Email is Already Existed"});
                 }
                 
                 if(usrDtls && usrDtls.length === 0){
@@ -126,8 +127,9 @@ exports.registerCntrl = function(req,res){
         
     }
     else{
-        let error = 'Password Must be 8character';
-        return df.formatloginErrorRes(req, res, error, cntxtDtls, fnm, {error_status: 400,err_message : "Your Email is Already Existed"});
+        let errors = 'Password Must be 8character';
+         return df.formatSucessRes(req, res, errors, cntxtDtls, fnm, {});
+        // return df.formatloginErrorRes(req, res, error, cntxtDtls, fnm, {error_status: 400,err_message : "Your Email is Already Existed"});
     } 
  }
 
