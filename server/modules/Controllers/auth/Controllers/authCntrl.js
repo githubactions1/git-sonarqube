@@ -100,6 +100,7 @@ exports.loginCntrl = function(req, res){
 exports.registerCntrl = function(req,res){ 
     var fnm = "registerCntrl"
     var req_body = req.body ? req.body: req.body.data; 
+    console.log(req_body,'logggggggggggggggggggggggggggggggg')
     const string= req_body.user_email.toString()
     console.log(string)
     const emailstring=string.endsWith("@gmail.com")
