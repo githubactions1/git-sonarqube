@@ -24,6 +24,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+
+    - name: Clear npm cache
+      run: npm cache clean --force
+
     - run: npm i 
     - run: ~/.nvm/versions/node/v16.20.2/bin/pm2 reload ecosystem.config.js
    
