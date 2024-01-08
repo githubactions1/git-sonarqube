@@ -91,9 +91,9 @@ exports.devicessensorslstMdl = function (data) {
 ******************************************************************************/
 exports.devicebasiclstMdl = function (data) {
     var fnm = "devicebasiclstMdl"
-    var QRY_TO_EXEC = `select d.hostname,di.sys_desc,di.uptime,d.device_id from devices as d 
+    var QRY_TO_EXEC = ` select di.ip_status,d.hostname,di.sys_desc,di.uptime,d.device_id from devices as d 
     join device_info as di on di.device_id=d.device_id 
-    where d.ignores=0  group by d.device_id;`;
+    where d.ignores=0 and disabled=1 group by d.device_id;  `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
@@ -135,12 +135,12 @@ exports.processorindetailMdl = function (data) {
 ******************************************************************************/
 exports.devicebasiclstcountMdl = function (data) {
     var fnm = "devicebasiclstcountMdl"
-    var QRY_TO_EXEC = ` select d.hostname, di.uptime, di.sys_desc, d.device_id, di.sys_name, COUNT(p.device_id) AS port_count
+    var QRY_TO_EXEC = ` select di.ip_status,d.hostname, di.uptime, di.sys_desc, d.device_id, di.sys_name, COUNT(p.device_id) AS port_count
     FROM devices AS d
     left join  device_info as di on di.device_id = d.device_id
     left join ports AS p on p.device_id = d.device_id
-    where d.ignores=0
-    group by d.hostname, di.uptime, di.sys_desc, d.device_id, di.sys_name; `;
+    where d.ignores=0 and d.disabled=1
+    group by d.hostname, di.uptime, di.sys_desc, d.device_id, di.sys_name;  `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
@@ -828,24 +828,25 @@ exports.disablelistMdl = function (data) {
 ******************************************************************************/
 exports.detailsstatuspageMdl = function (data) {
   var fnm = "detailsstatuspageMdl"
-  var QRY_TO_EXEC = `SELECT 
-  d.device_id,
-  d.hostname,
-  (s.sys_processor_frequency DIV 100) AS processor,
-  d.uptime,
-  ROUND(d.sys_used_memory * 1024,0) AS used_Memory,
-d.sys_total_memory  AS total_memory,
-  ROUND(((d.sys_used_memory*1024) / (d.sys_total_memory * 1024) * 100),0) AS percentage,
-  ROUND(ABS(d.sys_used_memory / d.sys_total_memory * 100 - 100), 0) AS remaining_percentage,
-  d.sys_mem_type,
-  ROUND(d.sys_used_disk  * 1024) AS used_disk,
-  ROUND(d.sys_total_disk  * 1024) AS total_disk,
-  round((d.sys_used_disk  * 1024) / (d.sys_total_disk  * 1024) *100,0) as storage_percentage,
-  round(sys_total_disk*1024 - sys_used_disk*1024) as 'Remaining_storage',
-  round(d.sys_total_memory * 1024 - d.sys_used_memory * 1024) as 'Remaining_memory',
-  round( ABS((d.sys_used_disk  * 1024 )/ (d.sys_total_disk  * 1024) *100-100 )) as remaining_storage_percentage
-FROM sensors AS s
-JOIN device_info AS d ON d.device_id = s.device_id `;
+  var QRY_TO_EXEC = ` SELECT 
+  d.ip_status,
+   d.device_id,
+   d.hostname,
+   (s.sys_processor_frequency DIV 100) AS processor,
+   d.uptime,
+   ROUND(d.sys_used_memory * 1024,0) AS used_Memory,
+ d.sys_total_memory  AS total_memory,
+   ROUND(((d.sys_used_memory*1024) / (d.sys_total_memory * 1024) * 100),0) AS percentage,
+   ROUND(ABS(d.sys_used_memory / d.sys_total_memory * 100 - 100), 0) AS remaining_percentage,
+   d.sys_mem_type,
+   ROUND(d.sys_used_disk  * 1024) AS used_disk,
+   ROUND(d.sys_total_disk  * 1024) AS total_disk,
+   round((d.sys_used_disk  * 1024) / (d.sys_total_disk  * 1024) *100,0) as storage_percentage,
+   round(sys_total_disk*1024 - sys_used_disk*1024) as 'Remaining_storage',
+   round(d.sys_total_memory * 1024 - d.sys_used_memory * 1024) as 'Remaining_memory',
+   round( ABS((d.sys_used_disk  * 1024 )/ (d.sys_total_disk  * 1024) *100-100 )) as remaining_storage_percentage
+ FROM sensors AS s
+ JOIN device_info AS d ON d.device_id = s.device_id     `;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
