@@ -116,8 +116,7 @@ exports.registerCntrl = function(req,res){
                     df.formatSucessRes(req, res, error, cntxtDtls, fnm, {});
                 //   return df.formatloginErrorRes(req, res, error, cntxtDtls, fnm, {error_status: 400,err_message : "Your Email is Already Existed"});
                 }
-                
-                if(usrDtls && usrDtls.length === 0){
+                else{
                     authMdl.registerMdl(req_body).then(function (usrDtls){
                         df.formatSucessRes(req, res, usrDtls, cntxtDtls, fnm, {});
                     })          
