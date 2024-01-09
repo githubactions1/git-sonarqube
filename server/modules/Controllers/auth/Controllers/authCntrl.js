@@ -88,7 +88,9 @@ exports.loginCntrl = function(req, res){
             // Log IP and browser details
             console.log(ip,'ippppppppppppppppppppppppppppppppp----------------------------------------------------------------------------');
             console.log(userAgentString,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
-            console.log(agent,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
+            console.log(agent.family,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
+            console.log(agent.major,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
+            console.log(agent.source,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
             var accessToken = jwt.sign(payload,privateKey, { expiresIn: '2h' , algorithm: 'HS256'} ); //{ algorithm: 'HS256'});
             console.log(accessToken,'tokeennnnnnnn')
             req.user = payload;
