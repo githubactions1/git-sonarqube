@@ -80,14 +80,18 @@ exports.loginCntrl = function(req, res){
             // Get browser information
             const userAgentString = req.headers['user-agent'];
             const agent = useragent.parse(userAgentString);
-
-            // Log IP and browser details
+            const dataa =agent.family+agent.major
             console.log(ip,'ippppppppppppppppppppppppppppppppp----------------------------------------------------------------------------');
             console.log(userAgentString,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
             console.log(agent.family,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
             console.log(agent.major,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
             console.log(agent.source,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
+            authMdl.logindetailsMdl(req_body,ip,dataa).then(function (insert_data){
+                console.log(insert_data,'---------------------------------------------')
+            })
+            // Log IP and browser details
             var accessToken = jwt.sign(payload,privateKey, { expiresIn: '2h' , algorithm: 'HS256'} ); //{ algorithm: 'HS256'});
+
             console.log(accessToken,'tokeennnnnnnn')
             req.user = payload;
 			data.token = accessToken;
@@ -174,6 +178,8 @@ exports.userdetailsCtrl=(req,res)=>{
 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
 	});
 }
+
+
 
 
 

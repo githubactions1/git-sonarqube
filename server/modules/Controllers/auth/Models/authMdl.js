@@ -75,3 +75,17 @@ exports.userdetailsMdl = function (data) {
     console.log(QRY_TO_EXEC)
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls,'',fnm);
 }
+
+/*****************************************************************************
+ * Function : logindetailsMdl
+* Description : this model gives the list of a roles 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.logindetailsMdl = function (data,ip,dataa) {
+    var fnm = "logindetailsMdl"
+    var QRY_TO_EXEC = ` INSERT INTO login_history(user_id,user,date,from,user_agent,action) VALUES (${data.user_id},'${data.first_name}',current_timestamp(),${ip},${dataa},'Logged In') `;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
