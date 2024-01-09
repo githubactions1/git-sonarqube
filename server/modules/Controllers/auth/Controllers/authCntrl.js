@@ -73,14 +73,10 @@ exports.loginCntrl = function(req, res){
             payload = Object.assign({}, usrDtls[0], {
                 app: req_body.app,
                 cmpnt_id: req_body.cmpnt_id,
-                //prt_in: usrDtls.login_details.prt_in,
-                //caf_in: usrDtls.login_details.caf_in,
-                //user_id: usrDtls.login_details.mrcht_usr_id,
             });
             data.user = payload;
               // Get IP address
             const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-
             // Get browser information
             const userAgentString = req.headers['user-agent'];
             const agent = useragent.parse(userAgentString);

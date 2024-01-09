@@ -40,13 +40,13 @@ exports.dropdownlistMdl = function (data) {
 ******************************************************************************/
 exports.devicesindetailedMdl = function (data) {
     var fnm = "devicesindetailedMdl"
-    var QRY_TO_EXEC = ` SELECT d.device_id,d.com_str,d.udp_port,d.hostname as 'catched_ip',di.sys_name as 'system_name',di.sys_desc as 'operating_system',di.uptime,di.sys_serialnumber
+    var QRY_TO_EXEC = ` SELECT d.device_id,d.com_str,d. dp_port,d.hostname as 'catched_ip',di.sys_name as 'system_name',di.sys_desc as 'operating_system',di.uptime,di.sys_serialnumber
     ,di.sys_version as 'version'
          FROM devices as d
        join device_info as di on di.device_id=d.device_id where d.device_id=${data.device_id}   `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
-};
+}
 
 /*****************************************************************************
 * Function : devicessensorslstMdl
@@ -1075,10 +1075,11 @@ exports.locationaddMdl = function (data) {
 ******************************************************************************/
 exports.propertiesportsMdl = function (data) {
   var fnm = "propertiesportsMdl"
-  var QRY_TO_EXEC = `   SELECT
+  var QRY_TO_EXEC = ` SELECT
   p.device_id,
-  p.if_name,
-  d.hostname,
+  p.port_disable_status,
+  p.port_disable_status,
+   d.hostname,
   p.if_mac_address,
   p.if_index, 
 case when p.if_oper_status=1 then 'UP' else 'dowm' end as status ,
@@ -1170,6 +1171,48 @@ exports.roleaddMdl = function (data,decrypt) {
 exports.portdisableMdl = function (data,decrypt) {
   var fnm = "portdisableMdl"
   var QRY_TO_EXEC = `  update ports set port_disable_status=0  where device_id=${data.device_id} and if_index in (${data.if_index});  ` ;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+}
+
+/*****************************************************************************
+ * Function : davicefilterMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.davicefilterMdl = function (data,decrypt) {
+  var fnm = "davicefilterMdl"
+
+  var mndlCndtn = ``;
+  if(data.device_id && data.location_id && data.sysc_desc){
+    mndlCndtn =`and d.device_id=${data.device_id} and l.location=${data.location_id} and di.sys_desc=${data.sysc_desc} `
+  }
+  else if(data.device_id && !data.location_id && !data.sysc_desc){
+    mndlCndtn =`and d.device_id=${data.device_id}  `
+  }
+  else if(!data.device_id && data.location_id && !data.sysc_desc){
+    mndlCndtn =` and l.location=${data.location_id}  `
+  }
+ else  if(!data.device_id && !data.location_id && !data.sysc_desc){
+    mndlCndtn =` and di.sys_desc=${data.sysc_desc} `
+  }
+  else if(data.device_id && data.location_id && !data.sysc_desc){
+    mndlCndtn =`and d.device_id=${data.device_id} and l.location=${data.location_id} `
+  }
+ else if(data.device_id && !data.location_id && data.sysc_desc){
+    mndlCndtn =`and d.device_id=${data.device_id}  and di.sys_desc=${data.sysc_desc} `
+  }
+ else  if(!data.device_id && data.location_id && data.sysc_desc){
+    mndlCndtn =`  and l.location=${data.location_id} and di.sys_desc=${data.sysc_desc} `
+  }
+
+ 
+  var QRY_TO_EXEC = ` select di.ip_status,d.hostname,di.sys_desc,di.uptime,d.device_id from devices as d 
+  join device_info as di on di.device_id=d.device_id 
+  join locations as l on l.device_id=d.device_id
+  where d.ignores=0 and disabled=1 ${mndlCndtn}  group by d.device_id;   ` ;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 }
