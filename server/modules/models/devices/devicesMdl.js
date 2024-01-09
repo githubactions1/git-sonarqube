@@ -1170,7 +1170,7 @@ exports.roleaddMdl = function (data,decrypt) {
 ******************************************************************************/
 exports.portdisableMdl = function (data,decrypt) {
   var fnm = "portdisableMdl"
-  var QRY_TO_EXEC = `  update ports set port_disable_status=0  where device_id=${data.device_id} and if_index in (${data.if_index});  ` ;
+  var QRY_TO_EXEC = `  update ports set port_disable_status=${data.status}  where device_id=${data.device_id} and if_index in (${data.if_index});  ` ;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 }
