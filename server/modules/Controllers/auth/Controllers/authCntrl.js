@@ -4,6 +4,7 @@ var df = require( '../../../../../utils/dflower.utils');
 var dashboardMdl = require('../../../models/dashboard/dashboardMdl');
 var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
 var jwt=require('jsonwebtoken')
+const useragent = require('useragent');
 
 
 
@@ -77,6 +78,17 @@ exports.loginCntrl = function(req, res){
                 //user_id: usrDtls.login_details.mrcht_usr_id,
             });
             data.user = payload;
+              // Get IP address
+            const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
+            // Get browser information
+            const userAgentString = req.headers['user-agent'];
+            const agent = useragent.parse(userAgentString);
+
+            // Log IP and browser details
+            console.log(ip,'ippppppppppppppppppppppppppppppppp----------------------------------------------------------------------------');
+            console.log(userAgentString,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
+            console.log(agent,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
             var accessToken = jwt.sign(payload,privateKey, { expiresIn: '2h' , algorithm: 'HS256'} ); //{ algorithm: 'HS256'});
             console.log(accessToken,'tokeennnnnnnn')
             req.user = payload;
