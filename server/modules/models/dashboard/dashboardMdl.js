@@ -192,7 +192,7 @@ exports.userdetailsMdl = function (data) {
 ******************************************************************************/
 exports.logindetailsMdl = function (data) {
     var fnm = "logindetailsMdl"
-    var QRY_TO_EXEC = ` INSERT INTO login_history(user_id,user,date,from,user_agent,action) VALUES (${data.user_id},'${data.first_name}',current_timestamp(),'Logged In') `;
+    var QRY_TO_EXEC = ` INSERT INTO login_history(user_id,user,date,from,user_agent,action) VALUES (${data.user_id},'${data.first_name}',current_timestamp(),${ip},${dataa},'Logged In') `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };

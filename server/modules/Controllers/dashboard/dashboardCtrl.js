@@ -2,6 +2,7 @@ var appRoot ='/home/nms-backend/actions-runner/_work/nms_node/nms_node';
 var dashboardMdl = require('../../models/dashboard/dashboardMdl');
 var df = require( '../../../../utils/dflower.utils');
 var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
+const useragent = require('useragent');
 
 
 /******************************************************************************************************
@@ -142,8 +143,18 @@ exports.userdetailsCtrl=(req,res)=>{
 *
 ******************************************************************************/
 exports.logindetailsCtrl=(req,res)=>{
-	dashboardMdl.logindetailsMdl(req.body,req.user).then(function(results){
-	   console.log(results)
+
+		const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+		// Get browser information
+		const userAgentString = req.headers['user-agent'];
+		const agent = useragent.parse(userAgentString);
+		const dataa =agent.family+agent.major
+		console.log(ip,'ippppppppppppppppppppppppppppppppp----------------------------------------------------------------------------');
+		console.log(userAgentString,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
+		console.log(agent.family,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
+		console.log(agent.major,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
+		console.log(agent.source,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
+		dashboardMdl.logindetailsMdl(req.body,req.user,ip,dataa).then(function(results){	
 		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
 	}).catch(function(error){
 	   console.log(error)
