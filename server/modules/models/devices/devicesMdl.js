@@ -93,7 +93,7 @@ exports.devicebasiclstMdl = function (data) {
     var fnm = "devicebasiclstMdl"
     var QRY_TO_EXEC = ` select di.ip_status,d.hostname,di.sys_desc,di.uptime,d.device_id from devices as d 
     join device_info as di on di.device_id=d.device_id 
-    where d.ignores=0 and disabled=1 group by d.device_id;  `;
+    where d.ignores=0 and disabled=0 group by d.device_id;  `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
@@ -139,7 +139,7 @@ exports.devicebasiclstcountMdl = function (data) {
     FROM devices AS d
     left join  device_info as di on di.device_id = d.device_id
     left join ports AS p on p.device_id = d.device_id
-    where d.ignores=0 and d.disabled=1
+    where d.ignores=0 and d.disabled=0
     group by d.hostname, di.uptime, di.sys_desc, d.device_id, di.sys_name;  `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
