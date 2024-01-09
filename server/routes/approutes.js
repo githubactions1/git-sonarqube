@@ -12,6 +12,7 @@ router.post("/login",authCtrl.loginCntrl);
 router.post("/register", authCtrl.registerCntrl);
 router.get("/userroleslist",authCtrl.userroleslistCtrl);
 router.post("/userdetails", authCtrl.userdetailsCtrl);
+router.get("/authenticationlogs",authCtrl.authenticationlogsCtrl);
 
 
 module.exports = router;

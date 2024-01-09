@@ -179,6 +179,22 @@ exports.userdetailsCtrl=(req,res)=>{
 	});
 }
 
+// /***************************************************************************
+// * Function : authenticationlogsCtrl
+// * Description : this model gives the list of a sensorslst 
+// * Arguments : callback function
+// * 04-11-2023 - RajKumar
+// ******************************************************************************/
+exports.authenticationlogsCtrl=(req,res)=>{
+	authMdl.authenticationlogsMdl(req.body,req.user).then(function(results){
+	   console.log(results)
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
+}
+
 
 
 

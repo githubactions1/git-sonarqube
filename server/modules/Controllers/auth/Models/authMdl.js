@@ -89,3 +89,17 @@ exports.logindetailsMdl = function (data,ip,dataa) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+
+/*****************************************************************************
+ * Function : authenticationlogsMdl
+* Description : this model gives the list of a roles 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.authenticationlogsMdl = function (data,ip,dataa) {
+    var fnm = "authenticationlogsMdl"
+    var QRY_TO_EXEC = ` select * from login_history where date(date)=curdate() `;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
