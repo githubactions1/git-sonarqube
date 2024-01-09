@@ -149,6 +149,7 @@ exports.logindetailsCtrl=(req,res)=>{
 		const userAgentString = req.headers['user-agent'];
 		const agent = useragent.parse(userAgentString);
 		const dataa =agent.family+agent.major
+		console.log(data,'dataaaaaaaaaaaaaaa')
 		console.log(ip,'ippppppppppppppppppppppppppppppppp----------------------------------------------------------------------------');
 		console.log(userAgentString,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
 		console.log(agent.family,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
