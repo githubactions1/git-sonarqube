@@ -14,5 +14,6 @@ router.get("/userroleslist",authCtrl.userroleslistCtrl);
 router.post("/userdetails", authCtrl.userdetailsCtrl);
 router.get("/authenticationlogs",authCtrl.authenticationlogsCtrl);
 router.post("/userpermission",authCtrl.userpermissionCtrl);
+router.get("/userslist_Ctrl",authCtrl.userslist_Ctrl);
 
 module.exports = router;

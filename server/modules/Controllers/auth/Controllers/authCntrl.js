@@ -196,6 +196,21 @@ exports.userpermissionCtrl=(req,res)=>{
 	});
 }
 
+// /***************************************************************************
+// * Function : userslist_Ctrl
+// * Description : this model gives the list of a sensorslst 
+// * Arguments : callback function
+// * 04-11-2023 - RajKumar
+// ******************************************************************************/
+exports.userslist_Ctrl=(req,res)=>{
+	authMdl.userslist_Mdl(req.body,req.user).then(function(results){
+	   console.log(results)
+		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	}).catch(function(error){
+	   console.log(error)
+		df.formatErrorRes(req,res,error,cntxtDtls,'',{});
+	});
+}
 
 
 

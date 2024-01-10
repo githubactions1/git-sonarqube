@@ -115,3 +115,17 @@ exports.userpermissionMdl = function (data,ip,dataa) {
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
+
+/*****************************************************************************
+ * Function : userslist_Mdl
+* Description : this model gives the list of a roles 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.userslist_Mdl = function (data,ip,dataa) {
+    var fnm = "userslist_Mdl"
+    var QRY_TO_EXEC = ` SELECT user_id,first_name,last_name,user_email,user_role_id FROM users_dtl_t  `;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
