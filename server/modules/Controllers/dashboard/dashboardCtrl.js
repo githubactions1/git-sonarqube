@@ -155,7 +155,7 @@ exports.logindetailsCtrl=(req,res)=>{
 		console.log(agent.family,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
 		console.log(agent.major,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
 		console.log(agent.source,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
-		dashboardMdl.logindetailsMdl(req.body,req.user,ip,dataa).then(function(results){	
+		dashboardMdl.logindetailsMdl(req.body,req.user,ip,agent.family+agent.major).then(function(results){	
 		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
 	}).catch(function(error){
 	   console.log(error)
