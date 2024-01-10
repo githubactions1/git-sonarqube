@@ -1077,6 +1077,7 @@ exports.propertiesportsMdl = function (data) {
   var fnm = "propertiesportsMdl"
   var QRY_TO_EXEC = ` SELECT
   p.device_id,
+  p.if_name,
   p.port_disable_status,
   p.if_oper_status,
    d.hostname,
