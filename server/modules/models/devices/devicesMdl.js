@@ -1219,4 +1219,37 @@ exports.davicefilterMdl = function (data,decrypt) {
 }
 
 
+/*****************************************************************************
+ * Function : devicesettingsMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.devicesettingsMdl = function (data,decrypt) {
+  var fnm = "devicesettingsMdl"
+   var device_type=``;
+  var description=``;
+   var device_ignore=``;
+   var disabled=``;
+  if (data.description != null && data.description != '' && data.description != undefined) {
+    description = `,description='${data.description}'`
+  }
+  if (data.device_type != null && data.device_type != '' && data.device_type != undefined) {
+    device_type = `,device_type ='${data.device_type}'`
+  }
+  if (data.device_ignore != null && data.device_ignore != '' && data.device_ignore != undefined) {
+    device_ignore = `,device_ignore =${data.device_ignore}`
+  }
+  if (data.disabled != null && data.disabled != '' && data.disabled != undefined) {
+    disabled = `,disabled =${data.disabled}`
+  }
+  var QRY_TO_EXEC = `  update devices set ${description},${device_type},${device_ignore},${disabled} where device_id=${data.device_id} ;   ` ;
+  if(data.location){
+    var QRY_TO_EXEC =` update locations set name='${data.name}',device_id=${data.device_id}  `
+  }
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+}
+
 
