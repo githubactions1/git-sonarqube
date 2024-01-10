@@ -1244,7 +1244,7 @@ exports.devicesettingsMdl = function (data,decrypt) {
   if (data.disabled != null && data.disabled != '' && data.disabled != undefined) {
     disabled = `,disabled =${data.disabled}`
   }
-  var QRY_TO_EXEC = `  update devices set ${description},${device_type},${device_ignore},${disabled} where device_id=${data.device_id} ;   ` ;
+  var QRY_TO_EXEC = `  update devices set ${description} ${device_type} ${device_ignore} ${disabled} where device_id=${data.device_id} ;   ` ;
   if(data.location){
     var QRY_TO_EXEC =` update locations set name='${data.name}',device_id=${data.device_id}  `
   }
