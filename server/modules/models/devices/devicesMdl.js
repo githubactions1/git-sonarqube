@@ -1233,7 +1233,7 @@ exports.devicesettingsMdl = function (data,decrypt) {
    var device_ignore=``;
    var disabled=``;
   if (data.description != null && data.description != '' && data.description != undefined) {
-    description = `,description='${data.description}'`
+    description = `description='${data.description}'`
   }
   if (data.device_type != null && data.device_type != '' && data.device_type != undefined) {
     device_type = `,device_type ='${data.device_type}'`
