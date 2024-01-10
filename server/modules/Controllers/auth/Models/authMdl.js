@@ -37,7 +37,7 @@ exports.loginMdl = function (data) {
 *
 ******************************************************************************/
 
-exports.registerMdl = function (data) {
+exports.registerMdl = function (data,user) {
     var fnm = "registerMdl"
     var QRY_TO_EXEC = ` INSERT INTO users_dtl_t (first_name,last_name,user_email,user_password,user_role_id,user_status) values ('${data.first_name}','${data.last_name}','${data.user_email}',SHA1('${data.user_password}'),${data.user_role_id},1)  `
     console.log(QRY_TO_EXEC)
