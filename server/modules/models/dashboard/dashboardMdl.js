@@ -190,7 +190,7 @@ exports.userdetailsMdl = function (data) {
 * 04-11-2023 - RajKumar
 *
 ******************************************************************************/
-exports.logindetailsMdl = function (data,ip,dataa) {
+exports.logindetailsMdl = function (data,user,ip,dataa) {
     var fnm = "logindetailsMdl"
     var QRY_TO_EXEC = ` INSERT INTO login_history(user_id,user,date,user_agent,from,action) VALUES (${data.user_id},'${data.first_name}',current_timestamp(),'${dataa}',${ip},'Logged In') `;
     console.log(QRY_TO_EXEC);
