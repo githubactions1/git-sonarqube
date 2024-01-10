@@ -150,12 +150,12 @@ exports.logindetailsCtrl=(req,res)=>{
 		const agent = useragent.parse(userAgentString);
 		const dataa =agent.family+agent.major
 		console.log(dataa,'dataaaaaaaaaaaaaaa')
-		console.log(ip,'ippppppppppppppppppppppppppppppppp----------------------------------------------------------------------------');
-		console.log(userAgentString,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
-		console.log(agent.family,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
-		console.log(agent.major,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
-		console.log(agent.source,'userAgentStringgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg');
-		dashboardMdl.logindetailsMdl(req.body,req.user,ip,agent.family+agent.major).then(function(results){	
+		console.log(ip,'ip');
+		console.log(userAgentString,'userAgentString');
+		console.log(agent.family,'userAgentString');
+		console.log(agent.major,'userAgentString');
+		console.log(agent.source,'userAgentString');
+		dashboardMdl.logindetailsMdl(req.body,req.user,ip,dataa).then(function(results){	
 		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
 	}).catch(function(error){
 	   console.log(error)
