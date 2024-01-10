@@ -22,8 +22,7 @@ var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
 ******************************************************************************/
 exports.loginMdl = function (data) {
     var fnm = "loginMdl"
-    var QRY_TO_EXEC = ` select *  from users_dtl_t as us 
-    join user_roles as ur on ur.user_role_id=us.user_role_id
+    var QRY_TO_EXEC = ` select * from users_dtl_t as us 
     where user_email='${data.user_email}' and user_password=SHA1('${data.user_password}') and user_status=1  `
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls,'',fnm);
@@ -100,6 +99,19 @@ exports.logindetailsMdl = function (data,ip,dataa) {
 exports.authenticationlogsMdl = function (data,ip,dataa) {
     var fnm = "authenticationlogsMdl"
     var QRY_TO_EXEC = ` select * from login_history where date(date)=curdate() `;
+    console.log(QRY_TO_EXEC);
+    return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+};
+/*****************************************************************************
+ * Function : userpermissionMdl
+* Description : this model gives the list of a roles 
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.userpermissionMdl = function (data,ip,dataa) {
+    var fnm = "userpermissionMdl"
+    var QRY_TO_EXEC = ` SELECT * FROM NMS.user_roles where user_role_id=${data.user_role_id}  `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };

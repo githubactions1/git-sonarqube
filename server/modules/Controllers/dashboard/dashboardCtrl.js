@@ -146,6 +146,7 @@ exports.logindetailsCtrl=(req,res)=>{
 
 		const cleanedIPAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 		let ip = cleanedIPAddress.replace(/,::ffff:/, '');
+		console.log(ip,'replace')
 		// Get browser information
 		const userAgentString = req.headers['user-agent'];
 		const agent = useragent.parse(userAgentString);
