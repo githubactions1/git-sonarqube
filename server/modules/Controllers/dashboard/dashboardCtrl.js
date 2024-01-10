@@ -144,19 +144,14 @@ exports.userdetailsCtrl=(req,res)=>{
 ******************************************************************************/
 exports.logindetailsCtrl=(req,res)=>{
 
-		const cleanedIPAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-		let ip = cleanedIPAddress.replace(/,::ffff:/, '');
-		console.log(ip,'replace')
+		let ipp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+		let ip = ipp.replace(/,::ffff:/, '');
 		// Get browser information
 		const userAgentString = req.headers['user-agent'];
 		const agent = useragent.parse(userAgentString);
 		const dataa =agent.family+agent.major
 		console.log(dataa,'dataaaaaaaaaaaaaaa')
-		console.log(ip,'ip');
-		console.log(userAgentString,'userAgentString');
-		console.log(agent.family,'userAgentString');
-		console.log(agent.major,'userAgentString');
-		console.log(agent.source,'userAgentString');
+		console.log(ip,'ipp');
 		dashboardMdl.logindetailsMdl(req.body,req.user,ip,dataa).then(function(results){	
 		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
 	}).catch(function(error){
