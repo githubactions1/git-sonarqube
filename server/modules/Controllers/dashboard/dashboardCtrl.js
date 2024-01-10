@@ -145,7 +145,7 @@ exports.userdetailsCtrl=(req,res)=>{
 exports.logindetailsCtrl=(req,res)=>{
 
 		let ipp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-		let ip = ipp.replace(/,::ffff:/, '');
+		let ip = ipp.replace(/^,::ffff:/, '');
 		// Get browser information
 		const userAgentString = req.headers['user-agent'];
 		const agent = useragent.parse(userAgentString);
