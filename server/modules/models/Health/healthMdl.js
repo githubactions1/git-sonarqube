@@ -27,10 +27,14 @@ exports.memorylistMdl = function (data) {
 ******************************************************************************/
 exports.fanspeedlistMdl = function (data) {
     var fnm = "fanspeedlistMdl"
+    var fanspeed =``
+    if(data.device_id){
+        fanspeed=` and di.device_id=${data.device_id} `
+    }
     var QRY_TO_EXEC = `select   s.device_id, di.hostname,s.sys_fanspeed value, 'Fanspeed' descrip
     from sensors as s 
     join device_info as di on s.device_id=di.device_id
-    where s.sys_fanspeed not in (0,'N/A') `;
+    where s.sys_fanspeed not in (0,'N/A') ${fanspeed} `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
@@ -43,10 +47,14 @@ exports.fanspeedlistMdl = function (data) {
 ******************************************************************************/
 exports.currentlistMdl = function (data) {
     var fnm = "currentlistMdl"
+    var current =``
+    if(data.device_id){
+        current=` and di.device_id=${data.device_id} `
+    }
     var QRY_TO_EXEC = `select   s.device_id, di.hostname,s.sys_current value, 'Current' descrip
     from sensors as s 
     join device_info as di on s.device_id=di.device_id
-    where s.sys_current not in (0,'N/A') `;
+    where s.sys_current not in (0,'N/A')${current} `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
@@ -59,10 +67,14 @@ exports.currentlistMdl = function (data) {
 ******************************************************************************/
 exports.voltagelistMdl = function (data) {
     var fnm = "voltagelistMdl"
+    var voltage =``
+    if(data.device_id){
+        voltage=` and di.device_id=${data.device_id} `
+    }
     var QRY_TO_EXEC = `select   s.device_id, di.hostname,s.sys_voltage value, 'voltage' descrip
     from sensors as s 
     join device_info as di on s.device_id=di.device_id
-    where s.sys_voltage not in (0,'N/A')`;
+    where s.sys_voltage not in (0,'N/A') ${voltage}`;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
@@ -75,10 +87,14 @@ exports.voltagelistMdl = function (data) {
 ******************************************************************************/
 exports.powerlistMdl = function (data) {
     var fnm = "powerlistMdl"
+    var power=``
+    if(data.device_id){
+        power=` and di.device_id=${data.device_id} `
+    }
     var QRY_TO_EXEC = `select   s.device_id, di.hostname,s.sys_power value, 'Power' descrip
     from sensors as s 
     join device_info as di on s.device_id=di.device_id
-    where s.sys_power not in (0,'N/A')`;
+    where s.sys_power not in (0,'N/A') ${power}`;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
@@ -95,7 +111,7 @@ exports.frequencylistMdl = function (data) {
     if(data.device_id){
         frequency=` and di.device_id=${data.device_id} `
     }
-    var QRY_TO_EXEC = `   select   s.device_id, di.hostname,s.sys_processor_frequency/1000 value, 'Frequency' descrip
+    var QRY_TO_EXEC = ` select   s.device_id, di.hostname,s.sys_processor_frequency/1000 value, 'Frequency' descrip
     from sensors as s
     left join device_info as di on s.device_id=di.device_id
      where s.sys_processor_frequency not in (0,'N/A') ${frequency}`;
