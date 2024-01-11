@@ -48,4 +48,5 @@ devicesRtr.post("/roleadd", deviceCtrl.roleaddCtrl);
 devicesRtr.post("/portdisable", deviceCtrl.portdisableCtrl);
 devicesRtr.post("/devicesettings", deviceCtrl.devicesettingsCtrl);
 devicesRtr.post("/davicefilter", deviceCtrl.davicefilterCtrl);
+devicesRtr.get("/locationlist", deviceCtrl.locationlistCtrl);
 module.exports=devicesRtr; 

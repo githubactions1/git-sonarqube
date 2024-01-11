@@ -1252,4 +1252,17 @@ exports.devicesettingsMdl = function (data,decrypt) {
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 }
 
+/*****************************************************************************
+ * Function : locationlistMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.locationlistMdl = function (data,decrypt) {
+  var fnm = "locationlistMdl"
+  var QRY_TO_EXEC = `  select * from locations;  ` ;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+}
 
