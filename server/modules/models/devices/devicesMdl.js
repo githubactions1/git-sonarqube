@@ -1261,7 +1261,7 @@ exports.devicesettingsMdl = function (data,decrypt) {
 ******************************************************************************/
 exports.locationlistMdl = function (data,decrypt) {
   var fnm = "locationlistMdl"
-  var QRY_TO_EXEC = `  select * from locations;  ` ;
+  var QRY_TO_EXEC = ` select * from locations group by name  ` ;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 }
