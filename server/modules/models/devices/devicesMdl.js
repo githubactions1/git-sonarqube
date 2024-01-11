@@ -1239,7 +1239,7 @@ exports.devicesettingsMdl = function (data,decrypt) {
     device_type = `,device_type ='${data.device_type}'`
   }
   if (data.device_ignore != null && data.device_ignore != '' && data.device_ignore != undefined) {
-    device_ignore = `,device_ignore =${data.device_ignore}`
+    device_ignore = `,ignores =${data.device_ignore}`
   }
   if (data.disabled != null && data.disabled != '' && data.disabled != undefined) {
     disabled = `,disabled =${data.disabled}`
