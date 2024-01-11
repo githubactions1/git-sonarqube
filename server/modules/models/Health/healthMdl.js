@@ -13,8 +13,8 @@ var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
 ******************************************************************************/
 exports.memorylistMdl = function (data) {
     var fnm = "memorylistMdl"
-    var QRY_TO_EXEC = `select d.hostname,d.device_id,(d.sys_total_memory) ,(d.sys_used_memory ),d.sys_mem_type from sensors as s
-    join device_info as d on d.device_id=s.device_id `;
+    var QRY_TO_EXEC = ` select d.hostname,d.device_id,(d.sys_total_memory) ,(d.sys_used_memory ),d.sys_mem_type from sensors as s
+    join device_info as d on d.device_id=s.device_id  `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
@@ -91,10 +91,14 @@ exports.powerlistMdl = function (data) {
 ******************************************************************************/
 exports.frequencylistMdl = function (data) {
     var fnm = "frequencylistMdl"
+    var frequency=``
+    if(data.device_id){
+        frequency=` and di.device_id=${data.device_id} `
+    }
     var QRY_TO_EXEC = `   select   s.device_id, di.hostname,s.sys_processor_frequency/1000 value, 'Frequency' descrip
     from sensors as s
     left join device_info as di on s.device_id=di.device_id
-     where s.sys_processor_frequency not in (0,'N/A') `;
+     where s.sys_processor_frequency not in (0,'N/A') ${frequency}`;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
