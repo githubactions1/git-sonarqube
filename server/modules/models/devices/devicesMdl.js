@@ -592,6 +592,11 @@ ORDER BY
 ******************************************************************************/
 exports.AllstoragelistMdl = function (data) {
   var fnm = "AllstoragelistMdl"
+    var storage=``
+    if(data.device_id){
+      storage=` and di.device_id=${data.device_id} `
+    }
+  
   var QRY_TO_EXEC = `SELECT d.hostname,d.device_id,d.sys_disk_type,
   (s.sys_processor_frequency DIV 100) AS processor,
   ROUND(d.sys_used_memory * 1024,0) AS used_Memory,
@@ -606,7 +611,7 @@ d.sys_total_memory  AS total_memory,
   round(d.sys_total_memory * 1024 - d.sys_used_memory * 1024) as 'Remaining_memory',
   round( ABS((d.sys_used_disk  * 1024 )/ (d.sys_total_disk  * 1024) *100-100 )) as remaining_storage_percentage
 FROM sensors AS s
-JOIN device_info AS d ON d.device_id = s.device_id   
+JOIN device_info AS d ON d.device_id = s.device_id ${storage}  
 `;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
