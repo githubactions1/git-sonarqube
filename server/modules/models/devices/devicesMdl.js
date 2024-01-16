@@ -1228,10 +1228,7 @@ exports.portdisableMdl = function (data,decrypt) {
   if(data.alert_status){
       port_alert_status=`, port_alert_status=${data.port_alert_status}`
   }
-  
-  
-  
-  var QRY_TO_EXEC = `  ${port_disable_status}${port_alert_status} where device_id=${data.device_id} and if_index in (${data.if_index});  ` ;
+  var QRY_TO_EXEC = `  update ports set ${port_disable_status}${port_alert_status} where device_id=${data.device_id} and if_index in (${data.if_index});  ` ;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 }
