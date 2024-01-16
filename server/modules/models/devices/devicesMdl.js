@@ -1131,6 +1131,7 @@ exports.propertiesportsMdl = function (data) {
    d.hostname,
   p.if_mac_address,
   p.if_index, 
+  p.port_alert_status,
 case when p.if_oper_status=1 then 'UP' else 'dowm' end as status ,
 round( p.if_speed/1000/1000/1000,1) as speed
   from ports as p
@@ -1219,7 +1220,18 @@ exports.roleaddMdl = function (data,decrypt) {
 ******************************************************************************/
 exports.portdisableMdl = function (data,decrypt) {
   var fnm = "portdisableMdl"
-  var QRY_TO_EXEC = `  update ports set port_disable_status=${data.status}  where device_id=${data.device_id} and if_index in (${data.if_index});  ` ;
+  var port_alert_status=``;
+  var port_disable_status=``;
+  if(data.port_disable_status){
+      port_disable_status=` port_disable_status=${data.port_disable_status}`
+  }
+  if(data.alert_status){
+      port_alert_status=`, port_alert_status=${data.port_alert_status}`
+  }
+  
+  
+  
+  var QRY_TO_EXEC = `  ${port_disable_status}${port_alert_status} where device_id=${data.device_id} and if_index in (${data.if_index});  ` ;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 }
