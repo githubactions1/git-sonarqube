@@ -1132,7 +1132,7 @@ exports.propertiesportsMdl = function (data) {
   p.if_mac_address,
   p.if_index, 
   p.port_alert_status,
-case when p.if_oper_status=1 then 'UP' else 'dowm' end as status ,
+case when p.if_oper_status=1 then 'UP' else 'down' end as status ,
 round( p.if_speed/1000/1000/1000,1) as speed
   from ports as p
   join devices as d on d.device_id=p.device_id
