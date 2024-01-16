@@ -1314,3 +1314,31 @@ exports.locationlistMdl = function (data,decrypt) {
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 }
 
+/*****************************************************************************
+ * Function : oslistMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.oslistMdl = function (data,decrypt) {
+  var fnm = "oslistMdl"
+  var QRY_TO_EXEC = ` select sys_os from device_info  group by sys_os ` ;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+}
+
+/*****************************************************************************
+ * Function : hardwarelistMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.hardwarelistMdl = function (data,decrypt) {
+  var fnm = "hardwarelistMdl"
+  var QRY_TO_EXEC = ` select sys_hardware from device_info  group by sys_hardware ` ;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+}
+
