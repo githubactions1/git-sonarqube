@@ -13,8 +13,12 @@ var cntxtDtls = df.getModuleMetaData(__dirname, __filename);
 ******************************************************************************/
 exports.memorylistMdl = function (data) {
     var fnm = "memorylistMdl"
+    var memory =``
+    if(data.device_id){
+        memory=` and di.device_id=${data.device_id} `
+    }
     var QRY_TO_EXEC = ` select d.hostname,d.device_id,(d.sys_total_memory) ,(d.sys_used_memory ),d.sys_mem_type from sensors as s
-    join device_info as d on d.device_id=s.device_id  `;
+    join device_info as d on d.device_id=s.device_id ${memory}  `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
@@ -152,6 +156,11 @@ exports.statuslistMdl = function (data) {
 ******************************************************************************/
 exports.TemperaturelistMdl = function (data) {
     var fnm = "TemperaturelistMdl"
+
+    var temperature=``
+    if(data.device_id){
+        temperature=` and di.device_id=${data.device_id} `
+    }
     var QRY_TO_EXEC = `  SELECT s.device_id,sys_temperature/10 AS temperature,'System' AS type,hostname
     FROM sensors AS s
     JOIN device_info AS d ON d.device_id = s.device_id
@@ -160,7 +169,7 @@ exports.TemperaturelistMdl = function (data) {
     SELECT s.device_id,sys_processor_temp/10 AS temperature,'Processor' AS type,hostname
     FROM sensors AS s
     JOIN device_info AS d ON d.device_id = s.device_id
-    WHERE sys_processor_temp > 0; `;
+    WHERE sys_processor_temp > 0  ${temperature} `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
