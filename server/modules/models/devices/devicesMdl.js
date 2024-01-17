@@ -594,7 +594,7 @@ exports.AllstoragelistMdl = function (data) {
   var fnm = "AllstoragelistMdl"
     var storage=``
     if(data.device_id){
-      storage=` and di.device_id=${data.device_id} `
+      storage=` and d.device_id=${data.device_id} `
     }
   
   var QRY_TO_EXEC = `SELECT d.hostname,d.device_id,d.sys_disk_type,
