@@ -1255,7 +1255,7 @@ exports.davicefilterMdl = function (data,decrypt) {
 
   var mndlCndtn = ``;
   if(data.device_id && data.location_id && data.sys_os && data.sys_hardware){
-    mndlCndtn =`and d.device_id=${data.device_id} and l.location_id=${data.location_id} and di.sys_os=${data.sys_os}  and di.sys_hardware=${data.sys_hardware} `
+    mndlCndtn =`and d.device_id=${data.device_id} and l.location_id=${data.location_id} and di.sys_os='${data.sys_os}'  and di.sys_hardware='${data.sys_hardware}' `
   }
   else if(data.device_id && !data.location_id && !data.sys_os && !data.sys_hardware ){
     mndlCndtn =`and d.device_id=${data.device_id}  `
@@ -1264,34 +1264,34 @@ exports.davicefilterMdl = function (data,decrypt) {
     mndlCndtn =` and l.location=${data.location_id}  `
   }
  else  if(!data.device_id && !data.location_id && data.sys_os && !data.sys_hardware){
-    mndlCndtn =` and di.sys_os=${data.sys_os} `
+    mndlCndtn =` and di.sys_os='${data.sys_os}' `
   }
   else if(!data.device_id && !data.location_id && !data.sys_os && data.sys_hardware){
-    mndlCndtn =` and di.sys_hardware=${data.sys_hardware} `
+    mndlCndtn =` and di.sys_hardware='${data.sys_hardware}' `
   }
   else if(data.device_id && data.location_id && data.sys_os && !data.sys_hardware){
-    mndlCndtn =`and d.device_id=${data.device_id} and l.location_id=${data.location_id} and di.sys_os=${data.sys_os}   `
+    mndlCndtn =`and d.device_id=${data.device_id} and l.location_id=${data.location_id} and di.sys_os='${data.sys_os}'   `
   }
   else if(data.device_id && data.location_id && !data.sys_os && data.sys_hardware){
-    mndlCndtn =`and d.device_id=${data.device_id} and l.location_id=${data.location_id}  and di.sys_hardware=${data.sys_hardware} `
+    mndlCndtn =`and d.device_id=${data.device_id} and l.location_id=${data.location_id}  and di.sys_hardware='${data.sys_hardware}' `
   }
   else if(data.device_id && !data.location_id && data.sys_os && data.sys_hardware){
-    mndlCndtn =`and d.device_id=${data.device_id}  and di.sys_os=${data.sys_os}  and di.sys_hardware=${data.sys_hardware} `
+    mndlCndtn =`and d.device_id=${data.device_id}  and di.sys_os='${data.sys_os}'  and di.sys_hardware='${data.sys_hardware}' `
   }
   else if(!data.device_id && data.location_id && data.sys_os && data.sys_hardware){
-    mndlCndtn =` and l.location_id=${data.location_id} and di.sys_os=${data.sys_os}  and di.sys_hardware=${data.sys_hardware} `
+    mndlCndtn =` and l.location_id=${data.location_id} and di.sys_os='${data.sys_os}'  and di.sys_hardware='${data.sys_hardware}' `
   }
   else if(data.device_id && data.location_id && !data.sys_os && !data.sys_hardware){
     mndlCndtn =`and d.device_id=${data.device_id} and l.location_id=${data.location_id}  `
   }
   else if(data.device_id && !data.location_id && !data.sys_os && data.sys_hardware){
-    mndlCndtn =`and d.device_id=${data.device_id}   and di.sys_hardware=${data.sys_hardware} `
+    mndlCndtn =`and d.device_id=${data.device_id}   and di.sys_hardware='${data.sys_hardware}' `
   }
   else if(!data.device_id && !data.location_id && data.sys_os && data.sys_hardware){
-    mndlCndtn =` and di.sys_os=${data.sys_os}  and di.sys_hardware=${data.sys_hardware} `
+    mndlCndtn =` and di.sys_os='${data.sys_os}'  and di.sys_hardware='${data.sys_hardware}' `
   }
   else if(!data.device_id && data.location_id && !data.sys_os && data.sys_hardware){
-    mndlCndtn =` and l.location_id=${data.location_id}  and di.sys_hardware=${data.sys_hardware} `
+    mndlCndtn =` and l.location_id=${data.location_id}  and di.sys_hardware='${data.sys_hardware}' `
   }
 
  
