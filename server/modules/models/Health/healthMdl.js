@@ -160,7 +160,7 @@ exports.TemperaturelistMdl = function (data) {
 
     var temperature=``
     if(data.device_id){
-        temperature=` and di.device_id=${data.device_id} `
+        temperature=` and d.device_id=${data.device_id} `
     }
     var QRY_TO_EXEC = `  SELECT s.device_id,sys_temperature/10 AS temperature,'System' AS type,hostname
     FROM sensors AS s
