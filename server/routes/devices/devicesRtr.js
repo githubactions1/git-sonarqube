@@ -29,7 +29,7 @@ devicesRtr.get("/basicdevicedownlist", deviceCtrl.basicdevicedownlistCtrl);
 devicesRtr.get("/eventlogs", deviceCtrl.eventlogsCtrl);
 devicesRtr.get("/ignoredetails", deviceCtrl.ignoredetailsCtrl);
 devicesRtr.get("/disablelist", deviceCtrl.disablelistCtrl);
-devicesRtr.get("/detailsstatuspage", deviceCtrl.detailsstatuspageCtrl);
+devicesRtr.post("/detailsstatuspage", deviceCtrl.detailsstatuspageCtrl);
 devicesRtr.post("/geolocation", deviceCtrl.geolocationCtrl);
 devicesRtr.get("/sensorpresentlist", deviceCtrl.sensorpresentlistCtrl);
 devicesRtr.get("/sensordownlist", deviceCtrl.sensordownlistCtrl);
