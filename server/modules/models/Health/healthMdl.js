@@ -15,10 +15,11 @@ exports.memorylistMdl = function (data) {
     var fnm = "memorylistMdl"
     var memory =``
     if(data.device_id){
-        memory=` and di.device_id=${data.device_id} `
+        memory=`where di.device_id=${data.device_id} `
     }
     var QRY_TO_EXEC = ` select d.hostname,d.device_id,(d.sys_total_memory) ,(d.sys_used_memory ),d.sys_mem_type from sensors as s
-    join device_info as d on d.device_id=s.device_id ${memory}  `;
+    join device_info as d on d.device_id=s.device_id
+     ${memory}  `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
