@@ -162,15 +162,16 @@ exports.TemperaturelistMdl = function (data) {
     if(data.device_id){
         temperature=` and d.device_id=${data.device_id} `
     }
-    var QRY_TO_EXEC = `  SELECT s.device_id,sys_temperature/10 AS temperature,'System' AS type,hostname
+    var QRY_TO_EXEC = ` SELECT s.device_id, sys_temperature/10 AS temperature, 'System' AS type, hostname
     FROM sensors AS s
-    JOIN device_info AS d ON d.device_id = s.device_id
-    WHERE sys_temperature > 0
+    JOIN device_info AS ds ON ds.device_id = s.device_id
+    WHERE sys_temperature > 0 AND ds.device_id =  ${temperature}
     UNION ALL
-    SELECT s.device_id,sys_processor_temp/10 AS temperature,'Processor' AS type,hostname
+    SELECT s.device_id, sys_processor_temp/10 AS temperature, 'Processor' AS type, hostname
     FROM sensors AS s
     JOIN device_info AS d ON d.device_id = s.device_id
-    WHERE sys_processor_temp > 0  ${temperature} `;
+    WHERE sys_processor_temp > 0 AND d.device_id = ${temperature}
+    ORDER BY device_id;  `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 };
