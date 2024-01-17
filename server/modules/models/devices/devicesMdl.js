@@ -1254,32 +1254,50 @@ exports.davicefilterMdl = function (data,decrypt) {
   var fnm = "davicefilterMdl"
 
   var mndlCndtn = ``;
-  if(data.device_id && data.location_id && data.sysc_desc){
-    mndlCndtn =`and d.device_id=${data.device_id} and l.location=${data.location_id} and di.sys_desc=${data.sysc_desc} `
+  if(data.device_id && data.location_id && data.sys_os && data.sys_hardware){
+    mndlCndtn =`and d.device_id=${data.device_id} and l.location_id=${data.location_id} and di.sys_os=${data.sys_os}  and di.sys_hardware=${data.sys_hardware} `
   }
-  else if(data.device_id && !data.location_id && !data.sysc_desc){
+  else if(data.device_id && !data.location_id && !data.sys_os && !data.sys_hardware ){
     mndlCndtn =`and d.device_id=${data.device_id}  `
   }
-  else if(!data.device_id && data.location_id && !data.sysc_desc){
+  else if(!data.device_id && data.location_id && !data.sys_os && !data.sys_hardware){
     mndlCndtn =` and l.location=${data.location_id}  `
   }
- else  if(!data.device_id && !data.location_id && !data.sysc_desc){
-    mndlCndtn =` and di.sys_desc=${data.sysc_desc} `
+ else  if(!data.device_id && !data.location_id && data.sys_os && !data.sys_hardware){
+    mndlCndtn =` and di.sys_os=${data.sys_os} `
   }
-  else if(data.device_id && data.location_id && !data.sysc_desc){
-    mndlCndtn =`and d.device_id=${data.device_id} and l.location=${data.location_id} `
+  else if(!data.device_id && !data.location_id && !data.sys_os && data.sys_hardware){
+    mndlCndtn =` and di.sys_hardware=${data.sys_hardware} `
   }
- else if(data.device_id && !data.location_id && data.sysc_desc){
-    mndlCndtn =`and d.device_id=${data.device_id}  and di.sys_desc=${data.sysc_desc} `
+  else if(data.device_id && data.location_id && data.sys_os && !data.sys_hardware){
+    mndlCndtn =`and d.device_id=${data.device_id} and l.location_id=${data.location_id} and di.sys_os=${data.sys_os}   `
   }
- else  if(!data.device_id && data.location_id && data.sysc_desc){
-    mndlCndtn =`  and l.location=${data.location_id} and di.sys_desc=${data.sysc_desc} `
+  else if(data.device_id && data.location_id && !data.sys_os && data.sys_hardware){
+    mndlCndtn =`and d.device_id=${data.device_id} and l.location_id=${data.location_id}  and di.sys_hardware=${data.sys_hardware} `
+  }
+  else if(data.device_id && !data.location_id && data.sys_os && data.sys_hardware){
+    mndlCndtn =`and d.device_id=${data.device_id}  and di.sys_os=${data.sys_os}  and di.sys_hardware=${data.sys_hardware} `
+  }
+  else if(!data.device_id && data.location_id && data.sys_os && data.sys_hardware){
+    mndlCndtn =` and l.location_id=${data.location_id} and di.sys_os=${data.sys_os}  and di.sys_hardware=${data.sys_hardware} `
+  }
+  else if(data.device_id && data.location_id && !data.sys_os && !data.sys_hardware){
+    mndlCndtn =`and d.device_id=${data.device_id} and l.location_id=${data.location_id}  `
+  }
+  else if(data.device_id && !data.location_id && !data.sys_os && data.sys_hardware){
+    mndlCndtn =`and d.device_id=${data.device_id}   and di.sys_hardware=${data.sys_hardware} `
+  }
+  else if(!data.device_id && !data.location_id && data.sys_os && data.sys_hardware){
+    mndlCndtn =` and di.sys_os=${data.sys_os}  and di.sys_hardware=${data.sys_hardware} `
+  }
+  else if(!data.device_id && data.location_id && !data.sys_os && data.sys_hardware){
+    mndlCndtn =` and l.location_id=${data.location_id}  and di.sys_hardware=${data.sys_hardware} `
   }
 
  
   var QRY_TO_EXEC = ` select di.ip_status,d.hostname,di.sys_desc,di.uptime,d.device_id from devices as d 
-  join device_info as di on di.device_id=d.device_id 
-  join locations as l on l.device_id=d.device_id
+  left join device_info as di on di.device_id=d.device_id 
+  left join locations as l on l.device_id=d.device_id
   where d.ignores=0 and disabled=0 ${mndlCndtn}  group by d.device_id;   ` ;
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
