@@ -15,7 +15,7 @@ exports.memorylistMdl = function (data) {
     var fnm = "memorylistMdl"
     var memory =``
     if(data.device_id){
-        memory=`where di.device_id=${data.device_id} `
+        memory=`where d.device_id=${data.device_id} `
     }
     var QRY_TO_EXEC = ` select d.hostname,d.device_id,(d.sys_total_memory) ,(d.sys_used_memory ),d.sys_mem_type from sensors as s
     join device_info as d on d.device_id=s.device_id
