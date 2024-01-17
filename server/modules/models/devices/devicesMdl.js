@@ -1222,11 +1222,15 @@ exports.portdisableMdl = function (data,decrypt) {
   var fnm = "portdisableMdl"
   var port_alert_status=``;
   var port_disable_status=``;
-  if(data.port_disable_status){
+  if(data.port_disable_status && data.alert_status){
+    port_disable_status=` port_disable_status=${data.port_disable_status}`
+    port_alert_status=`, port_alert_status=${data.port_alert_status}`
+  }
+  else if(data.port_disable_status){
       port_disable_status=` port_disable_status=${data.port_disable_status}`
   }
-  if(data.alert_status){
-      port_alert_status=`, port_alert_status=${data.port_alert_status}`
+  else if(data.alert_status){
+      port_alert_status=` port_alert_status=${data.port_alert_status}`
   }
   var QRY_TO_EXEC = ` update ports set ${port_disable_status}${port_alert_status} where device_id=${data.device_id} and if_index=${data.if_index};  ` ;
   console.log(QRY_TO_EXEC);
