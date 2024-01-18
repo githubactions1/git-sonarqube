@@ -222,13 +222,13 @@ exports.allportslistMdl = function (data) {
     var fnm = "allportslistMdl"
     var mndlCndtnn=``;
     if(data.hostname && data.if_name && data.if_oper_status && data.location_id ){
-      mndlCndtnn =` where  d.hostname=${data.hostname} and p.if_name=${data.if_name} and p.if_oper_status=${data.if_oper_status}  and l.location_id=${data.location_id} `
+      mndlCndtnn =` where  d.hostname=${data.hostname} and p.if_name='${data.if_name}' and p.if_oper_status=${data.if_oper_status}  and l.location_id=${data.location_id} `
     }
     else if(data.hostname && !data.if_name && !data.if_oper_status && !data.location_id ){
       mndlCndtnn =` where d.hostname=${data.hostname}  `
     }
    else  if(!data.hostname && data.if_name && !data.if_oper_status && !data.location_id ){
-      mndlCndtnn =`where  p.if_name=${data.if_name}  `
+      mndlCndtnn =`where  p.if_name='${data.if_name}'  `
     }
    else  if(!data.hostname && !data.if_name && data.if_oper_status && !data.location_id ){
       mndlCndtnn =`where  p.if_oper_status=${data.if_oper_status}   `
@@ -237,7 +237,7 @@ exports.allportslistMdl = function (data) {
       mndlCndtnn =`where  l.location_id=${data.location_id} `
     }
    else  if(data.hostname && data.if_name && !data.if_oper_status && !data.location_id ){
-      mndlCndtnn =`where d.hostname=${data.hostname} and p.if_name=${data.if_name}  `
+      mndlCndtnn =`where d.hostname=${data.hostname} and p.if_name='${data.if_name}'  `
     }
    else if(data.hostname && !data.if_name && data.if_oper_status && !data.location_id ){
       mndlCndtnn =`where d.hostname=${data.hostname}  and p.if_oper_status=${data.if_oper_status}   `
@@ -246,22 +246,22 @@ exports.allportslistMdl = function (data) {
       mndlCndtnn =` d.hostname=${data.hostname}   and l.location_id=${data.location_id} `
     }
    else if(!data.hostname && data.if_name && data.if_oper_status && !data.location_id ){
-      mndlCndtnn =`where  p.if_name=${data.if_name} and p.if_oper_status=${data.if_oper_status}   `
+      mndlCndtnn =`where  p.if_name='${data.if_name}' and p.if_oper_status=${data.if_oper_status}   `
     }
     else if(!data.hostname && !data.if_name && data.if_oper_status && data.location_id ){
       mndlCndtnn =`where p.if_oper_status=${data.if_oper_status}  and l.location_id=${data.location_id} `
     }
     else if(data.hostname && data.if_name && data.if_oper_status && !data.location_id ){
-      mndlCndtnn =`where d.hostname=${data.hostname} and p.if_name=${data.if_name} and p.if_oper_status=${data.if_oper_status}  `
+      mndlCndtnn =`where d.hostname=${data.hostname} and p.if_name='${data.if_name}' and p.if_oper_status=${data.if_oper_status}  `
     }
     else if(data.hostname && data.if_name && !data.if_oper_status && data.location_id ){
-      mndlCndtnn =`where d.hostname=${data.hostname} and p.if_name=${data.if_name}  and l.location_id=${data.location_id} `
+      mndlCndtnn =`where d.hostname=${data.hostname} and p.if_name='${data.if_name}'  and l.location_id=${data.location_id} `
     }
     else if(data.hostname && !data.if_name && data.if_oper_status && data.location_id ){
       mndlCndtnn =`where d.hostname=${data.hostname} and  p.if_oper_status=${data.if_oper_status}  and l.location_id=${data.location_id} `
     }
     else if(!data.hostname && !data.if_name && data.if_oper_status && data.location_id ){
-      mndlCndtnn =`where p.if_name=${data.if_name} and p.if_oper_status=${data.if_oper_status}  and l.location_id=${data.location_id} `
+      mndlCndtnn =`where p.if_name='${data.if_name}' and p.if_oper_status=${data.if_oper_status}  and l.location_id=${data.location_id} `
     }
     var QRY_TO_EXEC = `   SELECT
     p.device_id,
