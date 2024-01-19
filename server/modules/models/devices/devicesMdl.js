@@ -1262,7 +1262,7 @@ exports.davicefilterMdl = function (data,decrypt) {
     mndlCndtn =`and d.device_id=${data.device_id}  `
   }
   else if(!data.device_id && data.location_id && !data.sys_os && !data.sys_hardware){
-    mndlCndtn =` and l.location=${data.location_id}  `
+    mndlCndtn =` and l.location_id=${data.location_id}  `
   }
  else  if(!data.device_id && !data.location_id && data.sys_os && !data.sys_hardware){
     mndlCndtn =` and di.sys_os='${data.sys_os}' `
