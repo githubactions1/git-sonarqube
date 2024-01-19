@@ -10,7 +10,7 @@ devicesRtr.post("/devicesindetailed", deviceCtrl.devicesindetailedCtrl);
 devicesRtr.post("/devicessensorslst", deviceCtrl.devicessensorslstCtrl);
 devicesRtr.post("/processorindetail", deviceCtrl.processorindetailCtrl);
 devicesRtr.get("/devicebasiclistcount", deviceCtrl.devicebasiclstcountCtrl);
-devicesRtr.get("/sensorslist", deviceCtrl.sensorslistCtrl);
+devicesRtr.post("/sensorslist", deviceCtrl.sensorslistCtrl);
 devicesRtr.post("/detailedportslist", deviceCtrl.detailedportslistCtrl);
 devicesRtr.post("/allportslist", deviceCtrl.allportslistCtrl);
 devicesRtr.post("/devicesportscount", deviceCtrl.devicesportscountCtrl);
