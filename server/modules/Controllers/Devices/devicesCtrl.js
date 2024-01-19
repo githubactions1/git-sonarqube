@@ -853,9 +853,13 @@ exports.portdisableCtrl=(req,res)=>{
 *
 ******************************************************************************/
 exports.devicesettingsCtrl=(req,res)=>{
-	dashboardMdl.devicesettingsMdl(req.body,req.user).then(function(results){
-	   console.log(results)
-		df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	dashboardMdl.locationpresentMdl(req.body,req.user).then(function(result){
+		var length=result.length
+	   console.log(length,'lengthhhhhhhhhhhhhhhhh')
+	   dashboardMdl.devicesettingsMdl(req.body,req.user,length).then(function(results){
+				df.formatSucessRes(req,res,results,cntxtDtls,'',{});
+	   })
+		
 	}).catch(function(error){
 	   console.log(error)
 		df.formatErrorRes(req,res,error,cntxtDtls,'',{});

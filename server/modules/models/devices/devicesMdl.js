@@ -1332,7 +1332,7 @@ exports.davicefilterMdl = function (data,decrypt) {
 * 04-11-2023 - RajKumar
 *
 ******************************************************************************/
-exports.devicesettingsMdl = function (data,decrypt) {
+exports.devicesettingsMdl = function (data,decrypt,length) {
   var fnm = "devicesettingsMdl"
    var device_type=``;
   var description=``;
@@ -1350,10 +1350,15 @@ exports.devicesettingsMdl = function (data,decrypt) {
   if (data.disabled != null && data.disabled != '' && data.disabled != undefined) {
     disabled = `,disabled =${data.disabled}`
   }
+
   var QRY_TO_EXEC = `  update devices set ${description} ${device_type} ${device_ignore} ${disabled} where device_id=${data.device_id} ;   ` ;
-  if(data.location){
-    var QRY_TO_EXEC =` update locations set name='${data.name}',device_id=${data.device_id}  `
+  if(length == 0){
+    if(data.location){
+      var QRY_TO_EXEC =` update locations set name='${data.name}' where device_id=${data.device_id}  `
+    }
   }
+  
+  
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 }
@@ -1400,3 +1405,16 @@ exports.hardwarelistMdl = function (data,decrypt) {
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 }
 
+/*****************************************************************************
+ * Function : locationpresentMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.locationpresentMdl = function (data,decrypt) {
+  var fnm = "locationpresentMdl"
+  var QRY_TO_EXEC = ` select * from locations where name='${data.name}' ` ;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+}
