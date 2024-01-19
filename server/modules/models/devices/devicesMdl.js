@@ -153,45 +153,49 @@ exports.devicebasiclstcountMdl = function (data) {
 ******************************************************************************/
 exports.sensorslistMdl = function (data) {
     var fnm = "sensorslistMdl"
+    var sensor=``;
+    if(data.device_id){
+      sensor=`where di.device_id=${data.device_id}`
+    }
     var QRY_TO_EXEC = ` select  s.device_id, di.hostname,s.sys_voltage value, 'voltage' descrip
     from sensors as s
     join device_info as di on s.device_id=di.device_id
-    where di.device_id=${data.device_id}
+    ${sensor}
     union all
     select  s.device_id, di.hostname,s.sys_activefan value, 'activefan' descrip
     from sensors as s
     join device_info as di on s.device_id=di.device_id
-    where di.device_id=${data.device_id}
+    ${sensor}
     union all
     select  s.device_id, di.hostname,s.sys_temperature value, 'Temperature' descrip
     from sensors as s
     join device_info as di on s.device_id=di.device_id
-    where di.device_id=${data.device_id}
+    ${sensor}
     union all
     select  s.device_id, di.hostname,s.sys_fanspeed value, 'Fanspeed' descrip
     from sensors as s
     join device_info as di on s.device_id=di.device_id
-    where di.device_id=${data.device_id}
+    ${sensor}
     union all
     select  s.device_id, di.hostname,s.sys_processor_temp value, 'Processor_temp' descrip
     from sensors as s
     join device_info as di on s.device_id=di.device_id
-    where di.device_id=${data.device_id}
+    ${sensor}
     union all
     select  s.device_id, di.hostname,s.sys_power value, 'Power' descrip
     from sensors as s
     join device_info as di on s.device_id=di.device_id
-    where di.device_id=${data.device_id}
+    ${sensor}
     union all
     select  s.device_id, di.hostname,s.sys_current value, 'Current' descrip
     from sensors as s
     join device_info as di on s.device_id=di.device_id
-    where di.device_id=${data.device_id}
+    ${sensor}
     union all
     select  s.device_id, di.hostname,s.sys_processor_frequency value, 'Processor_Frequency' descrip
     from sensors as s
     join device_info as di on s.device_id=di.device_id
-    where di.device_id=${data.device_id}
+    ${sensor}
     `;
     console.log(QRY_TO_EXEC);
     return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
