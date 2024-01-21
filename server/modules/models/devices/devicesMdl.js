@@ -1248,7 +1248,7 @@ exports.roleaddMdl = function (data,decrypt) {
 exports.portdisableMdl = function (data,decrypt) {
   var fnm = "portdisableMdl"
   var disable=``;
-  if(data.port_disable_status && data.alert_status){
+  if(data.port_disable_status && data.port_alert_status){
     disable= ` port_disable_status=${data.port_disable_status} and port_alert_status=${data.port_alert_status} `
    
   }
