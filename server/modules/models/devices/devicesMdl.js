@@ -1255,7 +1255,7 @@ exports.portdisableMdl = function (data,decrypt) {
   else if(data.port_disable_status){
     disable=` port_disable_status=${data.port_disable_status}`
   }
-  else if(data.alert_status){
+  else if(data.port_alert_status){
     disable=` port_alert_status=${data.port_alert_status}`
   }
   var QRY_TO_EXEC = ` update ports set ${disable} where device_id=${data.device_id} and if_index=${data.if_index};  ` ;
