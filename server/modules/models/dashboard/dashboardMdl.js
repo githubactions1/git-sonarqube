@@ -110,7 +110,7 @@ exports.sensorsMdl = function (data) {
 /*****************************************************************************
 * Function : statusesMdl
 * Description : this model shows the statuses on devices in dashborad
-* Arguments : callback function
+* Arguments : callback functionn
 * 04-11-2023 - RajKumar
 *
 ******************************************************************************/
