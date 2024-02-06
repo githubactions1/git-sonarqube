@@ -1417,3 +1417,18 @@ exports.locationpresentMdl = function (data,decrypt) {
   console.log(QRY_TO_EXEC);
   return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
 }
+
+
+/*****************************************************************************
+ * Function : neighboursMdl
+* Description : this will shoows the ports list
+* Arguments : callback function
+* 04-11-2023 - RajKumar
+*
+******************************************************************************/
+exports.neighboursMdl = function (data,decrypt) {
+  var fnm = "neighboursMdl"
+  var QRY_TO_EXEC = ` SELECT * FROM ndp_table where device_id=${data.device_id} ` ;
+  console.log(QRY_TO_EXEC);
+  return dbutil.execQuery(sqldb.MySQLConPool, QRY_TO_EXEC, cntxtDtls, '', fnm);
+}

@@ -51,4 +51,5 @@ devicesRtr.post("/davicefilter", deviceCtrl.davicefilterCtrl);
 devicesRtr.get("/locationlist", deviceCtrl.locationlistCtrl);
 devicesRtr.get("/oslist", deviceCtrl.oslistCtrl);
 devicesRtr.get("/hardwarelist", deviceCtrl.hardwarelistCtrl);
+devicesRtr.post("/neighbours", deviceCtrl.neighboursCtrl);
 module.exports=devicesRtr; 

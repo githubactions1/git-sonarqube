@@ -212,3 +212,4 @@ exports.logindetailslistMdl = function (data) {
 };
 
 
+
