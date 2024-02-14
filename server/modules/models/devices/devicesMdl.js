@@ -294,7 +294,7 @@ exports.allportslistMdl = function (data) {
     round(If_OutOctets / 1000*100, 0) as outpercentage,
     Received_Hc_UniCast_Pkts,
     Received_UniCast_Pkts,
-    Transmitted_Hc_UniCast_Pkts=-1 as speed
+    if_speed / 1e9  as speed
   FROM
     ports AS p
   JOIN (
